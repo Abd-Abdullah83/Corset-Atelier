@@ -1,0 +1,87 @@
+/* ==========================================================================
+   CORSET ATELIER — DESIGN TOKENS
+   Palette drawn from corsetry itself: void black, ivory silk, oxblood lacing
+   ribbon, brass hardware. Two type families only: Cormorant Garamond (display)
+   and Manrope (body/utility).
+   ========================================================================== */
+
+:root {
+  /* ---- Color: core ---- */
+  --c-void: #0F0D0E;         /* primary dark bg */
+  --c-void-soft: #171415;    /* elevated dark surface */
+  --c-ivory: #F6F1E9;        /* primary light bg */
+  --c-ivory-soft: #EFE8DB;   /* elevated light surface */
+  --c-charcoal: #211E1F;     /* body text on light */
+  --c-oxblood: #6B1423;      /* primary accent — lacing ribbon */
+  --c-oxblood-light: #8A2432;
+  --c-brass: #A9772F;        /* metallic accent — hardware */
+  --c-brass-light: #C79A52;
+  --c-rose-dust: #C9A6A1;    /* soft secondary accent */
+  --c-line: rgba(33, 30, 31, 0.12);      /* hairline on light */
+  --c-line-dark: rgba(246, 241, 233, 0.14); /* hairline on dark */
+
+  /* ---- Color: semantic ---- */
+  --bg-page: var(--c-ivory);
+  --bg-inverse: var(--c-void);
+  --text-primary: var(--c-charcoal);
+  --text-inverse: var(--c-ivory);
+  --text-muted: rgba(33, 30, 31, 0.6);
+  --text-muted-inverse: rgba(246, 241, 233, 0.62);
+  --accent: var(--c-oxblood);
+  --accent-hover: var(--c-oxblood-light);
+  --metal: var(--c-brass);
+
+  /* ---- Type ---- */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --fs-eyebrow: 0.72rem;
+  --fs-caption: 0.82rem;
+  --fs-body: 1rem;
+  --fs-body-lg: 1.125rem;
+  --fs-h6: 1.25rem;
+  --fs-h5: 1.75rem;
+  --fs-h4: 2.25rem;
+  --fs-h3: 3rem;
+  --fs-h2: 3.75rem;
+  --fs-h1: 5rem;
+  --fs-hero: clamp(2.75rem, 6vw, 6.5rem);
+
+  --lh-tight: 1.05;
+  --lh-snug: 1.25;
+  --lh-normal: 1.6;
+
+  --ls-eyebrow: 0.22em;
+  --ls-caption: 0.14em;
+  --ls-tight: -0.01em;
+
+  /* ---- Spacing scale ---- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --sp-10: 8rem;
+
+  /* ---- Layout ---- */
+  --container-max: 1440px;
+  --container-pad: clamp(1.25rem, 4vw, 4rem);
+  --header-h: 92px;
+  --header-h-scrolled: 72px;
+
+  /* ---- Motion ---- */
+  --ease-signature: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-med: 420ms;
+  --dur-slow: 900ms;
+
+  /* ---- Radius / shadow ---- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --shadow-card: 0 1px 2px rgba(15, 13, 14, 0.04), 0 12px 32px -12px rgba(15, 13, 14, 0.18);
+  --shadow-lifted: 0 24px 60px -20px rgba(15, 13, 14, 0.35);
+}

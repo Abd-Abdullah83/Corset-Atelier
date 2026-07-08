@@ -1,0 +1,200 @@
+/* ==========================================================================
+   CORSET ATELIER — BASE
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 500; }
+
+::selection { background: var(--c-oxblood); color: var(--c-ivory); }
+
+:focus-visible {
+  outline: 2px solid var(--c-brass);
+  outline-offset: 3px;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* ---- Typography utility classes ---- */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--metal);
+}
+
+.display-xl {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  line-height: var(--lh-tight);
+  font-weight: 500;
+  letter-spacing: var(--ls-tight);
+}
+
+.display-lg { font-family: var(--font-display); font-size: var(--fs-h2); line-height: var(--lh-tight); font-weight: 500; }
+.display-md { font-family: var(--font-display); font-size: var(--fs-h3); line-height: var(--lh-snug); font-weight: 500; }
+.display-sm { font-family: var(--font-display); font-size: var(--fs-h4); line-height: var(--lh-snug); font-weight: 500; }
+
+.italic-accent { font-style: italic; color: var(--accent); }
+
+.text-muted { color: var(--text-muted); }
+.on-dark .text-muted, .bg-void .text-muted { color: var(--text-muted-inverse); }
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 0.95rem 2.2rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: var(--ls-caption);
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: background var(--dur-fast) var(--ease-signature),
+              color var(--dur-fast) var(--ease-signature),
+              border-color var(--dur-fast) var(--ease-signature),
+              transform var(--dur-fast) var(--ease-signature);
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.98); }
+
+.btn-primary {
+  background: var(--c-void);
+  color: var(--c-ivory);
+  border-color: var(--c-void);
+}
+.btn-primary:hover { background: var(--c-oxblood); border-color: var(--c-oxblood); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--c-ivory);
+  border-color: rgba(246, 241, 233, 0.55);
+}
+.btn-outline:hover { background: var(--c-ivory); color: var(--c-void); border-color: var(--c-ivory); }
+
+.btn-outline-dark {
+  background: transparent;
+  color: var(--c-charcoal);
+  border-color: rgba(33, 30, 31, 0.3);
+}
+.btn-outline-dark:hover { background: var(--c-charcoal); color: var(--c-ivory); border-color: var(--c-charcoal); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--c-charcoal);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--c-charcoal);
+  border-radius: 0;
+}
+.btn-ghost:hover { color: var(--c-oxblood); border-color: var(--c-oxblood); }
+
+/* ==========================================================================
+   SIGNATURE ELEMENT — "THE LACE LINE"
+   A thin rule with eyelet ticks that laces itself shut, like corset lacing
+   being drawn through grommets. Used as: section dividers, slider progress,
+   nav hover-underline.
+   ========================================================================== */
+
+.lace-divider {
+  --eyelets: 12;
+  position: relative;
+  height: 18px;
+  margin-block: var(--sp-8);
+  display: flex;
+  align-items: center;
+}
+.lace-divider::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 1px;
+  background: var(--c-line);
+  transform: translateY(-50%);
+}
+.lace-divider .eyelet-row {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.lace-divider .eyelet {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--bg-page);
+  border: 1px solid var(--metal);
+}
+.on-dark .lace-divider::before { background: var(--c-line-dark); }
+.on-dark .lace-divider .eyelet { background: var(--bg-inverse); }
+
+/* Lace-line as a nav hover underline: two ticks that draw a stitch across */
+.lace-underline {
+  position: relative;
+  padding-bottom: 6px;
+}
+.lace-underline::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--metal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-med) var(--ease-signature);
+}
+.lace-underline:hover::after,
+.lace-underline.is-active::after { transform: scaleX(1); }
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--c-oxblood);
+  color: var(--c-ivory);
+  padding: var(--sp-3) var(--sp-5);
+  z-index: 999;
+}
+.skip-link:focus { left: var(--sp-4); top: var(--sp-4); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}

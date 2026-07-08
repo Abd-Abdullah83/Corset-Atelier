@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Corset Atelier</title>
+<meta name="description" content="Handcrafted corset, made to order.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header-footer.css">
+<link rel="stylesheet" href="css/collections.css">
+<link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<div class="announce-bar">Handcrafted to order &nbsp;·&nbsp; 70% deposit, 17-day production &nbsp;·&nbsp; Cash on delivery available</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" data-site-header data-solid>
+  <div class="container header-inner">
+    <nav class="nav-primary" aria-label="Primary">
+      <a href="collections.html" data-nav-link class="lace-underline">Collections</a>
+      <a href="custom-builder.html" data-nav-link class="lace-underline">Custom Build</a>
+      <a href="our-story.html" data-nav-link class="lace-underline">Our Story</a>
+      <a href="size-guide.html" data-nav-link class="lace-underline">Size Guide</a>
+    </nav>
+
+    <a href="index.html" class="logo-mark">
+      <span class="eyelet-glyph" aria-hidden="true"></span>
+      Corset Atelier
+    </a>
+
+    <div class="header-icons">
+      <a href="account.html" aria-label="Account">
+        <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="wishlist.html" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span class="wishlist-count" data-wishlist-count style="display:none">0</span>
+      </a>
+      <a href="https://wa.me/923286712746" target="_blank" rel="noopener" aria-label="WhatsApp us">
+        <svg viewBox="0 0 24 24"><path d="M20 4.4A10 10 0 003.5 16.6L2 22l5.6-1.5A10 10 0 1020 4.4z" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </a>
+      <button type="button" class="nav-toggle" data-drawer-open aria-label="Open menu">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE DRAWER ============ -->
+<div class="mobile-drawer" data-mobile-drawer>
+  <button type="button" class="mobile-drawer-close" data-drawer-close aria-label="Close menu">
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+  <nav>
+    <a href="collections.html">Collections</a>
+    <a href="custom-builder.html">Custom Build</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="size-guide.html">Size Guide</a>
+    <a href="wishlist.html">Wishlist</a>
+    <a href="faqs.html">FAQs</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<main id="main" data-product-root>
+
+  <div class="container breadcrumb">
+    <a href="index.html">Home</a><span>/</span><a href="collections.html">Collections</a><span>/</span><span data-pd-category>—</span>
+  </div>
+
+  <div class="container product-detail">
+
+    <!-- ============ GALLERY ============ -->
+    <div class="gallery">
+      <div class="gallery-main" data-gallery-main>
+        <div class="zoom-media"></div>
+        <span class="zoom-hint">Click to zoom</span>
+      </div>
+      <div class="gallery-thumbs" data-gallery-thumbs></div>
+    </div>
+
+    <!-- ============ INFO ============ -->
+    <div class="pd-info">
+      <span class="pd-category" data-pd-category></span>
+      <h1 class="pd-title" data-pd-title></h1>
+
+      <div class="pd-price-row">
+        <span class="pd-price" data-pd-price></span>
+        <span class="pd-compare-price" data-pd-compare></span>
+        <span class="pd-discount-badge" data-pd-discount-badge></span>
+      </div>
+
+      <p class="pd-desc" data-pd-desc></p>
+
+      <div class="pd-meta">
+        <div class="pd-meta-item">
+          <h6>Fabric</h6>
+          <p data-pd-fabric></p>
+        </div>
+        <div class="pd-meta-item">
+          <h6>Weight</h6>
+          <p data-pd-weight></p>
+        </div>
+        <div class="pd-meta-item">
+          <h6>Production</h6>
+          <p>17 days, made to order</p>
+        </div>
+      </div>
+
+      <div class="variant-group">
+        <div class="variant-label">
+          <h6>Color</h6>
+          <span class="variant-value" data-selected-color></span>
+        </div>
+        <div class="swatch-row" data-color-swatches></div>
+      </div>
+
+      <div class="variant-group">
+        <div class="variant-label">
+          <h6>Size</h6>
+          <a href="size-guide.html" target="_blank">Size Guide</a>
+        </div>
+        <div class="size-row" data-size-buttons></div>
+      </div>
+
+      <div class="pd-actions">
+        <button type="button" class="btn btn-primary" data-open-buy>Buy Now — Order via WhatsApp</button>
+        <button type="button" class="btn btn-outline-dark" data-open-query>Ask a Question</button>
+        <button type="button" class="btn-wishlist-lg" data-pd-wishlist aria-label="Toggle wishlist">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="pd-custom-note">
+        <div>
+          <strong>Want it made to your exact measurements?</strong>
+          <p>Start a custom build using this piece as your base — choose your own fabric, color and fit.</p>
+        </div>
+        <a href="custom-builder.html" data-custom-link class="btn btn-ghost">Start Custom Build</a>
+      </div>
+
+      <div class="pd-trust">
+        <div class="pd-trust-item"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke-width="1.3" stroke-linejoin="round"/></svg>Handcrafted in-house</div>
+        <div class="pd-trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.3"/><path d="M12 7v5l3 3" stroke-width="1.3" stroke-linecap="round"/></svg>17-day production</div>
+        <div class="pd-trust-item"><svg viewBox="0 0 24 24"><path d="M3 7h13l5 5v5h-3M3 7v10h10M3 7l4-4h6l4 4" stroke-width="1.3" stroke-linejoin="round"/></svg>Cash on delivery</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ RELATED PRODUCTS ============ -->
+  <section class="container related-section" data-related-section>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">You May Also Like</span>
+        <h2 class="display-md">More From This Line</h2>
+      </div>
+    </div>
+    <div class="product-grid" data-related-grid></div>
+  </section>
+
+</main>
+
+<!-- ============ BUY MODAL ============ -->
+<div class="modal-overlay" data-buy-modal>
+  <div class="modal-panel">
+    <div class="modal-head">
+      <div>
+        <h3>Complete Your Order</h3>
+        <p>We'll open WhatsApp with your details filled in — just hit send.</p>
+      </div>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="form-summary" data-order-summary></div>
+    <form>
+      <div class="form-field"><label for="buy-name">Full Name</label><input id="buy-name" name="name" type="text" required></div>
+      <div class="form-row-2">
+        <div class="form-field"><label for="buy-phone">Phone</label><input id="buy-phone" name="phone" type="tel" required></div>
+        <div class="form-field"><label for="buy-email">Email (optional)</label><input id="buy-email" name="email" type="email"></div>
+      </div>
+      <div class="form-field"><label for="buy-address">Delivery Address</label><input id="buy-address" name="address" type="text" required></div>
+      <div class="form-field"><label for="buy-city">City</label><input id="buy-city" name="city" type="text" required></div>
+      <button type="submit" class="btn btn-primary modal-submit">Send Order on WhatsApp</button>
+      <p class="modal-note">Payment: Cash on Delivery</p>
+    </form>
+  </div>
+</div>
+
+<!-- ============ QUERY MODAL ============ -->
+<div class="modal-overlay" data-query-modal>
+  <div class="modal-panel">
+    <div class="modal-head">
+      <div>
+        <h3>Ask a Question</h3>
+        <p>We'll reply on WhatsApp, usually within the day.</p>
+      </div>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    </div>
+    <form>
+      <div class="form-field"><label for="q-message">Your Question</label><textarea id="q-message" name="message" rows="4" required placeholder="e.g. Does this run true to size?"></textarea></div>
+      <div class="form-row-2">
+        <div class="form-field"><label for="q-name">Name</label><input id="q-name" name="name" type="text" required></div>
+        <div class="form-field"><label for="q-phone">Phone (optional)</label><input id="q-phone" name="phone" type="tel"></div>
+      </div>
+      <button type="submit" class="btn btn-primary modal-submit">Send on WhatsApp</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-mark">
+        <span class="eyelet-glyph" aria-hidden="true"></span>
+        Corset Atelier
+      </a>
+      <p>Handcrafted corsetry, made to order. Bridal, evening and everyday silhouettes — laced to your exact form.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/corset_atelierrr/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M17 2H7a5 5 0 00-5 5v10a5 5 0 005 5h10a5 5 0 005-5V7a5 5 0 00-5-5zm-5 14a4 4 0 110-8 4 4 0 010 8zm5-9a1 1 0 110-2 1 1 0 010 2z"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16 3a5 5 0 005 5M16 3v12a4 4 0 11-4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3a4 4 0 00-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 011-1z"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2 2 0 110 4 2 2 0 010-4zM3 9h4v12H3zM10 9h3.6v1.8h.05c.5-.9 1.7-1.8 3.5-1.8 3.7 0 4.4 2.3 4.4 5.4V21H18v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H10z"/></svg></a>
+        <a href="https://wa.me/923286712746" target="_blank" rel="noopener" aria-label="WhatsApp group"><svg viewBox="0 0 24 24"><path d="M20 4.4A10 10 0 003.5 16.6L2 22l5.6-1.5A10 10 0 1020 4.4z" stroke-width="1.5" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h6>Shop</h6>
+      <ul>
+        <li><a href="collections.html?cat=bridal">Bridal Corsets</a></li>
+        <li><a href="collections.html?cat=overbust">Overbust Corsets</a></li>
+        <li><a href="collections.html?cat=underbust">Underbust Corsets</a></li>
+        <li><a href="collections.html?cat=waist-trainers">Waist Trainers</a></li>
+        <li><a href="collections.html?cat=new-arrivals">New Arrivals</a></li>
+        <li><a href="collections.html?cat=luxury">Luxury Collection</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h6>The Atelier</h6>
+      <ul>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li><a href="custom-builder.html">Custom Build</a></li>
+        <li><a href="custom-order-policy.html">Custom Order Policy</a></li>
+        <li><a href="size-guide.html">Size Guide</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h6>Support</h6>
+      <ul>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="shipping.html">Shipping & Returns</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h6>Contact</h6>
+      <ul>
+        <li><a href="tel:+923286712746">+92 328 6712746</a></li>
+        <li><a href="mailto:abd.mhr.83@gmail.com">abd.mhr.83@gmail.com</a></li>
+        <li><a href="https://wa.me/923286712746" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/corset_atelierrr/" target="_blank" rel="noopener">@corset_atelierrr</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© 2026 Corset Atelier. All rights reserved.</span>
+    <span class="payment-note">Payment: Cash on Delivery · WhatsApp Order</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/product.js"></script>
+</body>
+</html>

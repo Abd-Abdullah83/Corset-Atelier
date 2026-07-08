@@ -1,0 +1,256 @@
+/* ==========================================================================
+   HOME
+   ========================================================================== */
+
+/* ---- Hero slider ---- */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 620px;
+  margin-top: calc(-1 * var(--header-h));
+  overflow: hidden;
+  background: var(--c-void);
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-slow) var(--ease-signature);
+}
+.hero-slide.is-active { opacity: 1; visibility: visible; z-index: 2; }
+
+.hero-slide .hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.06);
+  transition: transform 7s linear;
+}
+.hero-slide.is-active .hero-bg { transform: scale(1); }
+
+.hero-slide .hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,13,14,0.15) 0%, rgba(15,13,14,0.15) 45%, rgba(15,13,14,0.78) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding: 0 var(--container-pad) var(--sp-10);
+  color: var(--c-ivory);
+}
+.hero-content .eyebrow { color: var(--c-rose-dust); margin-bottom: var(--sp-3); display: block; }
+.hero-content h1 { max-width: 16ch; margin-bottom: var(--sp-5); }
+.hero-content .hero-actions { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+
+/* Lace-line slider progress: eyelets fill in like lacing being drawn tight */
+.hero-progress {
+  position: absolute;
+  left: var(--container-pad);
+  right: var(--container-pad);
+  bottom: var(--sp-6);
+  z-index: 3;
+  display: flex;
+  gap: var(--sp-3);
+}
+.hero-progress button {
+  flex: 1;
+  height: 2px;
+  background: rgba(246, 241, 233, 0.25);
+  border: none;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+.hero-progress button::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0%;
+  background: var(--metal);
+  transition: width linear;
+}
+.hero-progress button.is-active::after { width: 100%; transition-duration: 3000ms; }
+.hero-progress button.is-done::after { width: 100%; transition-duration: 0ms; }
+
+.hero-arrows { position: absolute; z-index: 3; inset: 0; display: flex; align-items: center; justify-content: space-between; padding-inline: var(--sp-5); pointer-events: none; }
+.hero-arrows button {
+  pointer-events: all;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(15,13,14,0.35);
+  border: 1px solid var(--c-line-dark);
+  color: var(--c-ivory);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur-fast) var(--ease-signature);
+}
+.hero:hover .hero-arrows button { display: flex; }
+.hero-arrows button:hover { background: rgba(15,13,14,0.6); }
+.hero-arrows svg { width: 18px; height: 18px; stroke: currentColor; fill: none; }
+
+@media (max-width: 640px) {
+  .hero-arrows button { display: none !important; }
+}
+
+/* ---- Marquee ribbon ---- */
+.marquee {
+  background: var(--c-oxblood);
+  color: var(--c-ivory);
+  overflow: hidden;
+  padding-block: var(--sp-3);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+  gap: var(--sp-8);
+}
+.marquee-track span {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ---- Section shell ---- */
+.section { padding-block: var(--sp-9); }
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-7);
+  flex-wrap: wrap;
+}
+.section-head .eyebrow { display: block; margin-bottom: var(--sp-3); }
+
+/* ---- Collections asymmetric grid ---- */
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, minmax(220px, 340px));
+  gap: var(--sp-4);
+}
+.collection-tile {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--c-void-soft);
+}
+.collection-tile.is-featured { grid-column: span 2; grid-row: span 2; }
+.collection-tile .tile-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1);
+  transition: transform var(--dur-slow) var(--ease-signature);
+}
+.collection-tile:hover .tile-bg { transform: scale(1.07); }
+.collection-tile .tile-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15,13,14,0) 40%, rgba(15,13,14,0.75) 100%);
+}
+.collection-tile .tile-label {
+  position: absolute; left: var(--sp-5); bottom: var(--sp-5); right: var(--sp-5);
+  color: var(--c-ivory);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.collection-tile .tile-label h3 { font-size: var(--fs-h5); }
+.collection-tile.is-featured .tile-label h3 { font-size: var(--fs-h3); }
+.collection-tile .tile-arrow {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(246,241,233,0.5);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background var(--dur-fast) var(--ease-signature), transform var(--dur-fast) var(--ease-signature);
+}
+.collection-tile:hover .tile-arrow { background: var(--c-ivory); color: var(--c-void); transform: rotate(45deg); }
+.collection-tile .tile-arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
+
+@media (max-width: 900px) {
+  .collection-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; }
+  .collection-tile.is-featured { grid-column: span 2; grid-row: span 1; height: 320px; }
+  .collection-tile { height: 220px; }
+}
+
+/* ---- Story split ---- */
+.story-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+.story-split .story-media {
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-md);
+  background: linear-gradient(155deg, #2b1015 0%, #6B1423 55%, #A9772F 130%);
+}
+.story-split .story-copy p { color: var(--text-muted); max-width: 46ch; margin-block: var(--sp-5); }
+
+@media (max-width: 900px) {
+  .story-split { grid-template-columns: 1fr; }
+}
+
+/* ---- Instagram strip ---- */
+.insta-strip { display: flex; gap: var(--sp-3); overflow-x: auto; padding-bottom: var(--sp-2); scrollbar-width: thin; }
+.insta-tile {
+  flex: 0 0 auto;
+  width: 220px; height: 220px;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+.insta-tile .tile-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform var(--dur-med) var(--ease-signature); }
+.insta-tile:hover .tile-bg { transform: scale(1.08); }
+.insta-tile .insta-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(15,13,14,0);
+  color: var(--c-ivory);
+  opacity: 0;
+  transition: background var(--dur-fast) var(--ease-signature), opacity var(--dur-fast) var(--ease-signature);
+}
+.insta-tile:hover .insta-overlay { background: rgba(15,13,14,0.35); opacity: 1; }
+.insta-tile .insta-overlay svg { width: 22px; height: 22px; stroke: currentColor; fill: none; }
+
+/* ---- Newsletter / contact band ---- */
+.contact-band {
+  background: var(--c-oxblood);
+  color: var(--c-ivory);
+  padding-block: var(--sp-9);
+  text-align: center;
+}
+.contact-band h2 { max-width: 20ch; margin-inline: auto; margin-bottom: var(--sp-5); }
+.contact-band form {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-3);
+  max-width: 460px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.contact-band input[type="email"] {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.9rem 1.2rem;
+  background: transparent;
+  border: 1px solid rgba(246,241,233,0.5);
+  color: var(--c-ivory);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-body);
+}
+.contact-band input[type="email"]::placeholder { color: rgba(246,241,233,0.6); }
+.contact-band .form-note { font-size: var(--fs-caption); margin-top: var(--sp-4); color: rgba(246,241,233,0.7); }

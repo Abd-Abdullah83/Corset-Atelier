@@ -1,0 +1,462 @@
+[
+  {
+    "id": "br-001",
+    "name": "Ivory Silk Bridal Corset",
+    "category": "bridal",
+    "tags": [
+      "luxury"
+    ],
+    "price": 12500,
+    "comparePrice": 16500,
+    "fabric": "Silk satin with boned coutil lining",
+    "colors": [
+      "Ivory",
+      "Blush"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "weight": "480g",
+    "description": "A fully boned bridal corset in ivory silk satin, finished with hand-sewn eyelets and a modesty panel. Designed to sit smooth under a gown while giving true waist definition.",
+    "swatch": "linear-gradient(160deg,#3a1116,#6B1423 55%,#C9A6A1 140%)",
+    "gallery": [
+      "linear-gradient(160deg,#3a1116,#6B1423 55%,#C9A6A1 140%)",
+      "linear-gradient(40deg,#3a1116,#6B1423 55%,#C9A6A1 140%)",
+      "linear-gradient(260deg,#3a1116,#6B1423 55%,#C9A6A1 140%)"
+    ]
+  },
+  {
+    "id": "br-002",
+    "name": "Lace Overlay Bridal Corset",
+    "category": "bridal",
+    "tags": [
+      "new-arrivals"
+    ],
+    "price": 13800,
+    "comparePrice": null,
+    "fabric": "French lace over silk base",
+    "colors": [
+      "Ivory",
+      "Champagne"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "weight": "510g",
+    "description": "Delicate French lace layered over a fully structured silk base corset, with satin ribbon lacing at the back.",
+    "swatch": "linear-gradient(160deg,#241014,#8A2432 60%,#F6F1E9 150%)",
+    "gallery": [
+      "linear-gradient(160deg,#241014,#8A2432 60%,#F6F1E9 150%)",
+      "linear-gradient(40deg,#241014,#8A2432 60%,#F6F1E9 150%)",
+      "linear-gradient(260deg,#241014,#8A2432 60%,#F6F1E9 150%)"
+    ]
+  },
+  {
+    "id": "ob-001",
+    "name": "Classic Overbust Corset",
+    "category": "overbust",
+    "tags": [],
+    "price": 9800,
+    "comparePrice": 12000,
+    "fabric": "Structured coutil with satin face",
+    "colors": [
+      "Black",
+      "Oxblood"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "weight": "540g",
+    "description": "A true steel-boned overbust corset built for daily wear and real waist training results, in classic coutil.",
+    "swatch": "linear-gradient(160deg,#0F0D0E,#4a161d 130%)",
+    "gallery": [
+      "linear-gradient(160deg,#0F0D0E,#4a161d 130%)",
+      "linear-gradient(40deg,#0F0D0E,#4a161d 130%)",
+      "linear-gradient(260deg,#0F0D0E,#4a161d 130%)"
+    ]
+  },
+  {
+    "id": "ob-002",
+    "name": "Velvet Overbust Corset",
+    "category": "overbust",
+    "tags": [
+      "luxury"
+    ],
+    "price": 14200,
+    "comparePrice": 17500,
+    "fabric": "Cotton-back velvet",
+    "colors": [
+      "Emerald",
+      "Oxblood",
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "weight": "560g",
+    "description": "Rich cotton-back velvet over a fully boned frame \u2014 a statement overbust corset built for evening wear.",
+    "swatch": "linear-gradient(160deg,#171415,#2c4a34 140%)",
+    "gallery": [
+      "linear-gradient(160deg,#171415,#2c4a34 140%)",
+      "linear-gradient(40deg,#171415,#2c4a34 140%)",
+      "linear-gradient(260deg,#171415,#2c4a34 140%)"
+    ]
+  },
+  {
+    "id": "ub-001",
+    "name": "Everyday Underbust Corset",
+    "category": "underbust",
+    "tags": [],
+    "price": 7600,
+    "comparePrice": null,
+    "fabric": "Cotton coutil",
+    "colors": [
+      "Black",
+      "Nude",
+      "Ivory"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "weight": "390g",
+    "description": "A lightweight everyday underbust, breathable cotton coutil, built to layer under shirts and dresses alike.",
+    "swatch": "linear-gradient(160deg,#171415,#6B1423 150%)",
+    "gallery": [
+      "linear-gradient(160deg,#171415,#6B1423 150%)",
+      "linear-gradient(40deg,#171415,#6B1423 150%)",
+      "linear-gradient(260deg,#171415,#6B1423 150%)"
+    ]
+  },
+  {
+    "id": "ub-002",
+    "name": "Satin Underbust Corset",
+    "category": "underbust",
+    "tags": [
+      "satin"
+    ],
+    "price": 8900,
+    "comparePrice": 10500,
+    "fabric": "Duchess satin",
+    "colors": [
+      "Wine",
+      "Black",
+      "Ivory"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "weight": "410g",
+    "description": "Duchess satin underbust corset with a soft sheen finish and antique brass busk closure.",
+    "swatch": "linear-gradient(160deg,#211014,#A9772F 170%)",
+    "gallery": [
+      "linear-gradient(160deg,#211014,#A9772F 170%)",
+      "linear-gradient(40deg,#211014,#A9772F 170%)",
+      "linear-gradient(260deg,#211014,#A9772F 170%)"
+    ]
+  },
+  {
+    "id": "wt-001",
+    "name": "Everyday Waist Trainer",
+    "category": "waist-trainers",
+    "tags": [],
+    "price": 6200,
+    "comparePrice": 7500,
+    "fabric": "Latex-lined cotton coutil",
+    "colors": [
+      "Black",
+      "Nude"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "weight": "420g",
+    "description": "Built for consistent daily training with flexible steel boning and a reinforced latex lining.",
+    "swatch": "linear-gradient(160deg,#0F0D0E,#333 160%)",
+    "gallery": [
+      "linear-gradient(160deg,#0F0D0E,#333 160%)",
+      "linear-gradient(40deg,#0F0D0E,#333 160%)",
+      "linear-gradient(260deg,#0F0D0E,#333 160%)"
+    ]
+  },
+  {
+    "id": "wt-002",
+    "name": "Sport Waist Trainer",
+    "category": "waist-trainers",
+    "tags": [
+      "new-arrivals"
+    ],
+    "price": 6800,
+    "comparePrice": null,
+    "fabric": "Compression cotton blend",
+    "colors": [
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "weight": "380g",
+    "description": "A flexible, breathable waist trainer designed for movement \u2014 light enough to wear through a full day.",
+    "swatch": "linear-gradient(160deg,#171415,#1e1e1e 160%)",
+    "gallery": [
+      "linear-gradient(160deg,#171415,#1e1e1e 160%)",
+      "linear-gradient(40deg,#171415,#1e1e1e 160%)",
+      "linear-gradient(260deg,#171415,#1e1e1e 160%)"
+    ]
+  },
+  {
+    "id": "ev-001",
+    "name": "Midnight Evening Corset",
+    "category": "evening",
+    "tags": [
+      "luxury"
+    ],
+    "price": 15600,
+    "comparePrice": 18900,
+    "fabric": "Silk taffeta with boned structure",
+    "colors": [
+      "Black",
+      "Oxblood"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "weight": "500g",
+    "description": "A dramatic evening corset in silk taffeta, built to be worn as outerwear over trousers or a full skirt.",
+    "swatch": "linear-gradient(160deg,#0F0D0E,#8A2432 160%)",
+    "gallery": [
+      "linear-gradient(160deg,#0F0D0E,#8A2432 160%)",
+      "linear-gradient(40deg,#0F0D0E,#8A2432 160%)",
+      "linear-gradient(260deg,#0F0D0E,#8A2432 160%)"
+    ]
+  },
+  {
+    "id": "ev-002",
+    "name": "Brass Boned Evening Corset",
+    "category": "evening",
+    "tags": [],
+    "price": 13900,
+    "comparePrice": null,
+    "fabric": "Satin with exposed brass boning",
+    "colors": [
+      "Black",
+      "Wine"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "weight": "530g",
+    "description": "Exposed brass boning channels over black satin \u2014 architectural, sculptural, built to be seen.",
+    "swatch": "linear-gradient(160deg,#211014,#6B1423 60%,#A9772F 150%)",
+    "gallery": [
+      "linear-gradient(160deg,#211014,#6B1423 60%,#A9772F 150%)",
+      "linear-gradient(40deg,#211014,#6B1423 60%,#A9772F 150%)",
+      "linear-gradient(260deg,#211014,#6B1423 60%,#A9772F 150%)"
+    ]
+  },
+  {
+    "id": "st-001",
+    "name": "Rose Satin Corset",
+    "category": "satin",
+    "tags": [],
+    "price": 8400,
+    "comparePrice": 9900,
+    "fabric": "Duchess satin",
+    "colors": [
+      "Rose",
+      "Ivory",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "weight": "440g",
+    "description": "A soft rose duchess satin corset with a gentle sheen, fully boned and lined in breathable cotton.",
+    "swatch": "linear-gradient(160deg,#241014,#C9A6A1 150%)",
+    "gallery": [
+      "linear-gradient(160deg,#241014,#C9A6A1 150%)",
+      "linear-gradient(40deg,#241014,#C9A6A1 150%)",
+      "linear-gradient(260deg,#241014,#C9A6A1 150%)"
+    ]
+  },
+  {
+    "id": "st-002",
+    "name": "Champagne Satin Corset",
+    "category": "satin",
+    "tags": [
+      "new-arrivals"
+    ],
+    "price": 8700,
+    "comparePrice": null,
+    "fabric": "Duchess satin",
+    "colors": [
+      "Champagne",
+      "Ivory"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "weight": "445g",
+    "description": "Champagne-toned satin corset, cut for a soft hourglass line, finished with a hand-stitched busk.",
+    "swatch": "linear-gradient(160deg,#171415,#A9772F 100%,#F6F1E9 170%)",
+    "gallery": [
+      "linear-gradient(160deg,#171415,#A9772F 100%,#F6F1E9 170%)",
+      "linear-gradient(40deg,#171415,#A9772F 100%,#F6F1E9 170%)",
+      "linear-gradient(260deg,#171415,#A9772F 100%,#F6F1E9 170%)"
+    ]
+  },
+  {
+    "id": "lx-001",
+    "name": "Heirloom Corset \u2014 Signature Line",
+    "category": "overbust",
+    "tags": [
+      "luxury"
+    ],
+    "price": 22500,
+    "comparePrice": 27000,
+    "fabric": "Silk brocade, hand-finished",
+    "colors": [
+      "Oxblood",
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "weight": "620g",
+    "description": "The Atelier's signature piece \u2014 silk brocade, hand-finished boning channels, and an antique brass busk. Limited production.",
+    "swatch": "linear-gradient(160deg,#1a0b0f,#6B1423 45%,#A9772F 100%,#0F0D0E 170%)",
+    "gallery": [
+      "linear-gradient(160deg,#1a0b0f,#6B1423 45%,#A9772F 100%,#0F0D0E 170%)",
+      "linear-gradient(40deg,#1a0b0f,#6B1423 45%,#A9772F 100%,#0F0D0E 170%)",
+      "linear-gradient(260deg,#1a0b0f,#6B1423 45%,#A9772F 100%,#0F0D0E 170%)"
+    ]
+  },
+  {
+    "id": "lx-002",
+    "name": "Noir Heritage Corset",
+    "category": "evening",
+    "tags": [
+      "luxury"
+    ],
+    "price": 19800,
+    "comparePrice": null,
+    "fabric": "Silk velvet, hand-finished",
+    "colors": [
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "weight": "590g",
+    "description": "Deep black silk velvet with hand-finished interior boning channels and a fully lined modesty panel.",
+    "swatch": "linear-gradient(160deg,#0F0D0E,#171415 60%,#3a1116 170%)",
+    "gallery": [
+      "linear-gradient(160deg,#0F0D0E,#171415 60%,#3a1116 170%)",
+      "linear-gradient(40deg,#0F0D0E,#171415 60%,#3a1116 170%)",
+      "linear-gradient(260deg,#0F0D0E,#171415 60%,#3a1116 170%)"
+    ]
+  },
+  {
+    "id": "na-001",
+    "name": "Blush Bloom Corset",
+    "category": "underbust",
+    "tags": [
+      "new-arrivals"
+    ],
+    "price": 9200,
+    "comparePrice": null,
+    "fabric": "Floral jacquard",
+    "colors": [
+      "Blush"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "weight": "460g",
+    "description": "Soft floral jacquard underbust corset \u2014 our newest print, fully boned and lined in cotton.",
+    "swatch": "linear-gradient(160deg,#241014,#C9A6A1 100%,#A9772F 170%)",
+    "gallery": [
+      "linear-gradient(160deg,#241014,#C9A6A1 100%,#A9772F 170%)",
+      "linear-gradient(40deg,#241014,#C9A6A1 100%,#A9772F 170%)",
+      "linear-gradient(260deg,#241014,#C9A6A1 100%,#A9772F 170%)"
+    ]
+  },
+  {
+    "id": "na-002",
+    "name": "Onyx Structured Corset",
+    "category": "overbust",
+    "tags": [
+      "new-arrivals"
+    ],
+    "price": 11400,
+    "comparePrice": 13200,
+    "fabric": "Matte coutil",
+    "colors": [
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "weight": "520g",
+    "description": "A clean, matte black overbust with minimal hardware \u2014 understated structure for everyday luxury.",
+    "swatch": "linear-gradient(160deg,#0F0D0E,#211014 170%)",
+    "gallery": [
+      "linear-gradient(160deg,#0F0D0E,#211014 170%)",
+      "linear-gradient(40deg,#0F0D0E,#211014 170%)",
+      "linear-gradient(260deg,#0F0D0E,#211014 170%)"
+    ]
+  }
+]
