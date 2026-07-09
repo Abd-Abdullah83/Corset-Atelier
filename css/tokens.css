@@ -14,7 +14,8 @@
   --c-charcoal: #211E1F;     /* body text on light */
   --c-oxblood: #6B1423;      /* primary accent — lacing ribbon */
   --c-oxblood-light: #8A2432;
-  --c-brass: #A9772F;        /* metallic accent — hardware */
+  --c-brass: #A9772F;        /* metallic accent — hardware, icons, dark-bg text */
+  --c-brass-text: #7C5720;   /* darker brass for text on light backgrounds — meets WCAG AA */
   --c-brass-light: #C79A52;
   --c-rose-dust: #C9A6A1;    /* soft secondary accent */
   --c-line: rgba(33, 30, 31, 0.12);      /* hairline on light */
@@ -30,6 +31,7 @@
   --accent: var(--c-oxblood);
   --accent-hover: var(--c-oxblood-light);
   --metal: var(--c-brass);
+  --metal-text: var(--c-brass-text);
 
   /* ---- Type ---- */
   --font-display: 'Cormorant Garamond', 'Times New Roman', serif;

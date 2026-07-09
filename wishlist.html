@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 <title>Wishlist — Corset Atelier</title>
 <meta name="description" content="Your saved pieces from Corset Atelier.">
 
@@ -47,7 +48,7 @@
       <a href="https://wa.me/923286712746" target="_blank" rel="noopener" aria-label="WhatsApp us">
         <svg viewBox="0 0 24 24"><path d="M20 4.4A10 10 0 003.5 16.6L2 22l5.6-1.5A10 10 0 1020 4.4z" stroke-width="1.5" stroke-linejoin="round"/></svg>
       </a>
-      <button type="button" class="nav-toggle" data-drawer-open aria-label="Open menu">
+      <button type="button" class="nav-toggle" data-drawer-open aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
     </div>
@@ -55,10 +56,17 @@
 </header>
 
 <!-- ============ MOBILE DRAWER ============ -->
-<div class="mobile-drawer" data-mobile-drawer>
-  <button type="button" class="mobile-drawer-close" data-drawer-close aria-label="Close menu">
-    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg>
-  </button>
+<div class="mobile-drawer-backdrop" data-drawer-backdrop></div>
+<div class="mobile-drawer" id="mobile-nav" data-mobile-drawer>
+  <div class="mobile-drawer-top">
+    <a href="index.html" class="logo-mark">
+      <span class="eyelet-glyph" aria-hidden="true"></span>
+      Corset Atelier
+    </a>
+    <button type="button" class="mobile-drawer-close" data-drawer-close aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
   <nav>
     <a href="collections.html">Collections</a>
     <a href="custom-builder.html">Custom Build</a>
@@ -68,6 +76,13 @@
     <a href="faqs.html">FAQs</a>
     <a href="contact.html">Contact</a>
   </nav>
+  <div class="mobile-drawer-bottom">
+    <a href="https://wa.me/923286712746" target="_blank" rel="noopener">+92 328 6712746</a>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/corset_atelierrr/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M17 2H7a5 5 0 00-5 5v10a5 5 0 005 5h10a5 5 0 005-5V7a5 5 0 00-5-5zm-5 14a4 4 0 110-8 4 4 0 010 8zm5-9a1 1 0 110-2 1 1 0 010 2z"/></svg></a>
+      <a href="https://wa.me/923286712746" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20 4.4A10 10 0 003.5 16.6L2 22l5.6-1.5A10 10 0 1020 4.4z" stroke-width="1.5" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
 </div>
 
 <main id="main">
@@ -164,6 +179,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/wishlist.js"></script>
+<script src="js/reveal.js"></script>
 <script src="js/ai-widget.js"></script>
 </body>
 </html>

@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 500; }
   letter-spacing: var(--ls-eyebrow);
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--metal);
+  color: var(--metal-text);
 }
 
 .display-xl {
@@ -197,4 +197,15 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 500; }
   overflow: hidden;
   clip: rect(0,0,0,0);
   white-space: nowrap;
+}
+
+/* ---- Scroll reveal (applied via js/reveal.js) ---- */
+.reveal-target {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms var(--ease-signature), transform 700ms var(--ease-signature);
+}
+.reveal-target.is-revealed { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-target { opacity: 1; transform: none; transition: none; }
 }

@@ -79,6 +79,7 @@
 /* ---- Option cards (type / fabric) ---- */
 .option-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
 @media (max-width: 640px) { .option-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 400px) { .option-grid { grid-template-columns: 1fr; } }
 
 .option-card {
   border: 1px solid var(--c-line);
@@ -96,6 +97,10 @@
 
 /* ---- Color step ---- */
 .color-grid { display: flex; flex-wrap: wrap; gap: var(--sp-5); justify-content: center; }
+@media (max-width: 400px) {
+  .color-grid { gap: var(--sp-3); }
+  .color-option .swatch-circle { width: 46px; height: 46px; }
+}
 .color-option { text-align: center; cursor: pointer; }
 .color-option .swatch-circle {
   width: 56px; height: 56px;

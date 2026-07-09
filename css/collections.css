@@ -148,7 +148,7 @@
 
 .product-info-link { display: block; color: inherit; }
 .product-info { padding-top: var(--sp-3); }
-.product-category { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--metal); }
+.product-category { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--metal-text); }
 .product-name { font-family: var(--font-display); font-size: var(--fs-h6); margin-top: var(--sp-1); }
 .product-price-row { display: flex; align-items: baseline; gap: var(--sp-2); margin-top: var(--sp-2); }
 .product-price { font-weight: 700; font-size: var(--fs-body-lg); }

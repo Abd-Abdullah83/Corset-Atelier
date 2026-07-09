@@ -38,6 +38,9 @@
 
     const panel = document.createElement('div');
     panel.className = 'ai-panel';
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-modal', 'false');
+    panel.setAttribute('aria-label', 'Atelier shopping assistant chat');
     panel.innerHTML = `
       <div class="ai-panel-header">
         <div class="ai-title">
@@ -46,10 +49,11 @@
         </div>
         <button type="button" class="ai-panel-close" aria-label="Close chat"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg></button>
       </div>
-      <div class="ai-messages" data-ai-messages></div>
+      <div class="ai-messages" data-ai-messages aria-live="polite" aria-atomic="false"></div>
       <div class="ai-suggestions" data-ai-suggestions></div>
       <div class="ai-input-row">
-        <textarea rows="1" placeholder="Ask about sizing, fabrics, orders..." data-ai-input></textarea>
+        <label for="ai-chat-input" class="visually-hidden">Type your message</label>
+        <textarea id="ai-chat-input" rows="1" placeholder="Ask about sizing, fabrics, orders..." data-ai-input></textarea>
         <button type="button" class="ai-send-btn" data-ai-send aria-label="Send message">
           <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </button>
@@ -149,9 +153,13 @@
     const input = panel.querySelector('[data-ai-input]');
     const sendBtn = panel.querySelector('[data-ai-send]');
 
+    fab.setAttribute('aria-expanded', 'false');
+    fab.setAttribute('aria-haspopup', 'dialog');
+
     function open() {
       panel.classList.add('is-open');
       fab.classList.add('is-hidden');
+      fab.setAttribute('aria-expanded', 'true');
       if (!hasGreeted) {
         hasGreeted = true;
         addMessage('assistant', "Hi! I'm the Atelier Assistant — ask me about sizing, fabrics, custom orders, or anything else about our corsets.");
@@ -162,10 +170,15 @@
     function close() {
       panel.classList.remove('is-open');
       fab.classList.remove('is-hidden');
+      fab.setAttribute('aria-expanded', 'false');
+      fab.focus();
     }
 
     fab.addEventListener('click', open);
     closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel.classList.contains('is-open')) close();
+    });
 
     sendBtn.addEventListener('click', () => sendMessage(input.value));
     input.addEventListener('keydown', (e) => {

@@ -81,7 +81,7 @@
 .gallery-thumb .thumb-bg { width: 100%; height: 100%; background-size: cover; background-position: center; }
 
 /* ---- Info column ---- */
-.pd-category { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--metal); }
+.pd-category { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--metal-text); }
 .pd-title { font-size: var(--fs-h3); margin-top: var(--sp-2); }
 .pd-price-row { display: flex; align-items: baseline; gap: var(--sp-3); margin-top: var(--sp-4); }
 .pd-price { font-size: var(--fs-h5); font-weight: 700; }
@@ -91,7 +91,7 @@
 .pd-desc { margin-top: var(--sp-5); color: var(--text-muted); max-width: 56ch; }
 
 .pd-meta { display: flex; gap: var(--sp-7); margin-top: var(--sp-5); padding-block: var(--sp-5); border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); }
-.pd-meta-item h6 { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--metal); margin-bottom: var(--sp-1); }
+.pd-meta-item h6 { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--metal-text); margin-bottom: var(--sp-1); }
 .pd-meta-item p { font-size: var(--fs-caption); }
 
 /* ---- Variant selectors ---- */

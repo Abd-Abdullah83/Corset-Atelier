@@ -40,9 +40,11 @@ corset-atelier/
 │   ├── custom-builder.js      Six-step wizard state, validation, WhatsApp submission
 │   ├── faq.js                  FAQ accordion toggle
 │   ├── contact.js              Contact form → WhatsApp
-│   └── ai-widget.js            Injects the chat widget on every page, talks to /api/chat
+│   ├── ai-widget.js            Injects the chat widget on every page, talks to /api/chat
+│   └── reveal.js                Scroll-reveal micro-interaction (respects reduced-motion)
 ├── .env.example                Template for your Gemini API key (local dev only)
-└── assets/images/            Put real product photography here
+└── assets/images/
+    └── favicon.svg              Brand eyelet-mark favicon
 ```
 
 Every page includes `js/ai-widget.js`, which injects its own markup and
@@ -147,7 +149,52 @@ for a plain static site like this.
 - ✅ Phase 6: Custom Builder
 - ✅ Phase 7: Our Story, Custom Order Policy, Size Guide, FAQs, Shipping, Contact
 - ✅ Phase 8: AI assistant widget (Gemini)
-- Phase 9: Polish pass
+- ✅ Phase 9: Polish pass
+
+## What the polish pass (Phase 9) covered
+
+**Accessibility**
+- Fixed a real contrast issue: brass/gold text (category labels, table
+  headers, step numbers) on light backgrounds was around 3.3:1 — below the
+  4.5:1 WCAG AA minimum for text. Added `--metal-text`, a darker brass, used
+  anywhere gold sits on a light background. The brighter brass stays for
+  icons/borders and anywhere it's already on a dark background, where it
+  was already well above contrast requirements.
+- Mobile drawer, both product modals, and the AI chat panel now: trap
+  focus sensibly (focus moves in on open, returns to the trigger on
+  close), close on **Escape**, and carry proper `role="dialog"` /
+  `aria-modal` / `aria-expanded` / `aria-controls` attributes.
+- FAQ accordion buttons now expose `aria-expanded` and `aria-controls` per
+  item, so screen readers announce open/closed state correctly.
+- AI chat messages live in an `aria-live="polite"` region, so replies are
+  announced automatically without the visitor needing to re-focus the chat.
+- Added a proper favicon (`assets/images/favicon.svg`, the brand's eyelet
+  mark) — a small thing, but it also removes a wasted request browsers
+  otherwise make for a missing `/favicon.ico`.
+
+**Responsive**
+- Added extra breakpoints for very narrow phones (≤400px) on the Custom
+  Builder's option cards and color swatches, so they don't feel cramped on
+  older/smaller devices.
+- Re-checked every grid/flex layout added across Phases 3–8 for stacking
+  behavior at mobile widths — all already had breakpoints from when they
+  were built, this pass confirmed nothing was missed.
+
+**Micro-interactions**
+- Added a lightweight scroll-reveal (`js/reveal.js`) — collection tiles,
+  story sections, value cards, process steps, and measurement steps now
+  fade up gently as they enter the viewport, rather than all being static.
+  It's skipped entirely for visitors with `prefers-reduced-motion` set, and
+  intentionally left off dynamically-rendered content (product cards)
+  since those already have hover/interaction cues and async render timing
+  would fight with it.
+
+**Performance**
+- Confirmed Google Fonts are already loaded with `&display=swap` (was set
+  up correctly back in Phase 1) — text renders immediately in a fallback
+  font rather than staying invisible while fonts load.
+- The favicon fix above also removes one unnecessary failed network
+  request per page load.
 
 ## Setting up the AI Assistant (Phase 8)
 

@@ -161,16 +161,24 @@
     function open() {
       summary.innerHTML = `<strong>Order Summary</strong>${buildOrderSummary()}`;
       overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      const firstField = form.querySelector('input');
+      if (firstField) firstField.focus();
     }
     function close() {
       overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      openBtn.focus();
     }
 
     openBtn.addEventListener('click', open);
     closeBtn.addEventListener('click', close);
     overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
+    });
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -206,16 +214,24 @@
 
     function open() {
       overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      const firstField = form.querySelector('textarea');
+      if (firstField) firstField.focus();
     }
     function close() {
       overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      openBtn.focus();
     }
 
     openBtn.addEventListener('click', open);
     closeBtn.addEventListener('click', close);
     overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
+    });
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();

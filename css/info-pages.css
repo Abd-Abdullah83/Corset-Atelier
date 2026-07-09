@@ -56,7 +56,7 @@
   width: 44px; height: 44px;
   border-radius: 50%;
   border: 1px solid var(--c-brass);
-  color: var(--c-brass);
+  color: var(--metal-text);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-display);
   font-size: var(--fs-h6);
@@ -83,7 +83,7 @@
 .size-table-wrap { overflow-x: auto; margin-block: var(--sp-6); }
 .size-table { width: 100%; border-collapse: collapse; min-width: 560px; }
 .size-table th, .size-table td { padding: var(--sp-4); text-align: center; border-bottom: 1px solid var(--c-line); font-size: var(--fs-caption); }
-.size-table th { text-transform: uppercase; letter-spacing: var(--ls-caption); font-size: var(--fs-eyebrow); color: var(--metal); font-weight: 700; text-align: center; }
+.size-table th { text-transform: uppercase; letter-spacing: var(--ls-caption); font-size: var(--fs-eyebrow); color: var(--metal-text); font-weight: 700; text-align: center; }
 .size-table td:first-child, .size-table th:first-child { text-align: left; font-weight: 700; color: var(--text-primary); }
 .size-table tbody tr:hover { background: var(--c-ivory-soft); }
 
@@ -151,7 +151,7 @@
   flex-shrink: 0;
 }
 .contact-info-item .ci-icon svg { width: 18px; height: 18px; stroke: var(--c-brass); fill: none; }
-.contact-info-item h4 { font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: var(--ls-caption); color: var(--metal); margin-bottom: var(--sp-1); }
+.contact-info-item h4 { font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: var(--ls-caption); color: var(--metal-text); margin-bottom: var(--sp-1); }
 .contact-info-item a, .contact-info-item p { font-size: var(--fs-body); }
 .contact-info-item a:hover { color: var(--c-oxblood); }
 
