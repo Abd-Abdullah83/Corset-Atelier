@@ -238,6 +238,60 @@
   .collection-tile { height: 220px; }
 }
 
+/* ---- Editorial / philosophy band ---- */
+.editorial-band {
+  background: var(--c-void);
+  color: var(--c-ivory);
+  text-align: center;
+  padding-block: var(--sp-10);
+}
+.editorial-band .eyebrow { color: var(--c-rose-dust); }
+.editorial-band .italic-accent { color: var(--c-rose-dust); }
+.editorial-statement {
+  max-width: 22ch;
+  margin: var(--sp-5) auto 0;
+}
+.editorial-band .lace-divider {
+  max-width: 320px;
+  margin-inline: auto;
+}
+.editorial-band .lace-divider::before { background: var(--c-line-dark); }
+.editorial-band .lace-divider .eyelet { background: var(--c-void); }
+
+.editorial-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-8);
+  max-width: 980px;
+  margin: 0 auto var(--sp-8);
+  text-align: left;
+}
+.editorial-pillars .pillar {
+  padding-left: var(--sp-5);
+  border-left: 1px solid var(--c-line-dark);
+}
+.editorial-pillars .pillar:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+.editorial-pillars .pillar h4 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h6);
+  font-weight: 500;
+  margin-bottom: var(--sp-2);
+}
+.editorial-pillars .pillar p {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-inverse);
+  line-height: var(--lh-normal);
+}
+
+@media (max-width: 760px) {
+  .editorial-pillars { grid-template-columns: 1fr; gap: var(--sp-6); text-align: center; }
+  .editorial-pillars .pillar { border-left: none; padding-left: 0; border-top: 1px solid var(--c-line-dark); padding-top: var(--sp-5); }
+  .editorial-pillars .pillar:first-child { border-top: none; padding-top: 0; }
+}
+
 /* ---- Story split ---- */
 .story-split {
   display: grid;
