@@ -30,8 +30,17 @@
   function renderGallery() {
     const main = document.querySelector('[data-gallery-main]');
     const thumbs = document.querySelector('[data-gallery-thumbs]');
+    const layers = main.querySelectorAll('[data-zoom-layer]');
 
-    main.querySelector('.zoom-media').style.background = product.gallery[activeImageIndex];
+    const activeLayer = main.querySelector('.zoom-layer.is-active') || layers[0];
+    const inactiveLayer = Array.from(layers).find((l) => l !== activeLayer) || layers[1];
+
+    inactiveLayer.style.background = product.gallery[activeImageIndex];
+    // Force a reflow so the browser registers the new background before we
+    // toggle opacity — otherwise the crossfade can skip straight to the end.
+    void inactiveLayer.offsetWidth;
+    layers.forEach((l) => l.classList.remove('is-active'));
+    inactiveLayer.classList.add('is-active');
 
     thumbs.innerHTML = product.gallery.map((g, i) => `
       <button type="button" class="gallery-thumb ${i === activeImageIndex ? 'is-active' : ''}" data-thumb-index="${i}" aria-label="View image ${i + 1}">
@@ -49,14 +58,15 @@
 
   function initZoom() {
     const main = document.querySelector('[data-gallery-main]');
-    const media = main.querySelector('.zoom-media');
 
     main.addEventListener('mousemove', (e) => {
       if (!main.classList.contains('is-zoomed')) return;
+      const activeLayer = main.querySelector('.zoom-layer.is-active');
+      if (!activeLayer) return;
       const rect = main.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
-      media.style.transformOrigin = `${x}% ${y}%`;
+      activeLayer.style.transformOrigin = `${x}% ${y}%`;
     });
     main.addEventListener('click', () => main.classList.toggle('is-zoomed'));
     main.addEventListener('mouseleave', () => main.classList.remove('is-zoomed'));

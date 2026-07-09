@@ -81,6 +81,56 @@
 .hero-progress button.is-active::after { width: 100%; transition-duration: 3000ms; }
 .hero-progress button.is-done::after { width: 100%; transition-duration: 0ms; }
 
+/* Cursor-reactive spotlight — hero only, restrained. Sits above the slide
+   image/scrim but below the text content, so it reads as light hitting
+   the surface rather than a distracting glow over the headline. */
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms var(--ease-signature);
+  background: radial-gradient(480px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(201, 166, 161, 0.14), transparent 70%);
+}
+.hero:hover .hero-spotlight { opacity: 1; }
+
+/* One small floating accent — the eyelet motif, gently bobbing. Not a
+   particle field, just a single quiet detail near the CTA area. */
+.hero-float-accent {
+  position: absolute;
+  top: 14%;
+  right: 9%;
+  z-index: 2;
+  width: 54px; height: 54px;
+  pointer-events: none;
+  animation: heroFloat 7s ease-in-out infinite;
+}
+.hero-float-accent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(201, 166, 161, 0.4);
+  border-radius: 50%;
+}
+.hero-float-accent::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(169, 119, 47, 0.35);
+  border-radius: 50%;
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-float-accent { animation: none; }
+}
+@media (max-width: 760px) {
+  .hero-float-accent { display: none; }
+}
+
 .hero-arrows { position: absolute; z-index: 3; inset: 0; display: flex; align-items: center; justify-content: space-between; padding-inline: var(--sp-5); pointer-events: none; }
 .hero-arrows button {
   pointer-events: all;
@@ -150,6 +200,7 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--c-void-soft);
+  box-shadow: inset 0 0 70px 14px rgba(15, 13, 14, 0.38);
 }
 .collection-tile.is-featured { grid-column: span 2; grid-row: span 2; }
 .collection-tile .tile-bg {
@@ -198,6 +249,7 @@
   aspect-ratio: 4/5;
   border-radius: var(--radius-md);
   background: linear-gradient(155deg, #2b1015 0%, #6B1423 55%, #A9772F 130%);
+  box-shadow: inset 0 0 70px 14px rgba(15, 13, 14, 0.38);
 }
 .story-split .story-copy p { color: var(--text-muted); max-width: 46ch; margin-block: var(--sp-5); }
 
@@ -213,6 +265,7 @@
   border-radius: var(--radius-sm);
   position: relative;
   overflow: hidden;
+  box-shadow: inset 0 0 50px 10px rgba(15, 13, 14, 0.38);
 }
 .insta-tile .tile-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform var(--dur-med) var(--ease-signature); }
 .insta-tile:hover .tile-bg { transform: scale(1.08); }

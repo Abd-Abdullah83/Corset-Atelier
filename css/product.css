@@ -32,23 +32,29 @@
   overflow: hidden;
   cursor: zoom-in;
   background: var(--c-void-soft);
+  box-shadow: inset 0 0 70px 14px rgba(15, 13, 14, 0.38);
 }
-.gallery-main .zoom-media {
+.zoom-layer {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
+  opacity: 0;
   transform-origin: center;
-  transition: transform var(--dur-fast) var(--ease-signature);
+  transition: opacity 550ms var(--ease-signature);
 }
-.gallery-main.is-zoomed .zoom-media {
+.zoom-layer.is-active { opacity: 1; z-index: 2; }
+.gallery-main.is-zoomed .zoom-layer.is-active {
   transform: scale(1.9);
-  transition: none;
   cursor: zoom-out;
+  /* transform intentionally excluded from the transition above — while
+     zoomed, transform-origin is updated on every mousemove and needs to
+     track the cursor instantly rather than lag behind an animation. */
 }
 .gallery-main .zoom-hint {
   position: absolute;
   bottom: var(--sp-4); right: var(--sp-4);
+  z-index: 3;
   background: rgba(15,13,14,0.55);
   color: var(--c-ivory);
   font-size: var(--fs-eyebrow);

@@ -88,6 +88,7 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--c-void-soft);
+  box-shadow: inset 0 0 70px 14px rgba(15, 13, 14, 0.38);
 }
 .product-media .media-bg {
   position: absolute; inset: 0;

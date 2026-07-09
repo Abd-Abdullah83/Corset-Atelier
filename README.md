@@ -152,6 +152,7 @@ for a plain static site like this.
 - ✅ Phase 9: Polish pass
 - ✅ Phase 10a: Tactility & motion foundation
 - ✅ Phase 10b: Typography & spacing pass
+- ✅ Phase 10c: Image treatment system
 
 ## What the polish pass (Phase 9) covered
 
@@ -308,3 +309,50 @@ bumped to `--sp-7` explicitly for more premium padding.
 **Font loading** — added true italic weight 500 to the Google Fonts import
 (`ital,wght@...;1,500`) so accent words at heading weight render as real
 italic rather than the browser's synthetic slant.
+
+## Phase 10c — Image treatment system
+
+Built the *system* for luxury image treatment — since every image on the
+site is still a CSS gradient placeholder, the actual payoff of this phase
+will be much bigger once real product photography is in `assets/images/`
+(see the note in the earlier "Placeholder visuals" section for how to
+swap them in).
+
+**Vignette** (`.img-vignette` pattern, `css/base.css`) — a soft inset
+shadow that darkens the edges of a photo, drawing the eye to center. Uses
+`box-shadow: inset` rather than an extra pseudo-element or wrapper div, so
+it respects `border-radius` automatically and needed zero markup changes.
+Applied to: collection tiles, product card thumbnails, the product detail
+gallery, the Instagram strip, Our Story's images, and the Size Guide's
+measurement illustrations.
+
+**Grain texture** (`.has-grain`, `css/base.css`) — a very low-opacity
+(3.5%) noise overlay for dark sections, generated from an inline SVG
+turbulence filter (no image file needed). `pointer-events: none` so it
+never blocks clicks, and the opacity is low enough that it doesn't need
+z-index management relative to text — even overlapping slightly, it's
+imperceptible. Applied to the homepage hero, every page-title hero
+(`.collections-hero` / `.builder-hero`), the contact/newsletter bands, and
+the footer, across all 11 pages.
+
+**Gallery crossfade** (`product.html` / `css/product.css` / `js/product.js`)
+— the product image gallery previously swapped its background instantly
+on thumbnail click. Rebuilt as two stacked layers that crossfade opacity
+(550ms) when you pick a different thumbnail — including a nice side
+effect: the very first image on page load now fades in from nothing
+rather than just appearing. The click-to-zoom magnifier was rewired to
+target whichever layer is currently active, so it keeps working exactly
+as before, now layered on top of the crossfade system.
+
+**Hero cursor spotlight** — a warm, restrained radial glow that follows
+the cursor within the homepage hero only (not applied anywhere else, per
+the "sparingly" guidance from Phase 10b). Fades in on hover, sits above
+the slide image but below the headline text so it reads as light on the
+surface rather than a glow over the words. Skipped entirely on touch
+devices and under `prefers-reduced-motion`.
+
+**Floating hero accent** — one small decorative element (a double-ring
+echo of the brand's eyelet motif) positioned near the CTA area of the
+homepage hero, gently bobbing on a slow 7s loop. Deliberately singular —
+not a particle field. Hidden on mobile and disabled under
+`prefers-reduced-motion`.

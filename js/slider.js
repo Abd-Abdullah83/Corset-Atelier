@@ -8,6 +8,21 @@
 (function () {
   'use strict';
 
+  function initHeroSpotlight(hero) {
+    const spotlight = hero.querySelector('[data-hero-spotlight]');
+    if (!spotlight) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches)) return;
+
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      spotlight.style.setProperty('--spot-x', x + '%');
+      spotlight.style.setProperty('--spot-y', y + '%');
+    });
+  }
+
   function initHeroSlider() {
     const hero = document.querySelector('[data-hero-slider]');
     if (!hero) return;
@@ -55,6 +70,7 @@
 
     render();
     restart();
+    initHeroSpotlight(hero);
   }
 
   document.addEventListener('DOMContentLoaded', initHeroSlider);

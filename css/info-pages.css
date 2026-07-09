@@ -39,6 +39,7 @@
   aspect-ratio: 16/9;
   border-radius: var(--radius-md);
   margin-block: var(--sp-8);
+  box-shadow: inset 0 0 90px 18px rgba(15, 13, 14, 0.38);
 }
 
 /* ---- Process steps (Custom Order Policy) ---- */
@@ -90,7 +91,7 @@
 .measure-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); margin-top: var(--sp-7); }
 @media (max-width: 760px) { .measure-steps { grid-template-columns: 1fr; } }
 .measure-step { text-align: center; }
-.measure-step .measure-media { aspect-ratio: 3/4; border-radius: var(--radius-md); margin-bottom: var(--sp-4); }
+.measure-step .measure-media { aspect-ratio: 3/4; border-radius: var(--radius-md); margin-bottom: var(--sp-4); box-shadow: inset 0 0 50px 10px rgba(15, 13, 14, 0.38); }
 .measure-step h4 { font-family: var(--font-display); font-size: var(--fs-h6); font-weight: 500; margin-bottom: var(--sp-2); }
 .measure-step p { font-size: var(--fs-caption); color: var(--text-muted); }
 
