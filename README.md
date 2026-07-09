@@ -154,6 +154,7 @@ for a plain static site like this.
 - ✅ Phase 10b: Typography & spacing pass
 - ✅ Phase 10c: Image treatment system
 - ✅ Phase 10d: Product interactions
+- ✅ Phase 10e: Editorial storytelling section
 
 ## What the polish pass (Phase 9) covered
 
@@ -401,3 +402,28 @@ multi-stop gradient border on a rounded-corner element is unreliable
 across browsers (border-image doesn't respect border-radius consistently).
 Used a thin (1px) brass-toned outline instead — visually equivalent at
 that weight, and fully reliable. Applied on `.product-card:hover`.
+
+## Phase 10e — Editorial storytelling section
+
+Added a full-width "philosophy" band to the homepage, between the
+Collections grid and the Story teaser — the site previously went straight
+from products to products with no moment for brand storytelling in
+between.
+
+**Structure**: an eyebrow ("The Philosophy"), a large editorial statement
+headline with a sparing accent word, the lace-line divider motif, and
+three short pillars — Handmade with Precision, Luxury Tailoring, Our
+Atelier — laid out with hairline dividers between them rather than as
+cards, so it reads as an editorial spread rather than another feature
+grid (the site already has a card-grid treatment on Our Story; this
+deliberately looks different). Closes with a link into Our Story for
+anyone who wants the full narrative. The three pillars cascade in via the
+same staggered-reveal system from Phase 10a.
+
+**A bug caught mid-build**: I initially added an `on-dark` class directly
+to the lace-divider inside this section, but the existing CSS rule
+(`.on-dark .lace-divider`) expects `on-dark` on an *ancestor* element, not
+the same one — so it silently wouldn't have applied anything. Fixed with a
+correctly-scoped `.editorial-band .lace-divider` rule instead. Worth
+knowing since it's the kind of thing that's easy to miss without visually
+checking the result.
