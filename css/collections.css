@@ -89,6 +89,12 @@
   overflow: hidden;
   background: var(--c-void-soft);
   box-shadow: inset 0 0 70px 14px rgba(15, 13, 14, 0.38);
+  outline: 1px solid transparent;
+  outline-offset: 3px;
+  transition: outline-color 300ms var(--ease-signature);
+}
+.product-card:hover .product-media {
+  outline-color: rgba(169, 119, 47, 0.45);
 }
 .product-media .media-bg {
   position: absolute; inset: 0;
@@ -133,10 +139,14 @@
   position: absolute;
   left: var(--sp-3); right: var(--sp-3); bottom: var(--sp-3);
   z-index: 2;
+  width: calc(100% - 2 * var(--sp-3));
+  border: none;
+  cursor: pointer;
   text-align: center;
   padding: 0.7rem;
   background: rgba(246,241,233,0.94);
   color: var(--c-void);
+  font-family: var(--font-body);
   font-size: var(--fs-caption);
   letter-spacing: var(--ls-caption);
   text-transform: uppercase;
@@ -144,8 +154,9 @@
   border-radius: var(--radius-sm);
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity var(--dur-fast) var(--ease-signature), transform var(--dur-fast) var(--ease-signature);
+  transition: opacity var(--dur-fast) var(--ease-signature), transform var(--dur-fast) var(--ease-signature), background var(--dur-fast) var(--ease-signature);
 }
+.product-quickview:hover { background: var(--c-ivory); }
 .product-card:hover .product-quickview { opacity: 1; transform: translateY(0); }
 
 .product-info-link { display: block; color: inherit; }

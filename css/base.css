@@ -271,3 +271,19 @@ button:not(.btn):active { transform: scale(0.95); }
 @media (prefers-reduced-motion: reduce) {
   .reveal-target { opacity: 1; transform: none; transition: none; }
 }
+
+/* ---- Wishlist confirmation pulse ----
+   Applied transiently (added then removed via JS on click) to any wishlist
+   heart icon when it becomes active — a quick, satisfying "saved" bounce
+   rather than an instant flat color swap. Shared across product cards,
+   the product detail page's dedicated heart, and Quick View. */
+@keyframes wishlistPulse {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.4); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+.is-pulsing svg { animation: wishlistPulse 420ms var(--ease-signature); }
+@media (prefers-reduced-motion: reduce) {
+  .is-pulsing svg { animation: none; }
+}

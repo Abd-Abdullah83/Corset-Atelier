@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/header-footer.css">
 <link rel="stylesheet" href="css/collections.css">
+<link rel="stylesheet" href="css/quick-view.css">
 <link rel="stylesheet" href="css/product.css">
 </head>
 <body>
@@ -188,25 +189,31 @@
 <!-- ============ BUY MODAL ============ -->
 <div class="modal-overlay" data-buy-modal role="dialog" aria-modal="true" aria-labelledby="buy-modal-title" aria-hidden="true">
   <div class="modal-panel">
-    <div class="modal-head">
-      <div>
-        <h3 id="buy-modal-title">Complete Your Order</h3>
-        <p>We'll open WhatsApp with your details filled in — just hit send.</p>
+    <div data-buy-form-view>
+      <div class="modal-head">
+        <div>
+          <h3 id="buy-modal-title">Complete Your Order</h3>
+          <p>We'll open WhatsApp with your details filled in — just hit send.</p>
+        </div>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg></button>
       </div>
-      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      <div class="form-summary" data-order-summary></div>
+      <form>
+        <div class="form-field"><label for="buy-name">Full Name</label><input id="buy-name" name="name" type="text" required></div>
+        <div class="form-row-2">
+          <div class="form-field"><label for="buy-phone">Phone</label><input id="buy-phone" name="phone" type="tel" required></div>
+          <div class="form-field"><label for="buy-email">Email (optional)</label><input id="buy-email" name="email" type="email"></div>
+        </div>
+        <div class="form-field"><label for="buy-address">Delivery Address</label><input id="buy-address" name="address" type="text" required></div>
+        <div class="form-field"><label for="buy-city">City</label><input id="buy-city" name="city" type="text" required></div>
+        <button type="submit" class="btn btn-primary modal-submit">Send Order on WhatsApp</button>
+        <p class="modal-note">Payment: Cash on Delivery</p>
+      </form>
     </div>
-    <div class="form-summary" data-order-summary></div>
-    <form>
-      <div class="form-field"><label for="buy-name">Full Name</label><input id="buy-name" name="name" type="text" required></div>
-      <div class="form-row-2">
-        <div class="form-field"><label for="buy-phone">Phone</label><input id="buy-phone" name="phone" type="tel" required></div>
-        <div class="form-field"><label for="buy-email">Email (optional)</label><input id="buy-email" name="email" type="email"></div>
-      </div>
-      <div class="form-field"><label for="buy-address">Delivery Address</label><input id="buy-address" name="address" type="text" required></div>
-      <div class="form-field"><label for="buy-city">City</label><input id="buy-city" name="city" type="text" required></div>
-      <button type="submit" class="btn btn-primary modal-submit">Send Order on WhatsApp</button>
-      <p class="modal-note">Payment: Cash on Delivery</p>
-    </form>
+    <div class="modal-confirm" data-buy-confirm-view style="display:none">
+      <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p>Order ready — opening WhatsApp...</p>
+    </div>
   </div>
 </div>
 
@@ -299,6 +306,7 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/quick-view.js"></script>
 <script src="js/product.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
 <script src="js/smooth-scroll.js"></script>

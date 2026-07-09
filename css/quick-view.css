@@ -1,0 +1,119 @@
+/* ==========================================================================
+   QUICK VIEW MODAL
+   Deliberately self-contained with its own class names (qv- prefix) rather
+   than reusing .modal-* / .pd-* from product.css — this component is
+   injected on Collections, Wishlist, and the Product page's related grid,
+   which don't all load the same stylesheets. Self-contained means zero
+   risk of relying on a class that isn't defined on a given page.
+   ========================================================================== */
+
+.qv-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15,13,14,0.6);
+  backdrop-filter: blur(2px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-fast) var(--ease-signature);
+}
+.qv-overlay.is-open { opacity: 1; visibility: visible; }
+
+.qv-panel {
+  background: var(--bg-page);
+  border-radius: var(--radius-md);
+  max-width: 760px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  transform: translateY(16px);
+  transition: transform var(--dur-med) var(--ease-signature);
+}
+.qv-overlay.is-open .qv-panel { transform: translateY(0); }
+
+.qv-close {
+  position: absolute;
+  top: var(--sp-4); right: var(--sp-4);
+  z-index: 2;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(15,13,14,0.5);
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+}
+.qv-close svg { width: 14px; height: 14px; stroke: var(--c-ivory); fill: none; }
+
+.qv-grid { display: grid; grid-template-columns: 1fr 1fr; }
+@media (max-width: 640px) { .qv-grid { grid-template-columns: 1fr; } }
+
+.qv-media { position: relative; aspect-ratio: 3/4; box-shadow: inset 0 0 70px 14px rgba(15,13,14,0.38); }
+@media (max-width: 640px) { .qv-media { aspect-ratio: 16/9; } }
+
+.qv-info { padding: var(--sp-6); }
+.qv-category { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--metal-text); }
+.qv-name { font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 500; margin-top: var(--sp-2); }
+
+.qv-price-row { display: flex; align-items: baseline; gap: var(--sp-3); margin-top: var(--sp-4); flex-wrap: wrap; }
+.qv-price { font-size: var(--fs-h6); font-weight: 700; }
+.qv-compare { font-size: var(--fs-body); color: var(--text-muted); text-decoration: line-through; }
+.qv-discount { background: var(--c-oxblood); color: var(--c-ivory); font-size: var(--fs-caption); font-weight: 700; padding: 0.2rem 0.55rem; border-radius: var(--radius-sm); }
+
+.qv-desc { font-size: var(--fs-caption); color: var(--text-muted); margin-top: var(--sp-4); max-width: 42ch; }
+
+.qv-variant-group { margin-top: var(--sp-5); }
+.qv-variant-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--sp-2); }
+.qv-variant-label h6 { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; }
+.qv-variant-label span { font-size: var(--fs-caption); color: var(--text-muted); }
+
+.qv-swatch-row { display: flex; gap: var(--sp-3); flex-wrap: wrap; }
+.qv-color-swatch {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  outline: 1px solid var(--c-line);
+  outline-offset: 2px;
+  cursor: pointer;
+  transition: outline-color var(--dur-fast) var(--ease-signature), transform var(--dur-fast) var(--ease-signature);
+}
+.qv-color-swatch.is-active { outline-color: var(--c-oxblood); transform: scale(1.08); }
+
+.qv-size-row { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+.qv-size-btn {
+  min-width: 42px;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  transition: border-color var(--dur-fast) var(--ease-signature), background var(--dur-fast) var(--ease-signature), color var(--dur-fast) var(--ease-signature);
+}
+.qv-size-btn:hover { border-color: var(--c-charcoal); }
+.qv-size-btn.is-active { background: var(--c-void); border-color: var(--c-void); color: var(--c-ivory); }
+
+.qv-actions { display: flex; gap: var(--sp-3); margin-top: var(--sp-6); flex-wrap: wrap; }
+.qv-actions .btn { flex: 1; min-width: 160px; }
+
+.qv-wishlist-btn {
+  width: 48px; height: 48px;
+  flex: 0 0 auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--c-line);
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+}
+.qv-wishlist-btn svg { width: 18px; height: 18px; stroke: var(--c-charcoal); fill: none; transition: fill var(--dur-fast), stroke var(--dur-fast); }
+.qv-wishlist-btn.is-active svg { fill: var(--c-oxblood); stroke: var(--c-oxblood); }
+
+.qv-full-link { display: inline-block; margin-top: var(--sp-5); font-size: var(--fs-caption); }
+
+.qv-confirm {
+  text-align: center;
+  padding: var(--sp-6);
+  font-size: var(--fs-caption);
+  color: var(--text-muted);
+}
+.qv-confirm svg { width: 32px; height: 32px; stroke: var(--c-oxblood); fill: none; margin: 0 auto var(--sp-3); display: block; }

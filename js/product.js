@@ -134,6 +134,11 @@
     wishBtn.addEventListener('click', () => {
       const active = window.CorsetAtelier.toggleWishlist(product.id);
       wishBtn.classList.toggle('is-active', active);
+      if (active) {
+        wishBtn.classList.remove('is-pulsing');
+        void wishBtn.offsetWidth;
+        wishBtn.classList.add('is-pulsing');
+      }
     });
 
     // Custom build link carries the product name along
@@ -168,8 +173,12 @@
     const closeBtn = overlay.querySelector('[data-modal-close]');
     const form = overlay.querySelector('form');
     const summary = overlay.querySelector('[data-order-summary]');
+    const formView = overlay.querySelector('[data-buy-form-view]');
+    const confirmView = overlay.querySelector('[data-buy-confirm-view]');
 
     function open() {
+      formView.style.display = '';
+      confirmView.style.display = 'none';
       summary.innerHTML = `<strong>Order Summary</strong>${buildOrderSummary()}`;
       overlay.classList.add('is-open');
       overlay.setAttribute('aria-hidden', 'false');
@@ -211,8 +220,15 @@
         ``,
         `Payment: Cash on Delivery`
       ].join('\n');
-      window.open(waLink(message), '_blank');
-      close();
+
+      // Confirmation state — clear feedback that the order was captured
+      // before handing off to WhatsApp, rather than the modal just vanishing.
+      formView.style.display = 'none';
+      confirmView.style.display = '';
+      setTimeout(() => {
+        window.open(waLink(message), '_blank');
+        close();
+      }, 700);
     });
   }
 

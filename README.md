@@ -153,6 +153,7 @@ for a plain static site like this.
 - ✅ Phase 10a: Tactility & motion foundation
 - ✅ Phase 10b: Typography & spacing pass
 - ✅ Phase 10c: Image treatment system
+- ✅ Phase 10d: Product interactions
 
 ## What the polish pass (Phase 9) covered
 
@@ -356,3 +357,47 @@ echo of the brand's eyelet motif) positioned near the CTA area of the
 homepage hero, gently bobbing on a slow 7s loop. Deliberately singular —
 not a particle field. Hidden on mobile and disabled under
 `prefers-reduced-motion`.
+
+## Phase 10d — Product interactions
+
+**Quick View** (`js/quick-view.js`, `css/quick-view.css`) — clicking "Quick
+View" on any product card (Collections, Wishlist, or Product page's
+related grid) opens a modal with the image, price, description, color/size
+selection, and a Buy Now / wishlist toggle — without leaving the grid.
+This replaces what used to be a plain "View Details" link on card hover.
+Built as a self-contained component with its own `qv-` prefixed class
+names rather than reusing `.pd-*` / `.modal-*` from `product.css`, since
+it's injected on three pages that don't all load the same stylesheets —
+zero risk of relying on a class that isn't defined somewhere. It listens
+via event delegation on `document`, so it works correctly for product
+cards that don't exist yet at page load (all three grids render after a
+fetch).
+
+One deliberate scope decision: Quick View's "Buy Now" opens WhatsApp
+directly with the product/variant details and asks to finalize delivery
+info there, rather than duplicating the full name/address/city form inside
+a modal-on-top-of-a-modal. The full guided form still lives on the product
+page — "View Full Details & Photos" links straight there.
+
+**Wishlist confirmation pulse** (`css/base.css`) — a quick, satisfying
+bounce animation on the heart icon when something is added to the
+wishlist, instead of the color just snapping to filled. One shared
+keyframe (`wishlistPulse`), wired into all three places wishlist toggling
+happens: product cards (`bindWishlistButtons` in `main.js`, so it covers
+Collections/Wishlist/related-products automatically), the product detail
+page's dedicated heart button, and Quick View.
+
+**Buy confirmation state** (`product.html` / `css/product.css` /
+`js/product.js`) — submitting the order form used to open WhatsApp and
+close the modal in the same instant, which could feel like nothing
+happened. Now the form is replaced with a brief checkmark + "Order ready —
+opening WhatsApp..." confirmation for 700ms before WhatsApp opens and the
+modal closes — enough to register as a clear success moment without
+feeling like a delay.
+
+**Thin accent border on card hover** (`css/collections.css`) — one honest
+simplification here: the original ask was a "gradient border," but a true
+multi-stop gradient border on a rounded-corner element is unreliable
+across browsers (border-image doesn't respect border-radius consistently).
+Used a thin (1px) brass-toned outline instead — visually equivalent at
+that weight, and fully reliable. Applied on `.product-card:hover`.

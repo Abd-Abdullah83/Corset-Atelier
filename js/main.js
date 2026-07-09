@@ -155,7 +155,7 @@
           <button type="button" class="wishlist-btn ${wishlisted ? 'is-active' : ''}" data-wishlist-toggle="${p.id}" aria-label="Toggle wishlist">
             <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.5" stroke-linejoin="round"/></svg>
           </button>
-          <a href="product.html?id=${p.id}" class="product-quickview">View Details</a>
+          <button type="button" class="product-quickview" data-quickview-trigger="${p.id}">Quick View</button>
         </div>
         <a href="product.html?id=${p.id}" class="product-info-link">
           <div class="product-info">
@@ -179,6 +179,11 @@
         const id = btn.getAttribute('data-wishlist-toggle');
         const nowActive = toggleWishlist(id);
         btn.classList.toggle('is-active', nowActive);
+        if (nowActive) {
+          btn.classList.remove('is-pulsing');
+          void btn.offsetWidth;
+          btn.classList.add('is-pulsing');
+        }
       });
     });
   }
