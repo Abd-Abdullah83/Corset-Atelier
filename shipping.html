@@ -3,17 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wishlist — Corset Atelier</title>
-<meta name="description" content="Your saved pieces from Corset Atelier.">
+<title>Shipping & Returns — Corset Atelier</title>
+<meta name="description" content="Shipping times, payment methods, and return policy for Corset Atelier orders.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/header-footer.css">
 <link rel="stylesheet" href="css/collections.css">
+<link rel="stylesheet" href="css/custom-builder.css">
+<link rel="stylesheet" href="css/info-pages.css">
 </head>
 <body>
 
@@ -40,7 +42,7 @@
       <a href="account.html" aria-label="Account">
         <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="wishlist.html" data-nav-link="wishlist.html" aria-label="Wishlist">
+      <a href="wishlist.html" aria-label="Wishlist">
         <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.5" stroke-linejoin="round"/></svg>
         <span class="wishlist-count" data-wishlist-count style="display:none">0</span>
       </a>
@@ -74,22 +76,55 @@
 
   <section class="collections-hero">
     <div class="container">
-      <span class="eyebrow">Saved For Later</span>
-      <h1 class="display-lg">Your Wishlist</h1>
-      <p data-wishlist-heading-count style="margin-top:var(--sp-4)"></p>
+      <span class="eyebrow">Getting Your Order to You</span>
+      <h1 class="display-lg">Shipping & Returns</h1>
+      <p>What to expect after you place an order.</p>
     </div>
   </section>
 
-  <section class="container">
-    <div class="product-grid" data-wishlist-grid style="padding-top:var(--sp-7)"></div>
+  <section class="section container">
+    <div class="prose">
+      <h2>Shipping</h2>
+      <p>We currently ship across Pakistan. Ready-made pieces typically leave the atelier within 3–5 business days of order confirmation. Custom pieces begin production only after your deposit is confirmed, and take 17 days to complete before shipping.</p>
+      <p>Once your order ships, we'll share tracking details on WhatsApp. Delivery within major cities usually takes 2–4 business days after dispatch; more remote areas may take slightly longer.</p>
 
-    <div class="empty-state" data-wishlist-empty style="display:none">
-      <svg viewBox="0 0 24 24" width="48" height="48" style="stroke:var(--metal); fill:none; margin:0 auto var(--sp-4)">
-        <path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.3" stroke-linejoin="round"/>
-      </svg>
-      <h3>Nothing saved yet</h3>
-      <p>Tap the heart on any piece to save it here for later.</p>
-      <a href="collections.html" class="btn btn-primary" style="margin-top:1.5rem">Browse Collections</a>
+      <h2>Payment</h2>
+      <p>We accept Cash on Delivery (COD) on all orders. For custom pieces, a 70% deposit is collected upfront via bank transfer or the method we agree on in your WhatsApp conversation, with the remaining 30% due as COD on delivery.</p>
+
+      <h2>Returns & Exchanges</h2>
+      <p>Because every piece is handcrafted and often made to order, we handle returns carefully:</p>
+    </div>
+
+    <div class="policy-box" style="max-width:680px; margin-inline:auto">
+      <h4>Ready-Made Pieces</h4>
+      <ul>
+        <li>Exchanges are accepted within 3 days of delivery if the item is unworn, unaltered, and in its original condition.</li>
+        <li>Please message us on WhatsApp before returning anything so we can confirm the process.</li>
+        <li>Shipping costs for exchanges are the customer's responsibility unless the item arrived damaged or incorrect.</li>
+      </ul>
+    </div>
+
+    <div class="policy-box" style="max-width:680px; margin-inline:auto; margin-top:var(--sp-5)">
+      <h4>Custom Pieces</h4>
+      <ul>
+        <li>Custom orders are non-refundable and non-exchangeable once production has started, as detailed in our <a href="custom-order-policy.html" style="color:var(--c-oxblood)">Custom Order Policy</a>.</li>
+        <li>If a custom piece arrives with a genuine construction defect, message us immediately — we'll make it right.</li>
+      </ul>
+    </div>
+
+    <div class="prose" style="margin-top:var(--sp-8)">
+      <h2>Damaged or Incorrect Items</h2>
+      <p>If anything arrives damaged, or isn't what you ordered, message us on WhatsApp with photos within 48 hours of delivery and we'll sort it out — replacement, repair, or refund depending on the situation.</p>
+    </div>
+  </section>
+
+  <section class="contact-band">
+    <div class="container">
+      <span class="eyebrow" style="color:var(--c-ivory)">Questions About Your Order?</span>
+      <h2 class="display-md">We're a message away.</h2>
+      <div style="margin-top:var(--sp-6)">
+        <a href="https://wa.me/923286712746" target="_blank" rel="noopener" class="btn btn-outline">Message Us on WhatsApp</a>
+      </div>
     </div>
   </section>
 
@@ -139,7 +174,7 @@
       <h6>Support</h6>
       <ul>
         <li><a href="faqs.html">FAQs</a></li>
-        <li><a href="shipping.html">Shipping & Returns</a></li>
+        <li><a href="shipping.html">Shipping &amp; Returns</a></li>
         <li><a href="wishlist.html">Wishlist</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
@@ -163,7 +198,6 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script src="js/wishlist.js"></script>
 <script src="js/ai-widget.js"></script>
 </body>
 </html>

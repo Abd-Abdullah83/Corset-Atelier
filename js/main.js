@@ -167,6 +167,15 @@
     });
   }
 
+  function colorToCss(name) {
+    const map = {
+      'Ivory': '#F6F1E9', 'Blush': '#E8C7C2', 'Champagne': '#D9B98A', 'Black': '#141213',
+      'Oxblood': '#6B1423', 'Wine': '#5C1420', 'Nude': '#D9B79A', 'Emerald': '#1F4A38',
+      'Rose': '#C98A8C'
+    };
+    return map[name] || '#999';
+  }
+
   window.CorsetAtelier = window.CorsetAtelier || {};
   window.CorsetAtelier.getWishlist = getWishlist;
   window.CorsetAtelier.isWishlisted = isWishlisted;
@@ -178,4 +187,5 @@
   window.CorsetAtelier.categoryLabels = CATEGORY_LABELS;
   window.CorsetAtelier.renderProductCard = renderProductCard;
   window.CorsetAtelier.bindWishlistButtons = bindWishlistButtons;
+  window.CorsetAtelier.colorToCss = colorToCss;
 })();

@@ -92,7 +92,7 @@
     selectedColor = product.colors[0];
     colorRow.innerHTML = product.colors.map((c, i) => `
       <button type="button" class="color-swatch ${i === 0 ? 'is-active' : ''}" data-color="${c}"
-        style="background:${colorToCss(c)}" title="${c}" aria-label="${c}"></button>
+        style="background:${window.CorsetAtelier.colorToCss(c)}" title="${c}" aria-label="${c}"></button>
     `).join('');
     document.querySelector('[data-selected-color]').textContent = selectedColor;
     colorRow.querySelectorAll('.color-swatch').forEach((btn) => {
@@ -128,15 +128,6 @@
 
     // Custom build link carries the product name along
     document.querySelector('[data-custom-link]').href = `custom-builder.html?base=${encodeURIComponent(product.name)}`;
-  }
-
-  function colorToCss(name) {
-    const map = {
-      'Ivory': '#F6F1E9', 'Blush': '#E8C7C2', 'Champagne': '#D9B98A', 'Black': '#141213',
-      'Oxblood': '#6B1423', 'Wine': '#5C1420', 'Nude': '#D9B79A', 'Emerald': '#1F4A38',
-      'Rose': '#C98A8C'
-    };
-    return map[name] || '#999';
   }
 
   async function renderRelated() {

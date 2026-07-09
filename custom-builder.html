@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product — Corset Atelier</title>
-<meta name="description" content="Handcrafted corset, made to order.">
+<title>Custom Build — Corset Atelier</title>
+<meta name="description" content="Design your own corset — choose the type, fabric, color and fit, made to your exact measurements.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,8 +13,7 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/header-footer.css">
-<link rel="stylesheet" href="css/collections.css">
-<link rel="stylesheet" href="css/product.css">
+<link rel="stylesheet" href="css/custom-builder.css">
 </head>
 <body>
 
@@ -71,149 +70,143 @@
   </nav>
 </div>
 
-<main id="main" data-product-root>
+<main id="main" data-builder-root>
 
-  <div class="container breadcrumb">
-    <a href="index.html">Home</a><span>/</span><a href="collections.html">Collections</a><span>/</span><span data-pd-category>—</span>
-  </div>
-
-  <div class="container product-detail">
-
-    <!-- ============ GALLERY ============ -->
-    <div class="gallery">
-      <div class="gallery-main" data-gallery-main>
-        <div class="zoom-media"></div>
-        <span class="zoom-hint">Click to zoom</span>
-      </div>
-      <div class="gallery-thumbs" data-gallery-thumbs></div>
+  <section class="builder-hero">
+    <div class="container">
+      <span class="eyebrow">Made To Measure</span>
+      <h1 class="display-lg">Design Your Corset</h1>
+      <p>Six quick steps — choose your silhouette, fabric, color and fit. We'll confirm every detail with you on WhatsApp before production begins.</p>
     </div>
-
-    <!-- ============ INFO ============ -->
-    <div class="pd-info">
-      <span class="pd-category" data-pd-category></span>
-      <h1 class="pd-title" data-pd-title></h1>
-
-      <div class="pd-price-row">
-        <span class="pd-price" data-pd-price></span>
-        <span class="pd-compare-price" data-pd-compare></span>
-        <span class="pd-discount-badge" data-pd-discount-badge></span>
-      </div>
-
-      <p class="pd-desc" data-pd-desc></p>
-
-      <div class="pd-meta">
-        <div class="pd-meta-item">
-          <h6>Fabric</h6>
-          <p data-pd-fabric></p>
-        </div>
-        <div class="pd-meta-item">
-          <h6>Weight</h6>
-          <p data-pd-weight></p>
-        </div>
-        <div class="pd-meta-item">
-          <h6>Production</h6>
-          <p>17 days, made to order</p>
-        </div>
-      </div>
-
-      <div class="variant-group">
-        <div class="variant-label">
-          <h6>Color</h6>
-          <span class="variant-value" data-selected-color></span>
-        </div>
-        <div class="swatch-row" data-color-swatches></div>
-      </div>
-
-      <div class="variant-group">
-        <div class="variant-label">
-          <h6>Size</h6>
-          <a href="size-guide.html" target="_blank">Size Guide</a>
-        </div>
-        <div class="size-row" data-size-buttons></div>
-      </div>
-
-      <div class="pd-actions">
-        <button type="button" class="btn btn-primary" data-open-buy>Buy Now — Order via WhatsApp</button>
-        <button type="button" class="btn btn-outline-dark" data-open-query>Ask a Question</button>
-        <button type="button" class="btn-wishlist-lg" data-pd-wishlist aria-label="Toggle wishlist">
-          <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.5" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-
-      <div class="pd-custom-note">
-        <div>
-          <strong>Want it made to your exact measurements?</strong>
-          <p>Start a custom build using this piece as your base — choose your own fabric, color and fit.</p>
-        </div>
-        <a href="custom-builder.html" data-custom-link class="btn btn-ghost">Start Custom Build</a>
-      </div>
-
-      <div class="pd-trust">
-        <div class="pd-trust-item"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke-width="1.3" stroke-linejoin="round"/></svg>Handcrafted in-house</div>
-        <div class="pd-trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.3"/><path d="M12 7v5l3 3" stroke-width="1.3" stroke-linecap="round"/></svg>17-day production</div>
-        <div class="pd-trust-item"><svg viewBox="0 0 24 24"><path d="M3 7h13l5 5v5h-3M3 7v10h10M3 7l4-4h6l4 4" stroke-width="1.3" stroke-linejoin="round"/></svg>Cash on delivery</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ RELATED PRODUCTS ============ -->
-  <section class="container related-section" data-related-section>
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">You May Also Like</span>
-        <h2 class="display-md">More From This Line</h2>
-      </div>
-    </div>
-    <div class="product-grid" data-related-grid></div>
   </section>
 
+  <div class="container">
+    <div class="stepper" data-stepper></div>
+    <p class="step-mobile-label" data-step-mobile-label></p>
+
+    <div class="builder-panel">
+
+      <!-- ============ STEP 1: TYPE ============ -->
+      <div class="builder-step" data-step="1">
+        <h2 class="step-title">Choose a Silhouette</h2>
+        <p class="step-subtitle">What type of corset would you like built?</p>
+        <div class="option-grid" data-type-grid></div>
+        <p class="field-error"></p>
+        <div class="step-nav">
+          <button type="button" class="btn btn-outline-dark" data-back disabled>Back</button>
+          <button type="button" class="btn btn-primary" data-next>Continue</button>
+        </div>
+      </div>
+
+      <!-- ============ STEP 2: FABRIC ============ -->
+      <div class="builder-step" data-step="2">
+        <h2 class="step-title">Choose a Fabric</h2>
+        <p class="step-subtitle">Every fabric is sourced and cut in-house for this build.</p>
+        <div class="option-grid" data-fabric-grid></div>
+        <p class="field-error"></p>
+        <div class="step-nav">
+          <button type="button" class="btn btn-outline-dark" data-back>Back</button>
+          <button type="button" class="btn btn-primary" data-next>Continue</button>
+        </div>
+      </div>
+
+      <!-- ============ STEP 3: COLOR ============ -->
+      <div class="builder-step" data-step="3">
+        <h2 class="step-title">Choose a Color</h2>
+        <p class="step-subtitle">Can't find your exact shade? Mention it in the notes on the next step.</p>
+        <div class="color-grid" data-color-grid></div>
+        <p class="field-error"></p>
+        <div class="step-nav">
+          <button type="button" class="btn btn-outline-dark" data-back>Back</button>
+          <button type="button" class="btn btn-primary" data-next>Continue</button>
+        </div>
+      </div>
+
+      <!-- ============ STEP 4: SIZING ============ -->
+      <div class="builder-step" data-step="4">
+        <h2 class="step-title">Sizing</h2>
+        <p class="step-subtitle">Pick a standard size, or give us your exact measurements for a true custom fit.</p>
+
+        <div class="sizing-toggle">
+          <button type="button" class="toggle-btn is-active" data-sizing-toggle="standard">Standard Size</button>
+          <button type="button" class="toggle-btn" data-sizing-toggle="custom">Custom Measurements</button>
+        </div>
+
+        <div class="sizing-panel is-active" data-sizing-panel="standard">
+          <div class="size-grid" data-size-grid></div>
+        </div>
+
+        <div class="sizing-panel" data-sizing-panel="custom">
+          <div class="measure-grid">
+            <div class="form-field"><label for="m-bust">Bust (inches)</label><input id="m-bust" type="number" step="0.1" data-measure-input="bust"></div>
+            <div class="form-field"><label for="m-waist">Waist (inches)</label><input id="m-waist" type="number" step="0.1" data-measure-input="waist"></div>
+            <div class="form-field"><label for="m-hip">Hip (inches)</label><input id="m-hip" type="number" step="0.1" data-measure-input="hip"></div>
+            <div class="form-field"><label for="m-torso">Torso Length (inches)</label><input id="m-torso" type="number" step="0.1" data-measure-input="torso"></div>
+          </div>
+          <p class="measure-note">Not sure how to measure? Check our <a href="size-guide.html" target="_blank">Size Guide</a>.</p>
+        </div>
+
+        <p class="field-error"></p>
+        <div class="step-nav">
+          <button type="button" class="btn btn-outline-dark" data-back>Back</button>
+          <button type="button" class="btn btn-primary" data-next>Continue</button>
+        </div>
+      </div>
+
+      <!-- ============ STEP 5: DETAILS ============ -->
+      <div class="builder-step" data-step="5">
+        <h2 class="step-title">Your Details</h2>
+        <p class="step-subtitle">Where should we send your finished piece?</p>
+
+        <div class="form-field"><label for="d-name">Full Name</label><input id="d-name" type="text" data-detail-input="name" required></div>
+        <div class="form-row-2">
+          <div class="form-field"><label for="d-phone">Phone</label><input id="d-phone" type="tel" data-detail-input="phone" required></div>
+          <div class="form-field"><label for="d-email">Email (optional)</label><input id="d-email" type="email" data-detail-input="email"></div>
+        </div>
+        <div class="form-field"><label for="d-address">Delivery Address</label><input id="d-address" type="text" data-detail-input="address" required></div>
+        <div class="form-field"><label for="d-city">City</label><input id="d-city" type="text" data-detail-input="city" required></div>
+        <div class="form-field"><label for="d-notes">Notes (optional)</label><textarea id="d-notes" rows="3" data-detail-input="notes" placeholder="Any special requests, references, or details"></textarea></div>
+
+        <p class="field-error"></p>
+        <div class="step-nav">
+          <button type="button" class="btn btn-outline-dark" data-back>Back</button>
+          <button type="button" class="btn btn-primary" data-next>Continue</button>
+        </div>
+      </div>
+
+      <!-- ============ STEP 6: REVIEW ============ -->
+      <div class="builder-step" data-step="6">
+        <h2 class="step-title">Review Your Build</h2>
+        <p class="step-subtitle">Confirm the details below, then send it to us on WhatsApp.</p>
+
+        <div class="review-card" data-review-rows></div>
+
+        <div class="policy-box">
+          <h4>Custom Order Policy</h4>
+          <ul>
+            <li>Production time is 17 days from confirmed deposit and measurements.</li>
+            <li>A 70% deposit is required to begin production; the remaining 30% is due before delivery.</li>
+            <li>Deposits are non-refundable once production has started — custom pieces cannot be resold.</li>
+            <li>Please double-check your measurements; we build to exactly what's provided.</li>
+          </ul>
+        </div>
+
+        <div class="policy-check">
+          <input type="checkbox" id="policy-agree" data-policy-agree>
+          <label for="policy-agree">I understand and agree to the 70% deposit and non-refundable cancellation policy above.</label>
+        </div>
+
+        <p class="field-error"></p>
+        <div class="step-nav">
+          <button type="button" class="btn btn-outline-dark" data-back>Back</button>
+          <button type="button" class="btn btn-primary" data-next>Send Order on WhatsApp</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </main>
-
-<!-- ============ BUY MODAL ============ -->
-<div class="modal-overlay" data-buy-modal>
-  <div class="modal-panel">
-    <div class="modal-head">
-      <div>
-        <h3>Complete Your Order</h3>
-        <p>We'll open WhatsApp with your details filled in — just hit send.</p>
-      </div>
-      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-    </div>
-    <div class="form-summary" data-order-summary></div>
-    <form>
-      <div class="form-field"><label for="buy-name">Full Name</label><input id="buy-name" name="name" type="text" required></div>
-      <div class="form-row-2">
-        <div class="form-field"><label for="buy-phone">Phone</label><input id="buy-phone" name="phone" type="tel" required></div>
-        <div class="form-field"><label for="buy-email">Email (optional)</label><input id="buy-email" name="email" type="email"></div>
-      </div>
-      <div class="form-field"><label for="buy-address">Delivery Address</label><input id="buy-address" name="address" type="text" required></div>
-      <div class="form-field"><label for="buy-city">City</label><input id="buy-city" name="city" type="text" required></div>
-      <button type="submit" class="btn btn-primary modal-submit">Send Order on WhatsApp</button>
-      <p class="modal-note">Payment: Cash on Delivery</p>
-    </form>
-  </div>
-</div>
-
-<!-- ============ QUERY MODAL ============ -->
-<div class="modal-overlay" data-query-modal>
-  <div class="modal-panel">
-    <div class="modal-head">
-      <div>
-        <h3>Ask a Question</h3>
-        <p>We'll reply on WhatsApp, usually within the day.</p>
-      </div>
-      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-    </div>
-    <form>
-      <div class="form-field"><label for="q-message">Your Question</label><textarea id="q-message" name="message" rows="4" required placeholder="e.g. Does this run true to size?"></textarea></div>
-      <div class="form-row-2">
-        <div class="form-field"><label for="q-name">Name</label><input id="q-name" name="name" type="text" required></div>
-        <div class="form-field"><label for="q-phone">Phone (optional)</label><input id="q-phone" name="phone" type="tel"></div>
-      </div>
-      <button type="submit" class="btn btn-primary modal-submit">Send on WhatsApp</button>
-    </form>
-  </div>
-</div>
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
@@ -283,7 +276,7 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script src="js/product.js"></script>
+<script src="js/custom-builder.js"></script>
 <script src="js/ai-widget.js"></script>
 </body>
 </html>

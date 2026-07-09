@@ -3,17 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wishlist — Corset Atelier</title>
-<meta name="description" content="Your saved pieces from Corset Atelier.">
+<title>Custom Order Policy — Corset Atelier</title>
+<meta name="description" content="Production time, deposit, and cancellation policy for custom Corset Atelier orders.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/header-footer.css">
 <link rel="stylesheet" href="css/collections.css">
+<link rel="stylesheet" href="css/custom-builder.css">
+<link rel="stylesheet" href="css/info-pages.css">
 </head>
 <body>
 
@@ -40,7 +42,7 @@
       <a href="account.html" aria-label="Account">
         <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="wishlist.html" data-nav-link="wishlist.html" aria-label="Wishlist">
+      <a href="wishlist.html" aria-label="Wishlist">
         <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.5" stroke-linejoin="round"/></svg>
         <span class="wishlist-count" data-wishlist-count style="display:none">0</span>
       </a>
@@ -74,22 +76,82 @@
 
   <section class="collections-hero">
     <div class="container">
-      <span class="eyebrow">Saved For Later</span>
-      <h1 class="display-lg">Your Wishlist</h1>
-      <p data-wishlist-heading-count style="margin-top:var(--sp-4)"></p>
+      <span class="eyebrow">Please Read Before Ordering</span>
+      <h1 class="display-lg">Custom Order Policy</h1>
+      <p>Every custom piece is built specifically for you. Here's exactly how the process works.</p>
     </div>
   </section>
 
-  <section class="container">
-    <div class="product-grid" data-wishlist-grid style="padding-top:var(--sp-7)"></div>
+  <section class="section container">
+    <div class="policy-highlights">
+      <div class="policy-highlight">
+        <div class="highlight-num">17</div>
+        <h4>Days Production</h4>
+        <p>From confirmed deposit and measurements</p>
+      </div>
+      <div class="policy-highlight">
+        <div class="highlight-num">70%</div>
+        <h4>Deposit Required</h4>
+        <p>To begin cutting and construction</p>
+      </div>
+      <div class="policy-highlight">
+        <div class="highlight-num">0%</div>
+        <h4>Refundable After Start</h4>
+        <p>Once production has begun</p>
+      </div>
+    </div>
 
-    <div class="empty-state" data-wishlist-empty style="display:none">
-      <svg viewBox="0 0 24 24" width="48" height="48" style="stroke:var(--metal); fill:none; margin:0 auto var(--sp-4)">
-        <path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.3" stroke-linejoin="round"/>
-      </svg>
-      <h3>Nothing saved yet</h3>
-      <p>Tap the heart on any piece to save it here for later.</p>
-      <a href="collections.html" class="btn btn-primary" style="margin-top:1.5rem">Browse Collections</a>
+    <div class="prose">
+      <h2>How a Custom Order Works</h2>
+    </div>
+
+    <div class="process-steps" style="max-width:760px; margin-inline:auto">
+      <div class="process-step">
+        <span class="step-num"></span>
+        <div>
+          <h3>Design Your Piece</h3>
+          <p>Use the Custom Builder to choose your type, fabric, color, and sizing — standard size or your exact measurements. Submit your selections and details on WhatsApp.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-num"></span>
+        <div>
+          <h3>Confirm & Pay the Deposit</h3>
+          <p>We confirm every detail with you directly on WhatsApp, then request a 70% deposit before any cutting begins. The remaining 30% is due before delivery.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-num"></span>
+        <div>
+          <h3>17-Day Production</h3>
+          <p>Your piece is cut, boned, and hand-finished in the atelier. We'll update you as it progresses.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-num"></span>
+        <div>
+          <h3>Delivery</h3>
+          <p>Once complete, we arrange delivery and collect the remaining balance — cash on delivery is accepted.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:var(--sp-9)">
+      <h2>Cancellation</h2>
+      <p>Because every custom piece is cut and built specifically to your measurements and choices, deposits are non-refundable once production has started. Custom pieces cannot be resold, so please confirm your measurements and selections carefully before your deposit is paid. If you need to cancel before production begins, message us as soon as possible.</p>
+
+      <h2>Measurements</h2>
+      <p>Accuracy matters — we build to exactly what you provide. If you're not sure how to measure yourself, our <a href="size-guide.html" style="color:var(--c-oxblood); text-decoration:underline">Size Guide</a> walks through it step by step, or you can message us on WhatsApp for guidance before you order.</p>
+    </div>
+  </section>
+
+  <section class="contact-band">
+    <div class="container">
+      <span class="eyebrow" style="color:var(--c-ivory)">Ready to Begin?</span>
+      <h2 class="display-md">Start designing your custom corset.</h2>
+      <div style="margin-top:var(--sp-6)">
+        <a href="custom-builder.html" class="btn btn-outline">Start a Custom Build</a>
+      </div>
     </div>
   </section>
 
@@ -139,7 +201,7 @@
       <h6>Support</h6>
       <ul>
         <li><a href="faqs.html">FAQs</a></li>
-        <li><a href="shipping.html">Shipping & Returns</a></li>
+        <li><a href="shipping.html">Shipping &amp; Returns</a></li>
         <li><a href="wishlist.html">Wishlist</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
@@ -163,7 +225,6 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script src="js/wishlist.js"></script>
 <script src="js/ai-widget.js"></script>
 </body>
 </html>

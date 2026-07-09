@@ -3,17 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wishlist — Corset Atelier</title>
-<meta name="description" content="Your saved pieces from Corset Atelier.">
+<title>Our Story — Corset Atelier</title>
+<meta name="description" content="The story behind Corset Atelier — handcrafted corsetry, made to order.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/header-footer.css">
 <link rel="stylesheet" href="css/collections.css">
+<link rel="stylesheet" href="css/custom-builder.css">
+<link rel="stylesheet" href="css/info-pages.css">
 </head>
 <body>
 
@@ -40,7 +42,7 @@
       <a href="account.html" aria-label="Account">
         <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="wishlist.html" data-nav-link="wishlist.html" aria-label="Wishlist">
+      <a href="wishlist.html" aria-label="Wishlist">
         <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.5" stroke-linejoin="round"/></svg>
         <span class="wishlist-count" data-wishlist-count style="display:none">0</span>
       </a>
@@ -74,22 +76,52 @@
 
   <section class="collections-hero">
     <div class="container">
-      <span class="eyebrow">Saved For Later</span>
-      <h1 class="display-lg">Your Wishlist</h1>
-      <p data-wishlist-heading-count style="margin-top:var(--sp-4)"></p>
+      <span class="eyebrow">The Atelier</span>
+      <h1 class="display-lg">Our Story</h1>
+      <p>Structure, softened. A brand built one hand-boned seam at a time.</p>
     </div>
   </section>
 
-  <section class="container">
-    <div class="product-grid" data-wishlist-grid style="padding-top:var(--sp-7)"></div>
+  <section class="section container">
+    <div class="prose">
+      <p>Corset Atelier began with a single pattern block and a conviction that structure could still feel like softness. What started as one maker cutting and boning corsets by hand has grown into a small atelier — but the process hasn't changed. Every piece that leaves us is still cut, boned, and laced in-house, checked eyelet by eyelet before it ever reaches a customer.</p>
+      <p>We work in small batches, made to order rather than mass-produced. That means every corset is built for the person who ordered it — their size, their color, their fabric — not pulled off a rack. It takes longer than fast fashion. We think that's the point.</p>
+    </div>
 
-    <div class="empty-state" data-wishlist-empty style="display:none">
-      <svg viewBox="0 0 24 24" width="48" height="48" style="stroke:var(--metal); fill:none; margin:0 auto var(--sp-4)">
-        <path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.3" stroke-linejoin="round"/>
-      </svg>
-      <h3>Nothing saved yet</h3>
-      <p>Tap the heart on any piece to save it here for later.</p>
-      <a href="collections.html" class="btn btn-primary" style="margin-top:1.5rem">Browse Collections</a>
+    <div class="story-media-lg" style="background:linear-gradient(155deg,#1a0b0f 0%,#6B1423 55%,#A9772F 130%)"></div>
+
+    <div class="prose">
+      <h2>What We Believe</h2>
+      <p>Corsetry has always sat at the intersection of engineering and softness — steel and silk, structure and comfort. We design toward that balance rather than away from it.</p>
+    </div>
+
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+        <h3>Handcrafted, Not Mass-Produced</h3>
+        <p>Every corset is cut and boned by hand in the atelier — nothing comes off an assembly line.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7z" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+        <h3>Built to Last</h3>
+        <p>Steel boning, real coutil, and hand-finished eyelets — construction that holds its shape order after order.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Made For You</h3>
+        <p>Standard sizing where it fits, and a true custom-measurement build when it doesn't.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-band">
+    <div class="container">
+      <span class="eyebrow" style="color:var(--c-ivory)">Want Something Made Just For You?</span>
+      <h2 class="display-md">Start a custom build, or browse<br>the current collection.</h2>
+      <div style="display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap; margin-top:var(--sp-6)">
+        <a href="custom-builder.html" class="btn btn-outline">Start a Custom Build</a>
+        <a href="collections.html" class="btn btn-outline">Shop the Collection</a>
+      </div>
     </div>
   </section>
 
@@ -139,7 +171,7 @@
       <h6>Support</h6>
       <ul>
         <li><a href="faqs.html">FAQs</a></li>
-        <li><a href="shipping.html">Shipping & Returns</a></li>
+        <li><a href="shipping.html">Shipping &amp; Returns</a></li>
         <li><a href="wishlist.html">Wishlist</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
@@ -163,7 +195,6 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script src="js/wishlist.js"></script>
 <script src="js/ai-widget.js"></script>
 </body>
 </html>

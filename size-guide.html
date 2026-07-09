@@ -3,17 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wishlist — Corset Atelier</title>
-<meta name="description" content="Your saved pieces from Corset Atelier.">
+<title>Size Guide — Corset Atelier</title>
+<meta name="description" content="Standard corset size chart and measuring instructions for Corset Atelier.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/header-footer.css">
 <link rel="stylesheet" href="css/collections.css">
+<link rel="stylesheet" href="css/custom-builder.css">
+<link rel="stylesheet" href="css/info-pages.css">
 </head>
 <body>
 
@@ -40,7 +42,7 @@
       <a href="account.html" aria-label="Account">
         <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="wishlist.html" data-nav-link="wishlist.html" aria-label="Wishlist">
+      <a href="wishlist.html" aria-label="Wishlist">
         <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.5" stroke-linejoin="round"/></svg>
         <span class="wishlist-count" data-wishlist-count style="display:none">0</span>
       </a>
@@ -74,22 +76,64 @@
 
   <section class="collections-hero">
     <div class="container">
-      <span class="eyebrow">Saved For Later</span>
-      <h1 class="display-lg">Your Wishlist</h1>
-      <p data-wishlist-heading-count style="margin-top:var(--sp-4)"></p>
+      <span class="eyebrow">Get the Right Fit</span>
+      <h1 class="display-lg">Size Guide</h1>
+      <p>Find your standard size below, or take your own measurements for a true custom fit.</p>
     </div>
   </section>
 
-  <section class="container">
-    <div class="product-grid" data-wishlist-grid style="padding-top:var(--sp-7)"></div>
+  <section class="section container">
+    <div class="prose">
+      <h2>Standard Size Chart</h2>
+      <p>All measurements in inches, taken at the natural bust, waist, and hip.</p>
+    </div>
 
-    <div class="empty-state" data-wishlist-empty style="display:none">
-      <svg viewBox="0 0 24 24" width="48" height="48" style="stroke:var(--metal); fill:none; margin:0 auto var(--sp-4)">
-        <path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.3" stroke-linejoin="round"/>
-      </svg>
-      <h3>Nothing saved yet</h3>
-      <p>Tap the heart on any piece to save it here for later.</p>
-      <a href="collections.html" class="btn btn-primary" style="margin-top:1.5rem">Browse Collections</a>
+    <div class="size-table-wrap">
+      <table class="size-table">
+        <thead>
+          <tr><th>Size</th><th>Bust</th><th>Waist</th><th>Hip</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>XS</td><td>32–33"</td><td>24–25"</td><td>34–35"</td></tr>
+          <tr><td>S</td><td>34–35"</td><td>26–27"</td><td>36–37"</td></tr>
+          <tr><td>M</td><td>36–37"</td><td>28–29"</td><td>38–39"</td></tr>
+          <tr><td>L</td><td>38–40"</td><td>30–32"</td><td>40–42"</td></tr>
+          <tr><td>XL</td><td>41–43"</td><td>33–35"</td><td>43–45"</td></tr>
+          <tr><td>XXL</td><td>44–46"</td><td>36–38"</td><td>46–48"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <h2>How to Measure Yourself</h2>
+      <p>For the most accurate fit, measure over light clothing with a soft measuring tape, standing naturally — don't pull the tape tight.</p>
+    </div>
+
+    <div class="measure-steps">
+      <div class="measure-step">
+        <div class="measure-media" style="background:linear-gradient(160deg,#241014,#6B1423 60%,#C9A6A1 140%)"></div>
+        <h4>Bust</h4>
+        <p>Measure around the fullest part of your bust, keeping the tape level around your back.</p>
+      </div>
+      <div class="measure-step">
+        <div class="measure-media" style="background:linear-gradient(160deg,#0F0D0E,#4a161d 130%)"></div>
+        <h4>Waist</h4>
+        <p>Measure around your natural waistline — the narrowest point, usually just above the belly button.</p>
+      </div>
+      <div class="measure-step">
+        <div class="measure-media" style="background:linear-gradient(160deg,#171415,#A9772F 170%)"></div>
+        <h4>Hip</h4>
+        <p>Measure around the fullest part of your hips, roughly 8" below your natural waist.</p>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:var(--sp-8)">
+      <h2>Between Sizes, or Want a True Custom Fit?</h2>
+      <p>If your measurements fall between two sizes, or you'd like a corset built to your exact numbers rather than a standard size, use the Custom Builder — it has a dedicated custom measurements step for bust, waist, hip, and torso length.</p>
+    </div>
+
+    <div style="text-align:center; margin-top:var(--sp-6)">
+      <a href="custom-builder.html" class="btn btn-primary">Start a Custom Build</a>
     </div>
   </section>
 
@@ -139,7 +183,7 @@
       <h6>Support</h6>
       <ul>
         <li><a href="faqs.html">FAQs</a></li>
-        <li><a href="shipping.html">Shipping & Returns</a></li>
+        <li><a href="shipping.html">Shipping &amp; Returns</a></li>
         <li><a href="wishlist.html">Wishlist</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
@@ -163,7 +207,6 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script src="js/wishlist.js"></script>
 <script src="js/ai-widget.js"></script>
 </body>
 </html>

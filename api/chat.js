@@ -1,0 +1,103 @@
+/* ==========================================================================
+   POST /api/chat
+   Serverless function (Vercel) that proxies chat messages to the Gemini
+   API. The API key lives only in the GEMINI_API_KEY environment variable
+   on Vercel — it never reaches the browser. The product catalog is bundled
+   in at request time so the assistant always answers from real inventory,
+   not guesses.
+   ========================================================================== */
+
+const products = require('../data/products.json');
+
+const CATEGORY_LABELS = {
+  'bridal': 'Bridal', 'overbust': 'Overbust', 'underbust': 'Underbust',
+  'waist-trainers': 'Waist Trainers', 'evening': 'Evening', 'satin': 'Satin'
+};
+
+function buildCatalogSummary() {
+  return products.map((p) => {
+    const cat = CATEGORY_LABELS[p.category] || p.category;
+    const price = p.comparePrice ? `Rs. ${p.price} (was Rs. ${p.comparePrice})` : `Rs. ${p.price}`;
+    return `- ${p.name} [${cat}] — ${price}, fabric: ${p.fabric}, colors: ${p.colors.join('/')}, sizes: ${p.sizes.join('/')}`;
+  }).join('\n');
+}
+
+const SYSTEM_PROMPT = `You are the shopping assistant for Corset Atelier, a handcrafted luxury corset brand.
+
+Speak warmly, briefly, and knowledgeably — like a helpful boutique staff member, not a generic chatbot. Keep answers to 2-4 short sentences unless the customer asks for detail. Never use markdown headers or bullet-heavy formatting; write in natural sentences.
+
+WHAT YOU KNOW AND CAN HELP WITH:
+- Size recommendations: standard sizes run XS-XXL. XS: bust 32-33", waist 24-25", hip 34-35". S: bust 34-35", waist 26-27", hip 36-37". M: bust 36-37", waist 28-29", hip 38-39". L: bust 38-40", waist 30-32", hip 40-42". XL: bust 41-43", waist 33-35", hip 43-45". XXL: bust 44-46", waist 36-38", hip 46-48". If a customer is between sizes or wants a guaranteed fit, recommend the Custom Builder's custom measurements option.
+- Materials: silk satin, duchess satin, cotton coutil, velvet, French lace overlay, silk brocade — all fully boned with steel boning.
+- Care: spot clean only, never machine wash or soak, store flat or loosely laced away from direct sunlight.
+- Collections: Bridal, Overbust, Underbust, Waist Trainers, Evening, Satin, New Arrivals, and the Luxury line.
+- Custom orders: customer chooses type, fabric, color, and sizing (standard or custom measurements) via the Custom Builder page. Requires a 70% deposit to begin, 17-day production time, remaining 30% due before delivery. Deposits are non-refundable once production starts since pieces are cut specifically for that customer.
+- Pricing: ready-made pieces range roughly Rs. 6,000-22,000+ depending on category and fabric; luxury and bridal pieces are at the higher end. Custom builds are quoted based on fabric and design choices.
+- Delivery time: ready-made pieces ship in 3-5 business days; custom pieces ship after the 17-day production window. Delivery within major Pakistani cities takes 2-4 business days after dispatch.
+- Payment: Cash on Delivery (COD) across Pakistan. Orders are placed and confirmed on WhatsApp.
+- Shipping currently covers Pakistan only.
+- Returns: ready-made items can be exchanged within 3 days if unworn and in original condition; custom pieces are final sale once production starts.
+- Fashion advice: you can give genuine styling guidance — what to wear under an outfit, color combinations, matching pieces for occasions like bridal, evening, or everyday wear.
+- Current catalog (use this for specific product questions — do not invent products, prices, or availability outside this list):
+${buildCatalogSummary()}
+
+WHAT TO DO:
+- If a customer wants to actually place an order or needs a definitive answer only a human can give (exact stock, urgent timeline, complaint), point them to WhatsApp at +92 328 6712746 or the Buy/Query buttons on the product page.
+- For custom fit or made-to-measure requests, point them to the Custom Builder page.
+- If you don't know something specific (e.g. exact stock count, an order status), say so honestly and suggest WhatsApp rather than guessing.
+- Never invent a policy, price, or product that isn't listed above.`;
+
+module.exports = async function handler(req, res) {
+  if (req.method !== 'POST') {
+    res.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    res.status(500).json({ error: 'Assistant is not configured yet.' });
+    return;
+  }
+
+  const { message, history } = req.body || {};
+  if (!message || typeof message !== 'string') {
+    res.status(400).json({ error: 'Missing message.' });
+    return;
+  }
+
+  const contents = (Array.isArray(history) ? history : [])
+    .slice(-8)
+    .map((h) => ({ role: h.role === 'assistant' ? 'model' : 'user', parts: [{ text: String(h.text || '') }] }));
+  contents.push({ role: 'user', parts: [{ text: message }] });
+
+  try {
+    const geminiRes = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents,
+          generationConfig: { maxOutputTokens: 350, temperature: 0.6 }
+        })
+      }
+    );
+
+    const data = await geminiRes.json();
+
+    if (!geminiRes.ok) {
+      res.status(502).json({ error: (data.error && data.error.message) || 'The assistant is unavailable right now.' });
+      return;
+    }
+
+    const candidate = data.candidates && data.candidates[0];
+    const reply = candidate && candidate.content && candidate.content.parts
+      ? candidate.content.parts.map((p) => p.text).join('')
+      : "I'm sorry, I couldn't put together an answer just then — could you try rephrasing?";
+
+    res.status(200).json({ reply });
+  } catch (err) {
+    res.status(500).json({ error: 'Something went wrong reaching the assistant.' });
+  }
+};

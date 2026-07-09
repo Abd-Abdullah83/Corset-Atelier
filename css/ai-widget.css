@@ -1,0 +1,149 @@
+/* ==========================================================================
+   AI ASSISTANT WIDGET
+   Floating button bottom-right, opens a chat panel. Injected into every
+   page by js/ai-widget.js so markup only lives in one place.
+   ========================================================================== */
+
+.ai-fab {
+  position: fixed;
+  right: var(--sp-5);
+  bottom: var(--sp-5);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  background: var(--c-void);
+  color: var(--c-ivory);
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.3rem 0.85rem 0.85rem;
+  box-shadow: var(--shadow-lifted);
+  transition: transform var(--dur-fast) var(--ease-signature), background var(--dur-fast) var(--ease-signature);
+}
+.ai-fab:hover { transform: translateY(-2px); background: var(--c-oxblood); }
+.ai-fab .ai-fab-icon {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--c-oxblood);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ai-fab .ai-fab-icon svg { width: 17px; height: 17px; stroke: var(--c-ivory); fill: none; }
+.ai-fab span { font-size: var(--fs-caption); font-weight: 600; letter-spacing: var(--ls-caption); text-transform: uppercase; white-space: nowrap; }
+.ai-fab.is-hidden { transform: scale(0); opacity: 0; pointer-events: none; }
+
+@media (max-width: 560px) {
+  .ai-fab span { display: none; }
+  .ai-fab { padding: 0.7rem; }
+}
+
+.ai-panel {
+  position: fixed;
+  right: var(--sp-5);
+  bottom: var(--sp-5);
+  z-index: 300;
+  width: 380px;
+  max-width: calc(100vw - 2 * var(--sp-5));
+  height: 560px;
+  max-height: calc(100vh - 2 * var(--sp-5));
+  background: var(--bg-page);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lifted);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(16px) scale(0.98);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform var(--dur-med) var(--ease-signature), opacity var(--dur-med) var(--ease-signature), visibility var(--dur-med);
+}
+.ai-panel.is-open { transform: translateY(0) scale(1); opacity: 1; visibility: visible; }
+
+.ai-panel-header {
+  background: var(--c-void);
+  color: var(--c-ivory);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.ai-panel-header .ai-title { display: flex; align-items: center; gap: var(--sp-3); }
+.ai-panel-header .ai-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--c-oxblood);
+  display: flex; align-items: center; justify-content: center;
+}
+.ai-panel-header .ai-avatar svg { width: 16px; height: 16px; stroke: var(--c-ivory); fill: none; }
+.ai-panel-header h4 { font-family: var(--font-display); font-size: var(--fs-h6); font-weight: 500; }
+.ai-panel-header p { font-size: 0.68rem; color: var(--text-muted-inverse); letter-spacing: var(--ls-caption); text-transform: uppercase; }
+.ai-panel-close { width: 30px; height: 30px; border-radius: 50%; background: rgba(246,241,233,0.1); border: none; color: var(--c-ivory); display: flex; align-items: center; justify-content: center; }
+.ai-panel-close svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
+
+.ai-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.ai-msg { max-width: 84%; font-size: var(--fs-caption); line-height: var(--lh-normal); }
+.ai-msg-bot { align-self: flex-start; }
+.ai-msg-bot .ai-bubble { background: var(--c-ivory-soft); border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 2px; padding: var(--sp-3) var(--sp-4); }
+.ai-msg-user { align-self: flex-end; }
+.ai-msg-user .ai-bubble { background: var(--c-void); color: var(--c-ivory); border-radius: var(--radius-md) var(--radius-md) 2px var(--radius-md); padding: var(--sp-3) var(--sp-4); }
+
+.ai-suggestions { display: flex; flex-wrap: wrap; gap: var(--sp-2); padding: 0 var(--sp-5) var(--sp-4); flex-shrink: 0; }
+.ai-suggestion-chip {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  background: transparent;
+  transition: background var(--dur-fast) var(--ease-signature), border-color var(--dur-fast) var(--ease-signature);
+}
+.ai-suggestion-chip:hover { background: var(--c-void); color: var(--c-ivory); border-color: var(--c-void); }
+
+.ai-typing { display: flex; gap: 4px; padding: var(--sp-3) var(--sp-4); align-self: flex-start; background: var(--c-ivory-soft); border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 2px; }
+.ai-typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--metal); animation: aiTypingBounce 1.2s infinite ease-in-out; }
+.ai-typing span:nth-child(2) { animation-delay: 0.15s; }
+.ai-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes aiTypingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+.ai-fallback { padding: var(--sp-3) var(--sp-4); background: var(--c-ivory-soft); border-radius: var(--radius-sm); font-size: var(--fs-eyebrow); color: var(--text-muted); text-align: center; }
+.ai-fallback a { color: var(--c-oxblood); text-decoration: underline; }
+
+.ai-input-row {
+  display: flex;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  border-top: 1px solid var(--c-line);
+  flex-shrink: 0;
+}
+.ai-input-row textarea {
+  flex: 1;
+  resize: none;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  max-height: 80px;
+}
+.ai-input-row textarea:focus { border-color: var(--c-oxblood); outline: none; }
+.ai-send-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--c-void);
+  color: var(--c-ivory);
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background var(--dur-fast) var(--ease-signature);
+}
+.ai-send-btn:hover { background: var(--c-oxblood); }
+.ai-send-btn:disabled { opacity: 0.4; pointer-events: none; }
+.ai-send-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
