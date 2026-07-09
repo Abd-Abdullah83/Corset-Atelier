@@ -23,6 +23,7 @@
 
   const STAGGER_GROUPS = [
     { container: '.collection-grid', items: ':scope > .collection-tile' },
+    { container: '.editorial-pillars', items: ':scope > .pillar' },
     { container: '.insta-strip', items: ':scope > .insta-tile' },
     { container: '.value-grid', items: ':scope > .value-card' },
     { container: '.process-steps', items: ':scope > .process-step' },
