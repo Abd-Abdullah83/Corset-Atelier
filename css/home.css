@@ -47,6 +47,7 @@
   color: var(--c-ivory);
 }
 .hero-content .eyebrow { color: var(--c-rose-dust); margin-bottom: var(--sp-3); display: block; }
+.hero-content .italic-accent { color: var(--c-rose-dust); }
 .hero-content h1 { max-width: 16ch; margin-bottom: var(--sp-5); }
 .hero-content .hero-actions { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
 

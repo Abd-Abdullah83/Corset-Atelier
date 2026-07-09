@@ -32,6 +32,7 @@
 
     emptyState.style.display = 'none';
     grid.innerHTML = items.map(renderProductCard).join('');
+    window.CorsetAtelier.staggerReveal(grid, '.product-card');
 
     grid.querySelectorAll('[data-wishlist-toggle]').forEach((btn) => {
       btn.addEventListener('click', (e) => {

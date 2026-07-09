@@ -143,6 +143,7 @@
     }
     wrap.innerHTML = related.map(renderProductCard).join('');
     bindWishlistButtons(wrap);
+    window.CorsetAtelier.staggerReveal(wrap, '.product-card');
   }
 
   // ---- Buy modal ----

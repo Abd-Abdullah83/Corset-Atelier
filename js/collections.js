@@ -55,6 +55,7 @@
       : `<div class="empty-state" style="grid-column:1/-1"><h3>Nothing here yet</h3><p>Try a different category, or message us on WhatsApp — we may have it in the atelier.</p></div>`;
 
     window.CorsetAtelier.bindWishlistButtons(grid);
+    window.CorsetAtelier.staggerReveal(grid, '.product-card');
   }
 
   function setActiveChip() {

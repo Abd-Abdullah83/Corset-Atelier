@@ -188,7 +188,7 @@
   width: 100%;
   max-height: 88vh;
   overflow-y: auto;
-  padding: var(--sp-6);
+  padding: var(--sp-7);
   transform: translateY(16px);
   transition: transform var(--dur-med) var(--ease-signature);
 }

@@ -45,9 +45,9 @@
   --fs-h5: 1.75rem;
   --fs-h4: 2.25rem;
   --fs-h3: 3rem;
-  --fs-h2: 3.75rem;
-  --fs-h1: 5rem;
-  --fs-hero: clamp(2.75rem, 6vw, 6.5rem);
+  --fs-h2: 4.25rem;
+  --fs-h1: 5.5rem;
+  --fs-hero: clamp(3rem, 7vw, 7.5rem);
 
   --lh-tight: 1.05;
   --lh-snug: 1.25;
@@ -55,7 +55,7 @@
 
   --ls-eyebrow: 0.22em;
   --ls-caption: 0.14em;
-  --ls-tight: -0.01em;
+  --ls-tight: -0.02em;
 
   /* ---- Spacing scale ---- */
   --sp-1: 0.25rem;
@@ -64,14 +64,14 @@
   --sp-4: 1rem;
   --sp-5: 1.5rem;
   --sp-6: 2rem;
-  --sp-7: 3rem;
-  --sp-8: 4rem;
-  --sp-9: 6rem;
-  --sp-10: 8rem;
+  --sp-7: 3.5rem;
+  --sp-8: 5rem;
+  --sp-9: 7.5rem;
+  --sp-10: 10rem;
 
   /* ---- Layout ---- */
   --container-max: 1440px;
-  --container-pad: clamp(1.25rem, 4vw, 4rem);
+  --container-pad: clamp(1.25rem, 4vw, 5rem);
   --header-h: 92px;
   --header-h-scrolled: 72px;
 

@@ -84,34 +84,59 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 500; }
   text-transform: uppercase;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
+  transform: translateY(0);
   transition: background var(--dur-fast) var(--ease-signature),
               color var(--dur-fast) var(--ease-signature),
               border-color var(--dur-fast) var(--ease-signature),
-              transform var(--dur-fast) var(--ease-signature);
+              transform 150ms var(--ease-signature),
+              box-shadow 150ms var(--ease-signature);
   white-space: nowrap;
 }
-.btn:active { transform: scale(0.98); }
 
 .btn-primary {
   background: var(--c-void);
   color: var(--c-ivory);
   border-color: var(--c-void);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.5), 0 10px 20px -8px rgba(15,13,14,0.5);
 }
-.btn-primary:hover { background: var(--c-oxblood); border-color: var(--c-oxblood); }
+.btn-primary:hover {
+  background: var(--c-oxblood);
+  border-color: var(--c-oxblood);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.5), 0 18px 30px -10px rgba(107,20,35,0.45);
+}
+.btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.5), 0 4px 10px -6px rgba(15,13,14,0.45);
+}
 
 .btn-outline {
   background: transparent;
   color: var(--c-ivory);
   border-color: rgba(246, 241, 233, 0.55);
 }
-.btn-outline:hover { background: var(--c-ivory); color: var(--c-void); border-color: var(--c-ivory); }
+.btn-outline:hover {
+  background: var(--c-ivory);
+  color: var(--c-void);
+  border-color: var(--c-ivory);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -12px rgba(0,0,0,0.4);
+}
+.btn-outline:active { transform: translateY(0) scale(0.97); box-shadow: none; }
 
 .btn-outline-dark {
   background: transparent;
   color: var(--c-charcoal);
   border-color: rgba(33, 30, 31, 0.3);
 }
-.btn-outline-dark:hover { background: var(--c-charcoal); color: var(--c-ivory); border-color: var(--c-charcoal); }
+.btn-outline-dark:hover {
+  background: var(--c-charcoal);
+  color: var(--c-ivory);
+  border-color: var(--c-charcoal);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -12px rgba(33,30,31,0.3);
+}
+.btn-outline-dark:active { transform: translateY(0) scale(0.97); box-shadow: none; }
 
 .btn-ghost {
   background: transparent;
@@ -121,6 +146,16 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 500; }
   border-radius: 0;
 }
 .btn-ghost:hover { color: var(--c-oxblood); border-color: var(--c-oxblood); }
+.btn-ghost:active { transform: scale(0.97); }
+
+/* Light press affordance for icon/utility buttons site-wide (modal close,
+   drawer close, size/color selectors, FAQ toggles, send button, etc.) —
+   the depth system above is reserved for primary CTAs, but every clickable
+   control should still feel like it responds to touch. */
+button:not(.btn) {
+  transition: transform 120ms var(--ease-signature);
+}
+button:not(.btn):active { transform: scale(0.95); }
 
 /* ==========================================================================
    SIGNATURE ELEMENT — "THE LACE LINE"

@@ -150,6 +150,8 @@ for a plain static site like this.
 - ✅ Phase 7: Our Story, Custom Order Policy, Size Guide, FAQs, Shipping, Contact
 - ✅ Phase 8: AI assistant widget (Gemini)
 - ✅ Phase 9: Polish pass
+- ✅ Phase 10a: Tactility & motion foundation
+- ✅ Phase 10b: Typography & spacing pass
 
 ## What the polish pass (Phase 9) covered
 
@@ -236,3 +238,73 @@ range, delivery times, and payment method — all defined in the system
 prompt inside `api/chat.js`. Update that file's `SYSTEM_PROMPT` whenever
 your policies change; the catalog itself stays in sync automatically since
 it's read from `products.json` on every request.
+
+## Phase 10a — Tactility & motion foundation
+
+A curated subset of a much larger "maximalist luxury" request — see the
+conversation history for the full reasoning on what was kept vs. skipped
+(the short version: real luxury fashion sites are quiet, so glass/particles/
+glow were deliberately left out in favor of restraint).
+
+**Button depth & press** (`css/base.css`) — primary buttons (`.btn-primary`)
+now have a real bottom-edge shadow that compresses on click and grows on
+hover, like a physical button. Outline buttons get a lift + shadow on hover
+and a clean scale-down press. Every other button/icon on the site (modal
+close, FAQ toggle, size/color selectors, send button, etc.) gets a light
+universal press-scale via `button:not(.btn):active`.
+
+**Magnetic hover** (`js/magnetic.js`) — primary CTA buttons and the AI chat
+FAB subtly pull toward the cursor on hover (max 10px, restrained). It
+deliberately clears its own inline transform on `mousedown` so the CSS
+press animation above can take over cleanly — the two systems don't fight.
+Skipped for touch devices and `prefers-reduced-motion`.
+
+**Staggered reveals** — two mechanisms depending on content type:
+- `js/reveal.js` handles *static* grids (collection tiles, value cards,
+  process steps, FAQ items, etc.) — the whole container is observed, and
+  once it scrolls into view, children cascade in with an increasing delay.
+- `window.CorsetAtelier.staggerReveal()` (in `main.js`) handles
+  *dynamically-rendered* grids — product cards from `collections.js`,
+  `product.js`'s related products, and `wishlist.js` all call this right
+  after building their grid, since that content usually renders already
+  in view rather than being scrolled to.
+
+**Smooth scroll** (`js/smooth-scroll.js`) — uses [Lenis](https://github.com/darkroomengineering/lenis)
+loaded from a CDN, tuned conservatively (no bounce/overshoot) so it's felt
+rather than noticed. Only runs on non-touch devices with `hover: hover`
+support, and does nothing at all if `prefers-reduced-motion` is set or if
+the CDN fails to load — native scroll is the fallback in both cases, so
+there's no hard dependency on it working.
+
+## Phase 10b — Typography & spacing pass
+
+**Bigger, more editorial type scale** (`css/tokens.css`) — hero headline
+size increased (`--fs-hero`: up to 7.5rem at wide viewports, was 6.5rem),
+page-title headings increased (`--fs-h2`: 4.25rem, was 3.75rem), and
+letter-spacing on large display type tightened (`--ls-tight`: -0.02em, was
+-0.01em) — the standard editorial move for big headlines, where a little
+negative tracking makes large serif type feel more considered rather than
+loose.
+
+**Accent color used sparingly** — one word per major heading now uses
+`.italic-accent` (italic + accent color), across the homepage hero slides,
+every page-title heading, and two homepage section headings. Deliberately
+*not* applied to every heading — the "sparingly" was the point. One real
+bug caught and fixed here: the accent color (oxblood, a dark red) has poor
+contrast against the dark hero backgrounds, so hero/page-title accents use
+`--c-rose-dust` instead (same fix pattern already used for eyebrow labels
+on dark backgrounds) — regular prose-section accents keep oxblood, which
+has good contrast against the light page background.
+
+**Spacing scale increased, not just patched** — rather than bumping
+padding on individual sections one by one, the large-end tokens themselves
+were increased (`--sp-7` through `--sp-10`), so every section gap, hero
+padding, and card padding built on those tokens got measurably more
+breathing room automatically, across all 11 pages, in one change. Values
+stayed on 8px multiples throughout. A few specific cards (review summary,
+policy highlights, modals) that were using the now-unchanged `--sp-6` got
+bumped to `--sp-7` explicitly for more premium padding.
+
+**Font loading** — added true italic weight 500 to the Google Fonts import
+(`ital,wght@...;1,500`) so accent words at heading weight render as real
+italic rather than the browser's synthetic slant.

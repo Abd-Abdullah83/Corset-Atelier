@@ -192,6 +192,30 @@
     return map[name] || '#999';
   }
 
+  // ---- Staggered reveal for dynamically-rendered grids (product cards) ----
+  // Static content is handled by reveal.js via IntersectionObserver; content
+  // rendered after a fetch (collections, related products, wishlist) calls
+  // this directly right after building its grid, since it's usually already
+  // in or near the viewport by the time it renders.
+  function staggerReveal(container, itemSelector) {
+    if (!container) return;
+    const items = Array.from(container.querySelectorAll(itemSelector));
+    if (!items.length) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    items.forEach((el, i) => {
+      el.classList.add('reveal-target');
+      el.style.transitionDelay = `${Math.min(i, 8) * 60}ms`;
+    });
+    // Double rAF: let the browser paint the hidden state first, so the
+    // transition to visible actually animates instead of snapping instantly.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        items.forEach((el) => el.classList.add('is-revealed'));
+      });
+    });
+  }
+
   window.CorsetAtelier = window.CorsetAtelier || {};
   window.CorsetAtelier.getWishlist = getWishlist;
   window.CorsetAtelier.isWishlisted = isWishlisted;
@@ -204,4 +228,5 @@
   window.CorsetAtelier.renderProductCard = renderProductCard;
   window.CorsetAtelier.bindWishlistButtons = bindWishlistButtons;
   window.CorsetAtelier.colorToCss = colorToCss;
+  window.CorsetAtelier.staggerReveal = staggerReveal;
 })();
