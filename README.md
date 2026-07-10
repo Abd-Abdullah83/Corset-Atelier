@@ -47,7 +47,11 @@ corset-atelier/
 │   ├── faq.js                  FAQ accordion toggle
 │   ├── contact.js              Contact form → WhatsApp
 │   ├── ai-widget.js            Injects the chat widget on every page, talks to /api/chat
-│   └── reveal.js                Scroll-reveal micro-interaction (respects reduced-motion)
+│   ├── reveal.js                Scroll-reveal micro-interaction (respects reduced-motion)
+│   ├── magnetic.js              Magnetic hover for primary buttons
+│   ├── smooth-scroll.js         Lenis smooth scroll (desktop only, graceful fallback)
+│   ├── quick-view.js            Self-contained Quick View modal (Collections/Wishlist/Product)
+│   └── brand-loader.js          First-visit loader fade-out timing
 ├── .env.example                Template for your Gemini API key (local dev only)
 └── assets/images/
     └── favicon.svg              Brand eyelet-mark favicon
@@ -162,6 +166,8 @@ for a plain static site like this.
 - ✅ Phase 10d: Product interactions
 - ✅ Phase 10e: Editorial storytelling section
 - ✅ Phase 11a: Critical fixes
+- ✅ Phase 11b: Loading & perception polish
+- ✅ Phase 11c: Recently Viewed
 
 ## What the polish pass (Phase 9) covered
 
@@ -495,3 +501,68 @@ empty by default, the other isn't a meaningful page without a product ID.
 Android icons (192×192, 512×512) matching the existing favicon design, plus
 `site.webmanifest` so "Add to Home Screen" on mobile shows a proper icon
 and name instead of a generic screenshot.
+
+## Phase 11b — Loading & perception polish
+
+**Skeleton loading shimmer** — Collections, Wishlist, and the product
+page's related-products grid all now show shimmering placeholder cards
+immediately, before `products.json` resolves, instead of a blank grid.
+Shared helper (`renderSkeletonGrid` in `main.js`) used by all three. On
+Wishlist specifically, the skeleton only appears on the *first* load —
+re-renders after toggling a heart already have cached data and shouldn't
+flash a skeleton every time you click.
+
+**Fetch-failure states, with a bug caught mid-build** — if
+`products.json` fails to load (offline, network hiccup), every grid now
+shows a clear "Couldn't load products — Try Again" state with a working
+retry button, instead of silently staying blank forever. While wiring
+this into the product detail page, I caught a real bug in my own first
+pass: the error state was replacing the *entire* page content area,
+which would have permanently destroyed the gallery/info markup that a
+successful retry needs to render into — meaning retry would work once
+and then silently fail forever after. Fixed by capturing the original
+markup before ever showing the error, and restoring it before retrying.
+
+**Branded first-visit loader** (`js/brand-loader.js`, loader markup in
+every page) — a brief full-screen brand mark shown only on the first page
+of a session (tracked via `sessionStorage`), fading out in well under
+800ms total. Deliberately defensive: the loader defaults to
+`display:none` in the HTML itself, and is only switched on by a tiny
+*synchronous* inline script (required — a deferred script can't reliably
+prevent the flash a loader is supposed to prevent). If JavaScript fails
+entirely for any reason, the loader simply never appears — there's no
+scenario where a stuck full-screen overlay could block the site.
+Skipped/instant under `prefers-reduced-motion`.
+
+**Thin branded scrollbar** (`css/base.css`) — brass-colored, thin, styled
+for both WebKit browsers and Firefox (`scrollbar-width`/`scrollbar-color`).
+One global rule, applies everywhere automatically.
+
+## Phase 11c — Recently Viewed
+
+Same pattern as the wishlist — a `localStorage`-backed list
+(`ca_recently_viewed`, capped at 8, most-recent-first, deduplicated) — but
+tracking what you've *looked at* rather than what you've *saved*. Shown as
+a strip on the product detail page, below Related Products.
+
+**How it decides what to show**: every time a product page loads
+successfully, that product gets added to the front of the list. The strip
+then displays up to 4 items from that list, excluding the product you're
+currently looking at. That last part matters for correctness — on the
+very first product a visitor ever views, the list contains only that one
+product, so after excluding "the one you're currently on" there's nothing
+left to show, and the section stays hidden rather than displaying a
+strip with one card that's just... this same product with a different
+label.
+
+**A bug I caught before it shipped**: my first pass only *hid* the
+section when there was nothing to show, but never explicitly *un-hid* it
+in the success path — since the section defaults to hidden in the HTML
+(to avoid a flash of an empty section before JS runs), it would have
+stayed invisible forever even once there was real browsing history to
+display. Fixed by explicitly clearing the hidden state whenever there are
+items.
+
+Reuses the same product-card component and stagger-reveal animation as
+everywhere else, so it looks and behaves identically to Related Products
+— just populated from browsing history instead of category matching.
