@@ -37,6 +37,23 @@
 </head>
 <body>
 
+<div class="brand-loader" data-brand-loader aria-hidden="true" style="display:none">
+  <div class="brand-loader-mark">
+    <span class="eyelet-glyph-lg"></span>
+    <span class="brand-loader-word">Corset Atelier</span>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    if (!sessionStorage.getItem('ca_visited')) {
+      document.currentScript.previousElementSibling.style.display = 'flex';
+      sessionStorage.setItem('ca_visited', '1');
+    }
+  } catch (e) {}
+})();
+</script>
+
 <a href="#main" class="skip-link">Skip to content</a>
 
 <div class="announce-bar">Handcrafted to order &nbsp;·&nbsp; 70% deposit, 17-day production &nbsp;·&nbsp; Cash on delivery available</div>
@@ -236,6 +253,7 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/brand-loader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
 <script src="js/smooth-scroll.js"></script>
 <script src="js/reveal.js"></script>
