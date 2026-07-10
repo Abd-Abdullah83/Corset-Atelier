@@ -261,6 +261,8 @@
   letter-spacing: var(--ls-caption);
 }
 .footer-bottom .payment-note { color: var(--text-muted-inverse); }
+.footer-bottom a { text-decoration: underline; text-underline-offset: 2px; transition: color var(--dur-fast) var(--ease-signature); }
+.footer-bottom a:hover { color: var(--c-ivory); }
 
 @media (max-width: 900px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
