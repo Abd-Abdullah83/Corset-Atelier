@@ -221,6 +221,60 @@
     });
   }
 
+  const RECENTLY_VIEWED_KEY = 'ca_recently_viewed';
+  const RECENTLY_VIEWED_MAX = 8;
+
+  function getRecentlyViewed() {
+    try {
+      const raw = localStorage.getItem(RECENTLY_VIEWED_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function addRecentlyViewed(productId) {
+    let list = getRecentlyViewed().filter((id) => id !== productId);
+    list.unshift(productId);
+    if (list.length > RECENTLY_VIEWED_MAX) list = list.slice(0, RECENTLY_VIEWED_MAX);
+    try {
+      localStorage.setItem(RECENTLY_VIEWED_KEY, JSON.stringify(list));
+    } catch (e) {
+      // localStorage unavailable (private browsing, quota, etc.) — fail silently,
+      // recently-viewed is a nice-to-have, not a critical feature.
+    }
+  }
+
+  // ---- Skeleton loading placeholders ----
+  // Shown immediately (before the products.json fetch resolves) so the grid
+  // never sits blank while waiting on a network request.
+  function renderSkeletonGrid(container, count) {
+    if (!container) return;
+    const n = count || 8;
+    container.innerHTML = Array.from({ length: n }).map(() => `
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-media"></div>
+        <div class="skeleton-line skeleton-line-sm"></div>
+        <div class="skeleton-line skeleton-line-lg"></div>
+      </div>
+    `).join('');
+  }
+
+  // ---- Fetch failure state ----
+  // Shown if products.json fails to load (offline, network error, etc.)
+  // instead of leaving the grid stuck on skeletons with no explanation.
+  function renderFetchError(container, onRetry) {
+    if (!container) return;
+    container.innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1">
+        <h3>Couldn't load products</h3>
+        <p>Check your connection and try again — or message us on WhatsApp if the problem continues.</p>
+        <button type="button" class="btn btn-primary" data-fetch-retry style="margin-top:1.5rem">Try Again</button>
+      </div>`;
+    const btn = container.querySelector('[data-fetch-retry]');
+    if (btn && onRetry) btn.addEventListener('click', onRetry);
+  }
+
   window.CorsetAtelier = window.CorsetAtelier || {};
   window.CorsetAtelier.getWishlist = getWishlist;
   window.CorsetAtelier.isWishlisted = isWishlisted;
@@ -234,4 +288,8 @@
   window.CorsetAtelier.bindWishlistButtons = bindWishlistButtons;
   window.CorsetAtelier.colorToCss = colorToCss;
   window.CorsetAtelier.staggerReveal = staggerReveal;
+  window.CorsetAtelier.renderSkeletonGrid = renderSkeletonGrid;
+  window.CorsetAtelier.renderFetchError = renderFetchError;
+  window.CorsetAtelier.getRecentlyViewed = getRecentlyViewed;
+  window.CorsetAtelier.addRecentlyViewed = addRecentlyViewed;
 })();
