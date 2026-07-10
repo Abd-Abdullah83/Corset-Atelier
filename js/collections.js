@@ -84,6 +84,16 @@
     });
   }
 
+  async function loadProducts(grid) {
+    window.CorsetAtelier.renderSkeletonGrid(grid, 8);
+    try {
+      allProducts = await window.CorsetAtelier.getProducts();
+      render();
+    } catch (err) {
+      window.CorsetAtelier.renderFetchError(grid, () => loadProducts(grid));
+    }
+  }
+
   async function init() {
     const grid = document.querySelector('[data-product-grid]');
     if (!grid) return;
@@ -102,8 +112,7 @@
       });
     }
 
-    allProducts = await window.CorsetAtelier.getProducts();
-    render();
+    await loadProducts(grid);
   }
 
   document.addEventListener('DOMContentLoaded', init);
