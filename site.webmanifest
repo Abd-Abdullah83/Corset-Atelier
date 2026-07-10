@@ -1,0 +1,13 @@
+{
+  "name": "Corset Atelier",
+  "short_name": "Corset Atelier",
+  "description": "Handcrafted luxury corsetry, made to order.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0F0D0E",
+  "theme_color": "#0F0D0E",
+  "icons": [
+    { "src": "assets/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
