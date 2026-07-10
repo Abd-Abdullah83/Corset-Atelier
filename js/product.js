@@ -161,6 +161,27 @@
     window.CorsetAtelier.staggerReveal(wrap, '.product-card');
   }
 
+  function renderRecentlyViewed(allProducts) {
+    const { renderProductCard, bindWishlistButtons, getRecentlyViewed } = window.CorsetAtelier;
+    const viewedIds = getRecentlyViewed().filter((id) => id !== product.id);
+    const items = viewedIds
+      .map((id) => allProducts.find((p) => p.id === id))
+      .filter(Boolean)
+      .slice(0, 4);
+
+    const section = document.querySelector('[data-recently-viewed-section]');
+    if (!items.length) {
+      if (section) section.style.display = 'none';
+      return;
+    }
+    if (section) section.style.display = '';
+
+    const wrap = document.querySelector('[data-recently-viewed-grid]');
+    wrap.innerHTML = items.map(renderProductCard).join('');
+    bindWishlistButtons(wrap);
+    window.CorsetAtelier.staggerReveal(wrap, '.product-card');
+  }
+
   // ---- Buy modal ----
   function buildOrderSummary() {
     const { formatPrice } = window.CorsetAtelier;
@@ -275,13 +296,38 @@
     });
   }
 
+  let originalRootHTML = null;
+
+  function renderFetchFailed() {
+    const root = document.querySelector('[data-product-root]');
+    if (originalRootHTML === null) originalRootHTML = root.innerHTML;
+    root.innerHTML = `
+      <div class="empty-state">
+        <h3>Couldn't load this product</h3>
+        <p>Check your connection and try again — or message us on WhatsApp if the problem continues.</p>
+        <button type="button" class="btn btn-primary" data-retry-load style="margin-top:1.5rem">Try Again</button>
+      </div>`;
+    document.querySelector('[data-retry-load]').addEventListener('click', () => {
+      root.innerHTML = originalRootHTML;
+      init();
+    });
+  }
+
   async function init() {
     const root = document.querySelector('[data-product-root]');
     if (!root) return;
+    if (originalRootHTML === null) originalRootHTML = root.innerHTML;
 
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
-    const products = await window.CorsetAtelier.getProducts();
+
+    let products;
+    try {
+      products = await window.CorsetAtelier.getProducts();
+    } catch (err) {
+      renderFetchFailed();
+      return;
+    }
     product = products.find((p) => p.id === id);
 
     if (!product) {
@@ -295,6 +341,8 @@
     initBuyModal();
     initQueryModal();
     renderRelated();
+    window.CorsetAtelier.addRecentlyViewed(product.id);
+    renderRecentlyViewed(products);
   }
 
   document.addEventListener('DOMContentLoaded', init);
