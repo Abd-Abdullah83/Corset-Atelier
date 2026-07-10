@@ -362,3 +362,25 @@
 }
 .contact-band input[type="email"]::placeholder { color: rgba(246,241,233,0.6); }
 .contact-band .form-note { font-size: var(--fs-caption); margin-top: var(--sp-4); color: rgba(246,241,233,0.7); }
+
+.newsletter-confirm {
+  text-align: center;
+  padding-block: var(--sp-4);
+  color: rgba(246,241,233,0.85);
+}
+.newsletter-confirm svg {
+  width: 34px; height: 34px;
+  stroke: var(--c-rose-dust);
+  fill: none;
+  margin: 0 auto var(--sp-3);
+  display: block;
+  animation: confirmPop 420ms var(--ease-signature);
+}
+@keyframes confirmPop {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .newsletter-confirm svg { animation: none; }
+}
