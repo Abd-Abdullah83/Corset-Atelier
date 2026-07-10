@@ -9,15 +9,33 @@
 (function () {
   'use strict';
 
+  let hasLoadedOnce = false;
+
   async function render() {
     const grid = document.querySelector('[data-wishlist-grid]');
     const countEl = document.querySelector('[data-wishlist-heading-count]');
     const emptyState = document.querySelector('[data-wishlist-empty]');
     if (!grid) return;
 
-    const { getWishlist, getProducts, renderProductCard, bindWishlistButtons } = window.CorsetAtelier;
+    const { getWishlist, getProducts, renderProductCard, bindWishlistButtons, renderSkeletonGrid, renderFetchError } = window.CorsetAtelier;
     const savedIds = getWishlist();
-    const allProducts = await getProducts();
+
+    // Only show the skeleton on the very first load — re-renders after
+    // toggling a heart already have cached data and shouldn't flash.
+    if (!hasLoadedOnce) {
+      emptyState.style.display = 'none';
+      renderSkeletonGrid(grid, Math.max(savedIds.length, 4));
+    }
+
+    let allProducts;
+    try {
+      allProducts = await getProducts();
+    } catch (err) {
+      renderFetchError(grid, render);
+      return;
+    }
+    hasLoadedOnce = true;
+
     const items = allProducts.filter((p) => savedIds.includes(p.id));
 
     if (countEl) {
