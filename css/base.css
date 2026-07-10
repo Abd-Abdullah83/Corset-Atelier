@@ -287,3 +287,53 @@ button:not(.btn):active { transform: scale(0.95); }
 @media (prefers-reduced-motion: reduce) {
   .is-pulsing svg { animation: none; }
 }
+
+/* ---- Branded first-visit loader ----
+   Defaults to display:none in markup — only shown via a synchronous inline
+   script (see the snippet right after this element in each page) when
+   sessionStorage confirms this is genuinely the first page of the session.
+   If JS fails entirely, it simply never appears — no risk of a stuck
+   full-screen overlay blocking the site. */
+.brand-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--c-void);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 300ms ease;
+}
+.brand-loader.is-hiding { opacity: 0; }
+.brand-loader-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.brand-loader-mark .eyelet-glyph-lg {
+  width: 28px; height: 28px;
+  border: 1px solid var(--c-brass);
+  border-radius: 50%;
+  position: relative;
+}
+.brand-loader-mark .eyelet-glyph-lg::after {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  background: var(--c-brass);
+  border-radius: 50%;
+}
+.brand-loader-word {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--c-ivory);
+  letter-spacing: 0.04em;
+}
+
+/* ---- Thin branded scrollbar ---- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--c-ivory-soft); }
+::-webkit-scrollbar-thumb { background: var(--c-brass); border-radius: 999px; border: 2px solid var(--c-ivory-soft); }
+::-webkit-scrollbar-thumb:hover { background: var(--c-oxblood); }
+html { scrollbar-width: thin; scrollbar-color: var(--c-brass) var(--c-ivory-soft); }
