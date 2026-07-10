@@ -17,6 +17,12 @@ corset-atelier/
 ├── faqs.html                  Accordion FAQ, grouped by topic
 ├── shipping.html              Shipping, payment, returns policy
 ├── contact.html                Contact info + WhatsApp-connected form
+├── privacy-policy.html         Privacy policy (general template — see Phase 11a notes)
+├── terms.html                  Terms of service (general template — see Phase 11a notes)
+├── 404.html                    Custom not-found page
+├── sitemap.xml                 Search engine sitemap (update URLs if domain changes)
+├── robots.txt                  Crawler access + sitemap pointer
+├── site.webmanifest            Add-to-home-screen app config
 ├── api/
 │   └── chat.js                Vercel serverless function — proxies to Gemini, holds the API key
 ├── data/
@@ -155,6 +161,7 @@ for a plain static site like this.
 - ✅ Phase 10c: Image treatment system
 - ✅ Phase 10d: Product interactions
 - ✅ Phase 10e: Editorial storytelling section
+- ✅ Phase 11a: Critical fixes
 
 ## What the polish pass (Phase 9) covered
 
@@ -427,3 +434,64 @@ the same one — so it silently wouldn't have applied anything. Fixed with a
 correctly-scoped `.editorial-band .lace-divider` rule instead. Worth
 knowing since it's the kind of thing that's easy to miss without visually
 checking the result.
+
+## Phase 11a — Critical fixes
+
+**Account icon removed** — it linked to a non-existent `account.html`.
+Since there's no login/cart system in this architecture (orders go
+through WhatsApp/COD, no backend), a real account page didn't fit — and
+repointing it to Wishlist would've just made two icons go to the same
+place. Removed rather than faked.
+
+**Newsletter form rewired, not just reskinned** — this was the more
+important fix. The form previously showed a plain `alert()` claiming
+you're "subscribed," with no actual mailing list behind it — a real
+honesty problem, not just an ugly popup. Rather than give a fake feature
+a nicer confirmation animation, it now does what every other form on this
+site does: collects the email and sends it to you on WhatsApp to add
+manually, with a proper confirmation state (checkmark + message) matching
+the Buy modal pattern from Phase 10d.
+
+**Custom 404 page** (`404.html`) — on-brand, with links back to Home and
+Collections. Both Vercel and GitHub Pages automatically serve a file
+named exactly `404.html` at the root for any unmatched route — no config
+needed on either host.
+
+**Privacy Policy & Terms of Service** (`privacy-policy.html`,
+`terms.html`) — cover what data is collected (name/phone/address via
+WhatsApp orders), how the wishlist's `localStorage` works, third-party
+services in use (Google Fonts, WhatsApp, the Gemini AI assistant), COD
+payment terms, and the custom-order deposit/cancellation policy. Both are
+linked from every page's footer now. **Important**: these are general
+templates, not legal advice — I'm not a lawyer, and there's a visible
+disclaimer on both pages saying so. Have them reviewed by a qualified
+professional before relying on them, especially if you ever sell outside
+Pakistan or run ads (Meta/Instagram business verification often requires
+a real privacy policy).
+
+**Open Graph & social preview tags** — every page now has proper
+`og:title`, `og:description`, `og:image`, and Twitter Card tags, computed
+from each page's existing `<title>`/description so nothing had to be
+hand-typed 14 times. Generated a branded 1200×630 preview image
+(`assets/images/og-image.jpg`) so links shared on WhatsApp/Instagram/
+Facebook now show a real image and description instead of a bare link.
+**One real limitation**: `product.html`'s OG tags are generic ("Product —
+Corset Atelier") since the actual product name is set client-side by
+JavaScript after the page loads — most link-preview crawlers (including
+WhatsApp's) don't execute JavaScript, so they'll see the static fallback.
+Fixing this properly would need server-side rendering per product, which
+is a real architecture change, not a quick patch — flagging honestly
+rather than pretending it's solved.
+
+**`sitemap.xml` + `robots.txt`** — lists all content pages for search
+engines, using the GitHub Pages URL you shared. **If you deploy on a
+different domain (e.g. a custom domain on Vercel), update the URLs in
+both files** — they're currently hardcoded to
+`https://abd-abdullah83.github.io/Corset-Atelier/`. Wishlist and the bare
+`product.html` (no `?id=`) are deliberately excluded — one's personal/
+empty by default, the other isn't a meaningful page without a product ID.
+
+**App icons & manifest** — generated `apple-touch-icon.png` (180×180) and
+Android icons (192×192, 512×512) matching the existing favicon design, plus
+`site.webmanifest` so "Add to Home Screen" on mobile shows a proper icon
+and name instead of a generic screenshot.
