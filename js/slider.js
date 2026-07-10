@@ -73,5 +73,29 @@
     initHeroSpotlight(hero);
   }
 
-  document.addEventListener('DOMContentLoaded', initHeroSlider);
+  function initNewsletterForm() {
+    const form = document.querySelector('[data-newsletter-form]');
+    if (!form) return;
+
+    const formView = document.querySelector('[data-newsletter-form-view]');
+    const confirmView = document.querySelector('[data-newsletter-confirm-view]');
+    const WHATSAPP_NUMBER = '923286712746';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = new FormData(form).get('email');
+      const message = `Hi! Please add me to the Corset Atelier mailing list.\n\nEmail: ${email}`;
+
+      formView.style.display = 'none';
+      confirmView.style.display = '';
+      setTimeout(() => {
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+      }, 700);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initHeroSlider();
+    initNewsletterForm();
+  });
 })();
