@@ -174,3 +174,23 @@
   color: var(--text-muted);
 }
 .empty-state h3 { font-family: var(--font-display); font-size: var(--fs-h4); margin-bottom: var(--sp-3); color: var(--text-primary); }
+
+/* ---- Skeleton loading state ---- */
+.skeleton-media,
+.skeleton-line {
+  background: linear-gradient(90deg, var(--c-ivory-soft) 25%, #e8e0d2 37%, var(--c-ivory-soft) 63%);
+  background-size: 400% 100%;
+  animation: skeletonShimmer 1.4s ease infinite;
+  border-radius: var(--radius-sm);
+}
+.skeleton-media { aspect-ratio: 3/4; border-radius: var(--radius-md); }
+.skeleton-line { height: 12px; margin-top: var(--sp-3); }
+.skeleton-line-sm { width: 40%; }
+.skeleton-line-lg { width: 72%; height: 16px; }
+@keyframes skeletonShimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-media, .skeleton-line { animation: none; }
+}
