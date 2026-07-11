@@ -137,6 +137,26 @@
   });
 
   // Expose small helpers other pages can reuse.
+  const STOCK_INFO = {
+    'in-stock': { text: 'In Stock', className: 'stock-in' },
+    'low-stock': { text: 'Low Stock', className: 'stock-low' },
+    'made-to-order': { text: 'Made to Order · 17 Days', className: 'stock-made' },
+    'sold-out': { text: 'Sold Out', className: 'stock-out' }
+  };
+
+  function getStockInfo(status) {
+    return STOCK_INFO[status] || STOCK_INFO['in-stock'];
+  }
+
+  function isPurchasable(status) {
+    return status !== 'sold-out';
+  }
+
+  function stockBadgeHTML(status) {
+    const info = getStockInfo(status);
+    return `<span class="stock-badge ${info.className}">${info.text}</span>`;
+  }
+
   // ---- Shared category labels + card renderer (used by collections, product, wishlist pages) ----
   const CATEGORY_LABELS = {
     'bridal': 'Bridal', 'overbust': 'Overbust', 'underbust': 'Underbust',
@@ -166,6 +186,7 @@
               ${p.comparePrice ? `<span class="product-compare-price">${formatPrice(p.comparePrice)}</span>` : ''}
               ${discount ? `<span class="product-discount">Save ${discount}%</span>` : ''}
             </div>
+            ${p.stock ? stockBadgeHTML(p.stock) : ''}
           </div>
         </a>
       </div>
@@ -322,4 +343,7 @@
   window.CorsetAtelier.getJournalPosts = getJournalPosts;
   window.CorsetAtelier.renderJournalCard = renderJournalCard;
   window.CorsetAtelier.formatJournalDate = formatJournalDate;
+  window.CorsetAtelier.getStockInfo = getStockInfo;
+  window.CorsetAtelier.isPurchasable = isPurchasable;
+  window.CorsetAtelier.stockBadgeHTML = stockBadgeHTML;
 })();
