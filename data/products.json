@@ -27,7 +27,19 @@
       "linear-gradient(160deg,#3a1116,#6B1423 55%,#C9A6A1 140%)",
       "linear-gradient(40deg,#3a1116,#6B1423 55%,#C9A6A1 140%)",
       "linear-gradient(260deg,#3a1116,#6B1423 55%,#C9A6A1 140%)"
-    ]
+    ],
+    "colorGalleries": {
+      "Ivory": [
+        "linear-gradient(160deg,#3a1116,#6B1423 55%,#C9A6A1 140%)",
+        "linear-gradient(40deg,#3a1116,#6B1423 55%,#C9A6A1 140%)",
+        "linear-gradient(260deg,#3a1116,#6B1423 55%,#C9A6A1 140%)"
+      ],
+      "Blush": [
+        "linear-gradient(160deg,#2b1015,#C9A6A1 60%,#F6F1E9 150%)",
+        "linear-gradient(40deg,#2b1015,#C9A6A1 60%,#F6F1E9 150%)",
+        "linear-gradient(260deg,#2b1015,#C9A6A1 60%,#F6F1E9 150%)"
+      ]
+    }
   },
   {
     "id": "br-002",
