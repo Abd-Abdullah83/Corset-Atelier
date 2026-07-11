@@ -180,6 +180,7 @@ for a plain static site like this.
 - ✅ Phase 11d: Journal + Gift Cards
 - ✅ Phase 11e: Color-linked gallery (data structure — see notes)
 - ✅ Phase 11f: Analytics (Umami)
+- ✅ Phase 11g: Stock status + Product schema markup
 
 ## What the polish pass (Phase 9) covered
 
@@ -703,3 +704,45 @@ Until you do this, the script tag points nowhere and simply does nothing
 **Privacy Policy updated to match** — added a short, honest "Analytics"
 section explaining Umami is cookieless and reports only anonymous,
 aggregate traffic stats, not individual tracking.
+
+## Phase 11g — Stock status + Product schema markup
+
+**Stock/availability badges** — every product now has a `stock` field in
+`data/products.json`: `in-stock`, `low-stock`, `made-to-order`, or
+`sold-out`. Seeded with a realistic mix across the 16 products (9
+in-stock, 3 low-stock, 3 made-to-order, 1 sold-out) so every state is
+visible somewhere to check. One shared helper in `main.js` defines the
+label and color for each status, used consistently on product cards
+(Collections/Wishlist/related/recently-viewed all get it automatically
+through the shared card component), the product detail page, and Quick
+View — one place to update if you ever want to change the wording or
+colors.
+
+**Sold-out changes real behavior, not just a badge** — when a product's
+stock is `sold-out`, the Buy button relabels to "Notify Me When Back in
+Stock" and, instead of opening the order form, sends a WhatsApp message
+asking to be notified. This is wired into both the full product page and
+Quick View independently, since they have separate buy flows.
+
+**Product schema (JSON-LD)** — every product page now injects
+`Product` and `BreadcrumbList` structured data into the page `<head>`
+once the product loads, built from the same data already driving the
+visible page (name, description, price, category) plus the new stock
+field, mapped to schema.org's availability values (`InStock`,
+`LimitedAvailability`, `PreOrder`, `OutOfStock`). Verified the JSON output
+directly against a live product before considering this done, not just
+assumed the template was correct.
+
+**Two honest limitations worth flagging:**
+- The schema's `image` field currently points to the site's general social
+  preview image, not a real product photo — because there isn't one yet.
+  This keeps the schema valid and complete, but it won't unlock Google's
+  full image-based rich-result treatment until real photography replaces
+  it. Same recurring theme as the rest of the image system.
+- Unlike Open Graph tags (which link-preview bots like WhatsApp's don't
+  execute JavaScript to see), this JSON-LD *does* work for its intended
+  purpose — Google's crawler executes JavaScript when indexing, so this
+  reaches search results correctly even though it's injected client-side.
+  Worth understanding the distinction: same "JS-injected content"
+  mechanism, different outcome, because the two consumers behave
+  differently.
