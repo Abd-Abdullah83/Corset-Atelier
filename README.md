@@ -179,6 +179,7 @@ for a plain static site like this.
 - ✅ Phase 11c: Recently Viewed
 - ✅ Phase 11d: Journal + Gift Cards
 - ✅ Phase 11e: Color-linked gallery (data structure — see notes)
+- ✅ Phase 11f: Analytics (Umami)
 
 ## What the polish pass (Phase 9) covered
 
@@ -670,3 +671,35 @@ gradients with real image URLs (same pattern used throughout — see
 "Placeholder visuals" above), then add `colorGalleries` to any other
 product the same way. No code changes needed for that part; the mechanism
 is already live.
+
+## Phase 11f — Analytics (Umami)
+
+Added [Umami](https://umami.is) — a privacy-focused, cookieless analytics
+tool — to every page. Chosen over Google Analytics deliberately: Umami
+needs no cookie consent banner (real added legal/UI work Google Analytics
+would require in many regions), it's a much lighter script, and it keeps
+the Privacy Policy's existing "we do not use tracking cookies" statement
+actually true rather than needing a rewrite.
+
+### Setup (required — analytics won't work until you do this)
+
+1. Sign up free at **https://cloud.umami.is** (free tier covers a
+   generous amount of monthly traffic — plenty for a site this size).
+2. Add your site as a new "website" in the Umami dashboard — it'll give
+   you a **Website ID**.
+3. In every `.html` file, find this line (identical on all 17 pages):
+   ```html
+   <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-UMAMI-WEBSITE-ID"></script>
+   ```
+   Replace `YOUR-UMAMI-WEBSITE-ID` with the ID Umami gave you. A
+   find-and-replace across all files (any code editor can do this in one
+   action) is the fastest way.
+4. Deploy. Traffic will start showing in your Umami dashboard within
+   minutes of the first visit.
+
+Until you do this, the script tag points nowhere and simply does nothing
+— it's safe to deploy as-is in the meantime, nothing breaks either way.
+
+**Privacy Policy updated to match** — added a short, honest "Analytics"
+section explaining Umami is cookieless and reports only anonymous,
+aggregate traffic stats, not individual tracking.
