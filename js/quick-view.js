@@ -87,6 +87,7 @@
             ${product.comparePrice ? `<span class="qv-compare">${formatPrice(product.comparePrice)}</span>` : ''}
             ${discount ? `<span class="qv-discount">Save ${discount}%</span>` : ''}
           </div>
+          ${product.stock ? window.CorsetAtelier.stockBadgeHTML(product.stock) : ''}
           <p class="qv-desc">${product.description}</p>
 
           <div class="qv-variant-group">
@@ -100,7 +101,7 @@
           </div>
 
           <div class="qv-actions">
-            <button type="button" class="btn btn-primary" data-qv-buy>Buy Now — WhatsApp</button>
+            <button type="button" class="btn ${window.CorsetAtelier.isPurchasable(product.stock) ? 'btn-primary' : 'btn-outline-dark'}" data-qv-buy>${window.CorsetAtelier.isPurchasable(product.stock) ? 'Buy Now — WhatsApp' : 'Notify Me — WhatsApp'}</button>
             <button type="button" class="qv-wishlist-btn ${isWishlisted(product.id) ? 'is-active' : ''}" data-qv-wishlist aria-label="Toggle wishlist">
               <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.5 4c2-.3 3.8.7 4.9 2.3C11.5 4.7 13.3 3.7 15.3 4c3.5.5 5.1 4 3.5 7.7C16.5 16.4 12 21 12 21z" stroke-width="1.5" stroke-linejoin="round"/></svg>
             </button>
@@ -153,22 +154,26 @@
   }
 
   function handleBuy() {
-    const { formatPrice } = window.CorsetAtelier;
-    const message = [
-      `Hi! I'd like to order:`,
-      ``,
-      `*${product.name}*`,
-      `Color: ${selectedColor}   Size: ${selectedSize}`,
-      `Price: ${formatPrice(product.price)}`,
-      ``,
-      `Could you send me the order form to confirm delivery details?`
-    ].join('\n');
+    const { formatPrice, isPurchasable } = window.CorsetAtelier;
+    const soldOut = !isPurchasable(product.stock);
+
+    const message = soldOut
+      ? `Hi! I'd like to be notified when *${product.name}* is back in stock.`
+      : [
+          `Hi! I'd like to order:`,
+          ``,
+          `*${product.name}*`,
+          `Color: ${selectedColor}   Size: ${selectedSize}`,
+          `Price: ${formatPrice(product.price)}`,
+          ``,
+          `Could you send me the order form to confirm delivery details?`
+        ].join('\n');
 
     const body = overlay.querySelector('[data-qv-body]');
     body.innerHTML = `
       <div class="qv-confirm">
         <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Opening WhatsApp to finish your order for<br><strong>${product.name}</strong>...
+        ${soldOut ? `Opening WhatsApp to notify you about<br><strong>${product.name}</strong>...` : `Opening WhatsApp to finish your order for<br><strong>${product.name}</strong>...`}
       </div>
     `;
     setTimeout(() => {
