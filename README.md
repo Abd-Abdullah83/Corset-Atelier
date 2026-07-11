@@ -20,13 +20,17 @@ corset-atelier/
 ├── privacy-policy.html         Privacy policy (general template — see Phase 11a notes)
 ├── terms.html                  Terms of service (general template — see Phase 11a notes)
 ├── 404.html                    Custom not-found page
+├── journal.html                 Journal index — data-driven, same pattern as Collections
+├── journal-post.html            Single Journal post template (?post=slug)
+├── gift-cards.html               Gift card request form → WhatsApp
 ├── sitemap.xml                 Search engine sitemap (update URLs if domain changes)
 ├── robots.txt                  Crawler access + sitemap pointer
 ├── site.webmanifest            Add-to-home-screen app config
 ├── api/
 │   └── chat.js                Vercel serverless function — proxies to Gemini, holds the API key
 ├── data/
-│   └── products.json        Single source of truth for all products
+│   ├── products.json         Single source of truth for all products
+│   └── journal-posts.json     Single source of truth for all Journal posts
 ├── css/
 │   ├── tokens.css           Colors, type, spacing — the design system
 │   ├── base.css             Reset, typography, buttons, "lace line" signature element
@@ -36,6 +40,8 @@ corset-atelier/
 │   ├── product.css           Gallery zoom, variant selectors, buy/query modals
 │   ├── custom-builder.css    Step wizard, option cards, measurement form
 │   ├── info-pages.css        Value grids, process steps, size table, FAQ accordion, contact layout
+│   ├── quick-view.css         Self-contained Quick View modal styles
+│   ├── journal.css             Journal index grid + single-post reading layout
 │   └── ai-widget.css          Floating chat button + panel
 ├── js/
 │   ├── main.js               Header scroll, mobile drawer, wishlist, shared product-card renderer, color map
@@ -51,7 +57,10 @@ corset-atelier/
 │   ├── magnetic.js              Magnetic hover for primary buttons
 │   ├── smooth-scroll.js         Lenis smooth scroll (desktop only, graceful fallback)
 │   ├── quick-view.js            Self-contained Quick View modal (Collections/Wishlist/Product)
-│   └── brand-loader.js          First-visit loader fade-out timing
+│   ├── brand-loader.js          First-visit loader fade-out timing
+│   ├── journal.js                Journal index — loads and renders posts
+│   ├── journal-post.js           Single Journal post rendering + next-post navigation
+│   └── gift-cards.js             Amount selection + WhatsApp submission
 ├── .env.example                Template for your Gemini API key (local dev only)
 └── assets/images/
     └── favicon.svg              Brand eyelet-mark favicon
@@ -168,6 +177,7 @@ for a plain static site like this.
 - ✅ Phase 11a: Critical fixes
 - ✅ Phase 11b: Loading & perception polish
 - ✅ Phase 11c: Recently Viewed
+- ✅ Phase 11d: Journal + Gift Cards
 
 ## What the polish pass (Phase 9) covered
 
@@ -566,3 +576,49 @@ items.
 Reuses the same product-card component and stagger-reveal animation as
 everywhere else, so it looks and behaves identically to Related Products
 — just populated from browsing history instead of category matching.
+
+## Phase 11d — Journal + Gift Cards
+
+The site now has 17 pages. Two new content types, both built to fit the
+existing architecture rather than needing anything new.
+
+**Journal** (`journal.html`, `journal-post.html`, `data/journal-posts.json`)
+— built as a single data-driven template, exactly like the product system:
+one JSON file is the source of truth for all posts, `journal.html` lists
+them as cards, and `journal-post.html?post=slug` renders any individual
+post from that same data. Seeded with 4 real posts covering the topics you
+asked for — a behind-the-scenes look at the 17-day build process, a care
+guide, a fabric spotlight (silk satin vs. coutil), and a brand-heritage
+piece. Each post page shows a "Next post" link that cycles through the
+list, so there's always a next click. Uses the same skeleton-loading and
+fetch-error patterns as Collections — nothing new to learn, same feel.
+
+**Gift Cards** (`gift-cards.html`) — preset amounts (Rs. 5,000 / 10,000 /
+15,000 / 25,000) plus a custom-amount override, recipient name/message
+fields, and a WhatsApp handoff. Worth being upfront about what this
+actually is: since there's no backend or payment processing, this is a
+*request* flow, not a real digital gift card system — the amount and
+recipient details go to you on WhatsApp, and you confirm payment and issue
+the actual code manually. That's consistent with how every other
+transaction on this site works (custom orders, buy-now, everything), so it
+doesn't feel out of place, but it's not automated redemption/balance
+tracking — that would need a real backend.
+
+**A polish catch worth naming**: my first draft of the gift card form used
+`alert()` for validation errors — which is exactly the kind of unpolished
+pattern I flagged and fixed in the newsletter form back in Phase 11a.
+Caught it before it shipped and replaced it with the same inline
+`.field-error` pattern the Custom Builder already uses.
+
+**Navigation integration**: Journal was added to the primary header nav
+(between Our Story and Size Guide) and Gift Cards to the mobile drawer and
+footer's Shop column — a deliberate choice, not an oversight. Gift Cards
+is a secondary/occasional action, not a top-5 navigation priority, so it
+didn't need header real estate the way core shopping and story content do.
+
+**A process note**: rather than rebuild the header/footer/loader template
+by hand again (real risk of drift from the actual current production
+markup after 11 phases of incremental changes), I copied an existing live
+page byte-for-byte and used it as the template for the new pages — same
+approach used safely back in Phase 7. Guarantees the new pages are
+pixel-identical in structure to everything else, not a re-approximation.
