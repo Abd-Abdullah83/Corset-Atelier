@@ -1,0 +1,59 @@
+[
+  {
+    "slug": "inside-a-17-day-build",
+    "title": "Inside a 17-Day Build",
+    "category": "Behind the Seams",
+    "date": "2026-06-02",
+    "excerpt": "From first measurement to final eyelet — a look at exactly what happens during the 17 days between your deposit and your delivery.",
+    "swatch": "linear-gradient(160deg,#241014,#6B1423 55%,#A9772F 140%)",
+    "content": [
+      "Every custom piece begins the same way — with your measurements, laid out on the cutting table alongside your chosen fabric and colorway. Before a single cut is made, the pattern is checked against your numbers twice.",
+      "Days one through four are cutting and construction — coutil panels are cut, boning channels are marked, and the frame of the corset starts to take shape. This is the stage where structure is built in; get it right here and everything after holds true.",
+      "By the second week, we're into boning, binding, and the busk closure — the hardware that makes a corset a corset. Every eyelet is set by hand, checked, and set again if it isn't perfectly seated.",
+      "The final days are finishing: lacing, a fit check against your original measurements, and a last inspection before it's wrapped for delivery. Seventeen days sounds long in a world of next-day shipping — but it's exactly how long it takes to do this properly."
+    ]
+  },
+  {
+    "slug": "how-to-care-for-your-corset",
+    "title": "How to Care for Your Corset",
+    "category": "Care Guide",
+    "date": "2026-05-18",
+    "excerpt": "Spot clean only, store it right, and it'll outlast almost anything else in your wardrobe. Here's exactly how.",
+    "swatch": "linear-gradient(160deg,#0F0D0E,#4a161d 130%)",
+    "content": [
+      "A well-made corset is built to last years, not seasons — but only if it's cared for properly. The single most important rule: never machine wash or soak a corset. The boning and structure simply aren't built for that kind of agitation.",
+      "Spot clean instead. A soft cloth, lightly dampened with cold water and a touch of mild detergent, is enough for most marks. Always test on an inside seam first, especially with satin or silk pieces.",
+      "Between wears, let your corset breathe rather than storing it away immediately — hang it loosely laced on a padded hanger for a few hours before putting it away fully.",
+      "For storage, keep it away from direct sunlight, which fades fabric over time, and avoid folding it tightly for long periods — this can crease the boning channels. Flat storage or a wide hanger both work well.",
+      "If a lace or ribbon ever needs replacing, message us — we can usually source a match or replace it during a re-lacing service."
+    ]
+  },
+  {
+    "slug": "understanding-our-fabrics",
+    "title": "Understanding Our Fabrics: Silk Satin vs. Coutil",
+    "category": "Fabric Spotlight",
+    "date": "2026-04-30",
+    "excerpt": "Two of our most-used materials, and why we reach for one over the other depending on what a piece needs to do.",
+    "swatch": "linear-gradient(160deg,#171415,#A9772F 170%)",
+    "content": [
+      "Fabric choice isn't just about how a corset looks — it determines how it behaves, how long it lasts, and how it feels against the body. Two of our most-used materials couldn't be more different in character.",
+      "Silk satin has a soft sheen and fluid drape, which is why it's our first choice for bridal and evening pieces — it photographs beautifully and moves with the body rather than against it. It's a more delicate fiber, so silk satin pieces are best spot cleaned only and stored away from direct light.",
+      "Cotton coutil is the workhorse of corsetry — a tightly woven herringbone cotton specifically engineered to resist stretching under the tension a corset puts on it. It's what typically lines the inside of every piece we make, silk exterior or not, because structure has to come from somewhere.",
+      "For everyday and waist-training pieces, we often use coutil as both the structural layer and the visible fabric — it's more breathable, more durable under daily wear, and honestly it ages beautifully, taking on a slightly worn-in softness over time that silk doesn't."
+    ]
+  },
+  {
+    "slug": "a-brief-history-of-the-corset",
+    "title": "A Brief History of the Corset",
+    "category": "Heritage",
+    "date": "2026-04-05",
+    "excerpt": "From structural garment to symbol of rebellion to modern silhouette — the corset has meant something different every century.",
+    "swatch": "linear-gradient(160deg,#211014,#8A2432 60%,#F6F1E9 150%)",
+    "content": [
+      "The corset's history stretches back further than most people expect — early structured bodices appeared in European fashion as far back as the 16th century, though the boned, laced corset most people picture today really came into its own in the Victorian era.",
+      "For much of that period, corsets were simply how structured garments worked — not an accessory, but a foundation, as ordinary as a well-fitted blazer is today. The exaggerated waist-cinching image many people associate with corsetry represents only a narrow slice of that history.",
+      "By the early 20th century, changing fashion and changing ideas about women's bodies pushed the corset out of daily wear. It didn't disappear, though — it resurfaced through the 20th and 21st centuries again and again, worn as outerwear, as a statement, as a reclaimed symbol rather than a hidden foundation garment.",
+      "Today's corsetry sits in an interesting place — informed by centuries of construction technique, but worn on entirely different terms: as a considered choice rather than an expectation. That history is part of why we take the construction seriously. The technique deserves it."
+    ]
+  }
+]
