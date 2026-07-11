@@ -337,3 +337,32 @@ button:not(.btn):active { transform: scale(0.95); }
 ::-webkit-scrollbar-thumb { background: var(--c-brass); border-radius: 999px; border: 2px solid var(--c-ivory-soft); }
 ::-webkit-scrollbar-thumb:hover { background: var(--c-oxblood); }
 html { scrollbar-width: thin; scrollbar-color: var(--c-brass) var(--c-ivory-soft); }
+
+/* ---- Stock / availability badge ----
+   Shared component used on product cards, the product detail page, and
+   Quick View — one place to define the four states so they stay visually
+   consistent everywhere a product appears. */
+.stock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-caption);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: var(--sp-2);
+}
+.stock-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.stock-badge.stock-in { color: #3f7a4f; }
+.stock-badge.stock-in::before { background: #3f7a4f; }
+.stock-badge.stock-low { color: var(--c-oxblood); }
+.stock-badge.stock-low::before { background: var(--c-oxblood); }
+.stock-badge.stock-made { color: var(--metal-text); }
+.stock-badge.stock-made::before { background: var(--c-brass); }
+.stock-badge.stock-out { color: var(--text-muted); }
+.stock-badge.stock-out::before { background: var(--text-muted); }
