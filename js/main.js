@@ -245,6 +245,33 @@
     }
   }
 
+  let journalCache = null;
+  async function getJournalPosts() {
+    if (journalCache) return journalCache;
+    const res = await fetch('data/journal-posts.json');
+    journalCache = await res.json();
+    return journalCache;
+  }
+
+  function formatJournalDate(iso) {
+    const d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
+  function renderJournalCard(post) {
+    return `
+      <a href="journal-post.html?post=${post.slug}" class="journal-card">
+        <div class="journal-card-media" style="background:${post.swatch}"></div>
+        <div class="journal-card-body">
+          <span class="journal-card-category">${post.category}</span>
+          <h3 class="journal-card-title">${post.title}</h3>
+          <p class="journal-card-excerpt">${post.excerpt}</p>
+          <span class="journal-card-date">${formatJournalDate(post.date)}</span>
+        </div>
+      </a>
+    `;
+  }
+
   // ---- Skeleton loading placeholders ----
   // Shown immediately (before the products.json fetch resolves) so the grid
   // never sits blank while waiting on a network request.
@@ -292,4 +319,7 @@
   window.CorsetAtelier.renderFetchError = renderFetchError;
   window.CorsetAtelier.getRecentlyViewed = getRecentlyViewed;
   window.CorsetAtelier.addRecentlyViewed = addRecentlyViewed;
+  window.CorsetAtelier.getJournalPosts = getJournalPosts;
+  window.CorsetAtelier.renderJournalCard = renderJournalCard;
+  window.CorsetAtelier.formatJournalDate = formatJournalDate;
 })();
