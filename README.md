@@ -178,6 +178,7 @@ for a plain static site like this.
 - ✅ Phase 11b: Loading & perception polish
 - ✅ Phase 11c: Recently Viewed
 - ✅ Phase 11d: Journal + Gift Cards
+- ✅ Phase 11e: Color-linked gallery (data structure — see notes)
 
 ## What the polish pass (Phase 9) covered
 
@@ -622,3 +623,50 @@ markup after 11 phases of incremental changes), I copied an existing live
 page byte-for-byte and used it as the template for the new pages — same
 approach used safely back in Phase 7. Guarantees the new pages are
 pixel-identical in structure to everything else, not a re-approximation.
+
+## Phase 11e — Color-linked gallery (data structure)
+
+As flagged when this was proposed: this feature has no real payoff until
+you have per-color product photography, so the actual "does the gallery
+swap when you pick a color" mechanism is built and wired in now, but
+populated on only one product as a working demonstration — not rolled
+out everywhere with fake placeholder variety, which would've been busywork
+that looks finished but isn't actually useful.
+
+**How it works**: any product can optionally have a `colorGalleries`
+object in `data/products.json` — a map from color name to its own 3-image
+gallery, e.g.:
+```json
+"colorGalleries": {
+  "Ivory": ["...", "...", "..."],
+  "Blush": ["...", "...", "..."]
+}
+```
+`js/product.js` checks this on every color swatch click (and on initial
+page load, using whichever color is selected by default): if the selected
+color has an entry, the gallery crossfades to those images; if not, it
+falls back to the product's regular `gallery` array with zero visual
+change. That fallback is what makes this safe to leave unpopulated
+everywhere else — nothing breaks, nothing looks unfinished, the feature is
+just quietly inactive until there's real data for it.
+
+**Demonstrated on one product** — `br-001` (Ivory Silk Bridal Corset) has
+`colorGalleries` populated for both its colors (Ivory and Blush) using
+placeholder gradients distinct enough that you can actually see the
+gallery swap happen when you switch the color swatch. Every other product
+intentionally has no `colorGalleries` field — clicking their color
+swatches will not change the gallery, which is correct until real photos
+exist for them.
+
+**A real bug caught while wiring this in**: my first implementation called
+`renderGallery()` before `renderInfo()` during page load — but
+`renderInfo()` is what sets the initially-selected color. That ordering
+meant the color-linked gallery would only ever kick in *after* a swatch
+click, never on the initial page load, even for a product with real
+per-color data. Fixed by reordering so `renderInfo()` runs first.
+
+**When you have real photography**: replace `br-001`'s placeholder
+gradients with real image URLs (same pattern used throughout — see
+"Placeholder visuals" above), then add `colorGalleries` to any other
+product the same way. No code changes needed for that part; the mechanism
+is already live.
