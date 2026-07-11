@@ -88,11 +88,23 @@
   }
 
   function renderInfo() {
-    const { formatPrice, discountPercent, categoryLabels } = window.CorsetAtelier;
+    const { formatPrice, discountPercent, categoryLabels, stockBadgeHTML, isPurchasable } = window.CorsetAtelier;
     const discount = discountPercent(product.price, product.comparePrice);
 
     document.querySelector('[data-pd-category]').textContent = categoryLabels[product.category] || product.category;
     document.querySelector('[data-pd-title]').textContent = product.name;
+    document.querySelector('[data-pd-stock]').innerHTML = product.stock ? stockBadgeHTML(product.stock) : '';
+
+    const buyBtn = document.querySelector('[data-open-buy]');
+    if (!isPurchasable(product.stock)) {
+      buyBtn.textContent = 'Notify Me When Back in Stock';
+      buyBtn.classList.add('btn-outline-dark');
+      buyBtn.classList.remove('btn-primary');
+    } else {
+      buyBtn.textContent = 'Buy Now — Order via WhatsApp';
+      buyBtn.classList.add('btn-primary');
+      buyBtn.classList.remove('btn-outline-dark');
+    }
     document.querySelector('[data-pd-desc]').textContent = product.description;
     document.querySelector('[data-pd-price]').textContent = formatPrice(product.price);
     document.querySelector('[data-pd-fabric]').textContent = product.fabric;
@@ -218,6 +230,11 @@
     const confirmView = overlay.querySelector('[data-buy-confirm-view]');
 
     function open() {
+      if (!window.CorsetAtelier.isPurchasable(product.stock)) {
+        const message = `Hi! I'd like to be notified when *${product.name}* is back in stock.`;
+        window.open(waLink(message), '_blank');
+        return;
+      }
       formView.style.display = '';
       confirmView.style.display = 'none';
       summary.innerHTML = `<strong>Order Summary</strong>${buildOrderSummary()}`;
@@ -333,6 +350,70 @@
     });
   }
 
+  // ---- Structured data (JSON-LD) ----
+  // Injected once the product loads successfully — Google's crawler does
+  // execute JavaScript when indexing, so this works for search results even
+  // though it wouldn't work for link-preview bots (see the OG tag note in
+  // the README for that separate, unrelated limitation).
+  const AVAILABILITY_MAP = {
+    'in-stock': 'https://schema.org/InStock',
+    'low-stock': 'https://schema.org/LimitedAvailability',
+    'made-to-order': 'https://schema.org/PreOrder',
+    'sold-out': 'https://schema.org/OutOfStock'
+  };
+  const SITE_URL = 'https://abd-abdullah83.github.io/Corset-Atelier';
+
+  function injectJSONLD(id, data) {
+    const existing = document.getElementById(id);
+    if (existing) existing.remove();
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = id;
+    script.textContent = JSON.stringify(data);
+    document.head.appendChild(script);
+  }
+
+  function renderStructuredData() {
+    const { categoryLabels } = window.CorsetAtelier;
+    const productUrl = `${SITE_URL}/product.html?id=${product.id}`;
+
+    // Product schema. Note: `image` points to the site's general social
+    // preview image as a placeholder, since products currently use CSS
+    // gradients, not real photography — schema validates and is accurate
+    // in every other field, but won't be eligible for Google's full image
+    // rich-result treatment until real product photos replace it here.
+    injectJSONLD('ld-product', {
+      '@context': 'https://schema.org/',
+      '@type': 'Product',
+      name: product.name,
+      description: product.description,
+      sku: product.id,
+      image: [`${SITE_URL}/assets/images/og-image.jpg`],
+      brand: { '@type': 'Brand', name: 'Corset Atelier' },
+      offers: {
+        '@type': 'Offer',
+        url: productUrl,
+        priceCurrency: 'PKR',
+        price: String(product.price),
+        availability: AVAILABILITY_MAP[product.stock] || AVAILABILITY_MAP['in-stock'],
+        itemCondition: 'https://schema.org/NewCondition'
+      }
+    });
+
+    // Breadcrumb schema, reusing the same category label already shown
+    // in the visual breadcrumb at the top of the page.
+    injectJSONLD('ld-breadcrumb', {
+      '@context': 'https://schema.org/',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/index.html` },
+        { '@type': 'ListItem', position: 2, name: 'Collections', item: `${SITE_URL}/collections.html` },
+        { '@type': 'ListItem', position: 3, name: categoryLabels[product.category] || product.category, item: `${SITE_URL}/collections.html?cat=${product.category}` },
+        { '@type': 'ListItem', position: 4, name: product.name }
+      ]
+    });
+  }
+
   async function init() {
     const root = document.querySelector('[data-product-root]');
     if (!root) return;
@@ -360,6 +441,7 @@
     // to pick the right color-linked gallery on initial load (not just
     // after a swatch click).
     renderInfo();
+    renderStructuredData();
     renderGallery();
     initZoom();
     initBuyModal();
