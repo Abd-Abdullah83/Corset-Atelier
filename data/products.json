@@ -39,7 +39,8 @@
         "linear-gradient(40deg,#2b1015,#C9A6A1 60%,#F6F1E9 150%)",
         "linear-gradient(260deg,#2b1015,#C9A6A1 60%,#F6F1E9 150%)"
       ]
-    }
+    },
+    "stock": "in-stock"
   },
   {
     "id": "br-002",
@@ -68,7 +69,8 @@
       "linear-gradient(160deg,#241014,#8A2432 60%,#F6F1E9 150%)",
       "linear-gradient(40deg,#241014,#8A2432 60%,#F6F1E9 150%)",
       "linear-gradient(260deg,#241014,#8A2432 60%,#F6F1E9 150%)"
-    ]
+    ],
+    "stock": "made-to-order"
   },
   {
     "id": "ob-001",
@@ -97,7 +99,8 @@
       "linear-gradient(160deg,#0F0D0E,#4a161d 130%)",
       "linear-gradient(40deg,#0F0D0E,#4a161d 130%)",
       "linear-gradient(260deg,#0F0D0E,#4a161d 130%)"
-    ]
+    ],
+    "stock": "low-stock"
   },
   {
     "id": "ob-002",
@@ -127,7 +130,8 @@
       "linear-gradient(160deg,#171415,#2c4a34 140%)",
       "linear-gradient(40deg,#171415,#2c4a34 140%)",
       "linear-gradient(260deg,#171415,#2c4a34 140%)"
-    ]
+    ],
+    "stock": "in-stock"
   },
   {
     "id": "ub-001",
@@ -157,7 +161,8 @@
       "linear-gradient(160deg,#171415,#6B1423 150%)",
       "linear-gradient(40deg,#171415,#6B1423 150%)",
       "linear-gradient(260deg,#171415,#6B1423 150%)"
-    ]
+    ],
+    "stock": "in-stock"
   },
   {
     "id": "ub-002",
@@ -187,7 +192,8 @@
       "linear-gradient(160deg,#211014,#A9772F 170%)",
       "linear-gradient(40deg,#211014,#A9772F 170%)",
       "linear-gradient(260deg,#211014,#A9772F 170%)"
-    ]
+    ],
+    "stock": "in-stock"
   },
   {
     "id": "wt-001",
@@ -215,7 +221,8 @@
       "linear-gradient(160deg,#0F0D0E,#333 160%)",
       "linear-gradient(40deg,#0F0D0E,#333 160%)",
       "linear-gradient(260deg,#0F0D0E,#333 160%)"
-    ]
+    ],
+    "stock": "in-stock"
   },
   {
     "id": "wt-002",
@@ -243,7 +250,8 @@
       "linear-gradient(160deg,#171415,#1e1e1e 160%)",
       "linear-gradient(40deg,#171415,#1e1e1e 160%)",
       "linear-gradient(260deg,#171415,#1e1e1e 160%)"
-    ]
+    ],
+    "stock": "low-stock"
   },
   {
     "id": "ev-001",
@@ -272,7 +280,8 @@
       "linear-gradient(160deg,#0F0D0E,#8A2432 160%)",
       "linear-gradient(40deg,#0F0D0E,#8A2432 160%)",
       "linear-gradient(260deg,#0F0D0E,#8A2432 160%)"
-    ]
+    ],
+    "stock": "made-to-order"
   },
   {
     "id": "ev-002",
@@ -298,7 +307,8 @@
       "linear-gradient(160deg,#211014,#6B1423 60%,#A9772F 150%)",
       "linear-gradient(40deg,#211014,#6B1423 60%,#A9772F 150%)",
       "linear-gradient(260deg,#211014,#6B1423 60%,#A9772F 150%)"
-    ]
+    ],
+    "stock": "in-stock"
   },
   {
     "id": "st-001",
@@ -327,7 +337,8 @@
       "linear-gradient(160deg,#241014,#C9A6A1 150%)",
       "linear-gradient(40deg,#241014,#C9A6A1 150%)",
       "linear-gradient(260deg,#241014,#C9A6A1 150%)"
-    ]
+    ],
+    "stock": "low-stock"
   },
   {
     "id": "st-002",
@@ -356,7 +367,8 @@
       "linear-gradient(160deg,#171415,#A9772F 100%,#F6F1E9 170%)",
       "linear-gradient(40deg,#171415,#A9772F 100%,#F6F1E9 170%)",
       "linear-gradient(260deg,#171415,#A9772F 100%,#F6F1E9 170%)"
-    ]
+    ],
+    "stock": "in-stock"
   },
   {
     "id": "lx-001",
@@ -384,7 +396,8 @@
       "linear-gradient(160deg,#1a0b0f,#6B1423 45%,#A9772F 100%,#0F0D0E 170%)",
       "linear-gradient(40deg,#1a0b0f,#6B1423 45%,#A9772F 100%,#0F0D0E 170%)",
       "linear-gradient(260deg,#1a0b0f,#6B1423 45%,#A9772F 100%,#0F0D0E 170%)"
-    ]
+    ],
+    "stock": "made-to-order"
   },
   {
     "id": "lx-002",
@@ -412,7 +425,8 @@
       "linear-gradient(160deg,#0F0D0E,#171415 60%,#3a1116 170%)",
       "linear-gradient(40deg,#0F0D0E,#171415 60%,#3a1116 170%)",
       "linear-gradient(260deg,#0F0D0E,#171415 60%,#3a1116 170%)"
-    ]
+    ],
+    "stock": "in-stock"
   },
   {
     "id": "na-001",
@@ -440,7 +454,8 @@
       "linear-gradient(160deg,#241014,#C9A6A1 100%,#A9772F 170%)",
       "linear-gradient(40deg,#241014,#C9A6A1 100%,#A9772F 170%)",
       "linear-gradient(260deg,#241014,#C9A6A1 100%,#A9772F 170%)"
-    ]
+    ],
+    "stock": "in-stock"
   },
   {
     "id": "na-002",
@@ -469,6 +484,7 @@
       "linear-gradient(160deg,#0F0D0E,#211014 170%)",
       "linear-gradient(40deg,#0F0D0E,#211014 170%)",
       "linear-gradient(260deg,#0F0D0E,#211014 170%)"
-    ]
+    ],
+    "stock": "sold-out"
   }
 ]
