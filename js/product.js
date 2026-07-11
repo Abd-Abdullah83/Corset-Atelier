@@ -27,22 +27,37 @@
       </div>`;
   }
 
+  // Returns the gallery for the currently selected color if the product has
+  // one (product.colorGalleries[color]), otherwise falls back to the
+  // product's default gallery. This is the color-linked gallery mechanism —
+  // see data/products.json for the shape colorGalleries expects. Most
+  // products won't have this set yet since it needs real per-color
+  // photography to be worth populating; the fallback means nothing breaks
+  // for products that don't have it.
+  function getActiveGallery() {
+    if (product.colorGalleries && product.colorGalleries[selectedColor]) {
+      return product.colorGalleries[selectedColor];
+    }
+    return product.gallery;
+  }
+
   function renderGallery() {
     const main = document.querySelector('[data-gallery-main]');
     const thumbs = document.querySelector('[data-gallery-thumbs]');
     const layers = main.querySelectorAll('[data-zoom-layer]');
+    const activeGallery = getActiveGallery();
 
     const activeLayer = main.querySelector('.zoom-layer.is-active') || layers[0];
     const inactiveLayer = Array.from(layers).find((l) => l !== activeLayer) || layers[1];
 
-    inactiveLayer.style.background = product.gallery[activeImageIndex];
+    inactiveLayer.style.background = activeGallery[activeImageIndex];
     // Force a reflow so the browser registers the new background before we
     // toggle opacity — otherwise the crossfade can skip straight to the end.
     void inactiveLayer.offsetWidth;
     layers.forEach((l) => l.classList.remove('is-active'));
     inactiveLayer.classList.add('is-active');
 
-    thumbs.innerHTML = product.gallery.map((g, i) => `
+    thumbs.innerHTML = activeGallery.map((g, i) => `
       <button type="button" class="gallery-thumb ${i === activeImageIndex ? 'is-active' : ''}" data-thumb-index="${i}" aria-label="View image ${i + 1}">
         <span class="thumb-bg" style="background:${g}"></span>
       </button>
@@ -111,6 +126,11 @@
         colorRow.querySelectorAll('.color-swatch').forEach((b) => b.classList.remove('is-active'));
         btn.classList.add('is-active');
         document.querySelector('[data-selected-color]').textContent = selectedColor;
+        // If this color has its own gallery, switch to it (crossfades via
+        // the existing renderGallery mechanism); otherwise this is a no-op
+        // fallback to the same default gallery already showing.
+        activeImageIndex = 0;
+        renderGallery();
       });
     });
 
@@ -335,9 +355,13 @@
       return;
     }
 
+    // renderInfo() must run before renderGallery() — it's what sets
+    // selectedColor for the first time, and renderGallery() now needs that
+    // to pick the right color-linked gallery on initial load (not just
+    // after a swatch click).
+    renderInfo();
     renderGallery();
     initZoom();
-    renderInfo();
     initBuyModal();
     initQueryModal();
     renderRelated();
