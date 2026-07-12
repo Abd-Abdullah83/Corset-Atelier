@@ -9,12 +9,15 @@
 (function () {
   'use strict';
 
+  const WHATSAPP_NUMBER = '923286712746';
+  const SITE_URL = 'https://abd-abdullah83.github.io/Corset-Atelier';
   let hasLoadedOnce = false;
 
   async function render() {
     const grid = document.querySelector('[data-wishlist-grid]');
     const countEl = document.querySelector('[data-wishlist-heading-count]');
     const emptyState = document.querySelector('[data-wishlist-empty]');
+    const shareBtn = document.querySelector('[data-share-wishlist]');
     if (!grid) return;
 
     const { getWishlist, getProducts, renderProductCard, bindWishlistButtons, renderSkeletonGrid, renderFetchError } = window.CorsetAtelier;
@@ -41,6 +44,7 @@
     if (countEl) {
       countEl.textContent = items.length ? `${items.length} saved piece${items.length === 1 ? '' : 's'}` : '';
     }
+    if (shareBtn) shareBtn.style.display = items.length ? '' : 'none';
 
     if (!items.length) {
       grid.innerHTML = '';
@@ -63,5 +67,38 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', render);
+  async function shareWishlist() {
+    const { getWishlist, getProducts, formatPrice } = window.CorsetAtelier;
+    const savedIds = getWishlist();
+    if (!savedIds.length) return;
+
+    const allProducts = await getProducts();
+    const items = allProducts.filter((p) => savedIds.includes(p.id));
+    if (!items.length) return;
+
+    const lines = items.map((p, i) =>
+      `${i + 1}. ${p.name} — ${formatPrice(p.price)}\n   ${SITE_URL}/product.html?id=${p.id}`
+    );
+
+    const message = [
+      `Hi! Here's my Corset Atelier wishlist:`,
+      ``,
+      ...lines,
+      ``,
+      `Would love to know more about these!`
+    ].join('\n');
+
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
+  function initShareButton() {
+    const btn = document.querySelector('[data-share-wishlist]');
+    if (!btn) return;
+    btn.addEventListener('click', shareWishlist);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    render();
+    initShareButton();
+  });
 })();
