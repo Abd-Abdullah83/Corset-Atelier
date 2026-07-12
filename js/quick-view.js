@@ -141,6 +141,14 @@
       const active = window.CorsetAtelier.toggleWishlist(product.id);
       wishBtn.classList.toggle('is-active', active);
       pulseWishlistIcon(wishBtn, active);
+
+      // Sync the card underneath the modal — it's still in the DOM behind
+      // the overlay, and without this it would keep showing the old
+      // (unfilled) heart state until the grid happens to re-render for
+      // some unrelated reason.
+      document.querySelectorAll(`[data-wishlist-toggle="${product.id}"]`).forEach((cardBtn) => {
+        cardBtn.classList.toggle('is-active', active);
+      });
     });
 
     body.querySelector('[data-qv-buy]').addEventListener('click', handleBuy);
