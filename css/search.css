@@ -1,0 +1,110 @@
+/* ==========================================================================
+   SITE SEARCH
+   Self-contained overlay, injected by js/search.js on every page. Sits
+   above Quick View (z-index 200) but below the AI widget (z-index 300),
+   since search and the AI assistant should never realistically be open
+   at the same time, but if they were, the assistant staying reachable
+   is the safer default.
+   ========================================================================== */
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 260;
+  background: rgba(15, 13, 14, 0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10vh var(--sp-4) var(--sp-4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-fast) var(--ease-signature);
+}
+.search-overlay.is-open { opacity: 1; visibility: visible; }
+
+.search-panel {
+  background: var(--bg-page);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 560px;
+  max-height: 70vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lifted);
+  transform: translateY(-12px);
+  transition: transform var(--dur-med) var(--ease-signature);
+}
+.search-overlay.is-open .search-panel { transform: translateY(0); }
+
+.search-input-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--c-line);
+  flex-shrink: 0;
+}
+.search-input-icon { width: 18px; height: 18px; stroke: var(--text-muted); fill: none; flex-shrink: 0; }
+.search-input-row input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg);
+  background: transparent;
+  color: var(--text-primary);
+}
+.search-input-row input::placeholder { color: var(--text-muted); }
+.search-close {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--c-ivory-soft);
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.search-close svg { width: 13px; height: 13px; stroke: var(--c-charcoal); fill: none; }
+
+.search-results { overflow-y: auto; padding: var(--sp-3) 0; }
+
+.search-section-label {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--metal-text);
+  padding: var(--sp-3) var(--sp-5) var(--sp-2);
+}
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-5);
+  transition: background var(--dur-fast) var(--ease-signature);
+}
+.search-result-item:hover { background: var(--c-ivory-soft); }
+.search-result-swatch {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+}
+.search-result-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.search-result-title { font-family: var(--font-display); font-size: var(--fs-h6); font-weight: 500; }
+.search-result-meta { font-size: var(--fs-eyebrow); color: var(--text-muted); }
+
+.search-hint, .search-loading, .search-empty {
+  padding: var(--sp-7) var(--sp-5);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--fs-caption);
+}
+.search-empty p:first-child { color: var(--text-primary); font-size: var(--fs-body); margin-bottom: var(--sp-2); }
+.search-empty a { color: var(--c-oxblood); text-decoration: underline; }
+
+@media (max-width: 560px) {
+  .search-overlay { padding: var(--sp-4); align-items: center; }
+  .search-panel { max-height: 80vh; }
+}
