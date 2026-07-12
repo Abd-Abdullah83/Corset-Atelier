@@ -41,14 +41,15 @@ corset-atelier/
 │   ├── custom-builder.css    Step wizard, option cards, measurement form
 │   ├── info-pages.css        Value grids, process steps, size table, FAQ accordion, contact layout
 │   ├── quick-view.css         Self-contained Quick View modal styles
+│   ├── search.css              Self-contained site search overlay styles
 │   ├── journal.css             Journal index grid + single-post reading layout
 │   └── ai-widget.css          Floating chat button + panel
 ├── js/
 │   ├── main.js               Header scroll, mobile drawer, wishlist, shared product-card renderer, color map
 │   ├── slider.js              Hero autoplay slider (3s interval)
 │   ├── collections.js         Category filtering + sorting
-│   ├── product.js             Gallery, variants, Buy/Query → WhatsApp
-│   ├── wishlist.js            Renders saved products, live-updates on removal
+│   ├── product.js             Gallery, variants, Buy/Query → WhatsApp, swipe gestures, JSON-LD
+│   ├── wishlist.js            Renders saved products, live-updates, Share Wishlist
 │   ├── custom-builder.js      Six-step wizard state, validation, WhatsApp submission
 │   ├── faq.js                  FAQ accordion toggle
 │   ├── contact.js              Contact form → WhatsApp
@@ -60,7 +61,9 @@ corset-atelier/
 │   ├── brand-loader.js          First-visit loader fade-out timing
 │   ├── journal.js                Journal index — loads and renders posts
 │   ├── journal-post.js           Single Journal post rendering + next-post navigation
-│   └── gift-cards.js             Amount selection + WhatsApp submission
+│   ├── gift-cards.js             Amount selection + WhatsApp submission
+│   ├── search.js                 Self-contained site search (header trigger + overlay, every page)
+│   └── 404.js                    404 page's search trigger + popular picks grid
 ├── .env.example                Template for your Gemini API key (local dev only)
 └── assets/images/
     └── favicon.svg              Brand eyelet-mark favicon
@@ -181,6 +184,9 @@ for a plain static site like this.
 - ✅ Phase 11e: Color-linked gallery (data structure — see notes)
 - ✅ Phase 11f: Analytics (Umami)
 - ✅ Phase 11g: Stock status + Product schema markup
+- ✅ Phase 11h: Full site audit (bugs found + fixed)
+- ✅ Phase 12a: Site Search + 404 enhancement
+- ✅ Phase 12b: Mobile gallery gestures + Wishlist sharing
 
 ## What the polish pass (Phase 9) covered
 
@@ -746,3 +752,92 @@ assumed the template was correct.
   Worth understanding the distinction: same "JS-injected content"
   mechanism, different outcome, because the two consumers behave
   differently.
+
+## Phase 11h — Full site audit
+
+A systematic pass across all 17 pages, 17 JS files, 11 CSS files, and both
+data files — checking link integrity, script load order, cross-page
+consistency, and logic correctness, not just "does it parse."
+
+**Clean (no issues found):**
+- Every internal link across every page resolves to a real file — no
+  broken hrefs anywhere.
+- All JS files pass syntax validation, all CSS files have balanced braces.
+- `products.json` and `journal-posts.json` — no missing fields, no
+  duplicate IDs/slugs, all stock values valid.
+- Every page has consistent script/CSS dependencies — no page is missing
+  something another page has, no duplicate includes anywhere.
+- The `ai-widget.js` → `magnetic.js` load-order dependency (magnetic.js
+  needs the AI button to already exist in the DOM) holds correctly on
+  every single page.
+- Sitemap correctly includes the 13 pages that should be indexed and
+  excludes the 4 that shouldn't (Wishlist, product/journal-post detail
+  pages needing a query param to mean anything, and the 404 page).
+- No dead references — no leftover "cart" language from before the
+  WhatsApp/COD model was settled, no lingering `account.html` links.
+
+**Two real bugs found and fixed:**
+
+1. **Quick View's wishlist heart didn't sync back to the card underneath
+   it.** Both live in the DOM at the same time (the card is directly
+   behind the modal overlay), so saving something from inside Quick View
+   updated the header count and the modal's own heart, but not the card's
+   heart — meaning it would show the stale, unfilled state until the grid
+   happened to re-render for some unrelated reason. Fixed by having Quick
+   View's wishlist toggle also sync any matching card on the page.
+
+2. **The AI assistant didn't know Gift Cards or the Journal existed, and
+   gave stale advice about stock.** Both features were built in later
+   phases than the assistant's system prompt, so a customer asking "do you
+   have gift cards?" would get an "I'm not sure, try WhatsApp" answer for
+   something the site actually has a whole page for. Separately, the
+   prompt told the assistant to always defer stock questions to WhatsApp —
+   correct when written, but stale once Phase 11g added real stock data to
+   the catalog the assistant already reads. Updated the prompt to mention
+   both features and to answer stock questions directly from the (now
+   available) data, while still deferring to WhatsApp for things that
+   genuinely need a human, like exact unit counts or order status.
+
+## Phase 12a — Site Search + 404 enhancement
+
+**Site Search** (`js/search.js`, `css/search.css`) — a search icon now
+appears as the first header icon on every page. Clicking it opens an
+overlay with live results as you type, searching product names, fabrics,
+and categories, plus Journal post titles/categories/excerpts. Built as a
+self-injecting component (same pattern as the AI widget and Quick View) —
+it adds its own trigger button into every page's `.header-icons` and
+appends its own overlay to `<body>` via JavaScript, so none of the 17
+pages needed their header markup hand-edited. Product/Journal data is
+only fetched the first time someone actually opens search, not on every
+page load — most visits never use it, so there's no reason to pay for two
+extra fetches on every single page view.
+
+**404 page upgrade** — replaced the two plain buttons with a working
+"Search the Site" button (opens the same search overlay above) and a
+"Popular Picks" product grid (luxury-tagged, in-stock items, reusing the
+standard product-card component). Turns a dead end into an actual recovery
+path instead of just an apology.
+
+## Phase 12b — Mobile gallery gestures + Wishlist sharing
+
+**Swipe-to-advance gallery** (`js/product.js`) — the product image gallery
+now responds to horizontal swipes on touch devices, advancing to the
+next/previous image. The tricky part was coordinating this with the
+existing tap-to-zoom behavior on the same element: a swipe gesture on a
+touchscreen also fires a `click` event right after it ends, which would
+otherwise immediately toggle zoom right after the swipe changed the image.
+Fixed with a one-shot suppression flag that swallows exactly that one
+follow-up click. Swiping is disabled while already zoomed in, since a
+zoomed image is meant to be panned by touch, not swiped past — the same
+tap that zooms also un-zooms, so touch users always have a way back to
+swipe mode. Respects the color-linked gallery from Phase 11e automatically
+(swipes through whichever gallery — default or color-specific — is
+currently active).
+
+**Wishlist sharing** — a "Share Wishlist on WhatsApp" button appears on
+the Wishlist page whenever there's at least one saved item (hidden
+otherwise). Builds a numbered list with each item's name, price, and
+direct product link, and opens WhatsApp with it prefilled. Reads the
+current wishlist state fresh at the moment it's clicked rather than
+relying on whatever was last rendered, so it can't go stale between
+renders.
