@@ -73,6 +73,10 @@
 
   function initZoom() {
     const main = document.querySelector('[data-gallery-main]');
+    let suppressNextClick = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchMoved = false;
 
     main.addEventListener('mousemove', (e) => {
       if (!main.classList.contains('is-zoomed')) return;
@@ -83,8 +87,46 @@
       const y = ((e.clientY - rect.top) / rect.height) * 100;
       activeLayer.style.transformOrigin = `${x}% ${y}%`;
     });
-    main.addEventListener('click', () => main.classList.toggle('is-zoomed'));
+    main.addEventListener('click', () => {
+      if (suppressNextClick) { suppressNextClick = false; return; }
+      main.classList.toggle('is-zoomed');
+    });
     main.addEventListener('mouseleave', () => main.classList.remove('is-zoomed'));
+
+    // ---- Touch: swipe left/right to advance the gallery ----
+    // Disabled while zoomed (a zoomed image is meant to be panned by touch,
+    // not swiped past) — the same tap that zooms also un-zooms, so touch
+    // users can always get back to swipe mode.
+    const SWIPE_THRESHOLD = 50;
+
+    main.addEventListener('touchstart', (e) => {
+      if (main.classList.contains('is-zoomed')) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchMoved = false;
+    }, { passive: true });
+
+    main.addEventListener('touchmove', (e) => {
+      if (main.classList.contains('is-zoomed')) return;
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) touchMoved = true;
+    }, { passive: true });
+
+    main.addEventListener('touchend', (e) => {
+      if (main.classList.contains('is-zoomed') || !touchMoved) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+
+      const gallery = getActiveGallery();
+      activeImageIndex = dx < 0
+        ? (activeImageIndex + 1) % gallery.length
+        : (activeImageIndex - 1 + gallery.length) % gallery.length;
+      renderGallery();
+      // A swipe that ends over the image also fires a click right after on
+      // touch devices — suppress that one so it doesn't also toggle zoom.
+      suppressNextClick = true;
+    });
   }
 
   function renderInfo() {
