@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
 <link rel="manifest" href="site.webmanifest">
+<link rel="stylesheet" href="css/search.css">
 <meta name="theme-color" content="#0F0D0E">
 
 <meta property="og:type" content="website">
@@ -129,7 +130,7 @@
 
 <main id="main">
 
-  <section class="collections-hero has-grain" style="min-height:60vh; display:flex; align-items:center;">
+  <section class="collections-hero has-grain" style="min-height:50vh; display:flex; align-items:center;">
     <div class="container" style="text-align:center;">
       <span class="eyebrow">Page Not Found</span>
       <h1 class="display-xl" style="margin-top:var(--sp-3)">404</h1>
@@ -137,10 +138,21 @@
         This page has wandered off the pattern. It may have been moved, renamed, or never existed at all.
       </p>
       <div style="display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap">
+        <button type="button" class="btn btn-outline" data-open-search-404>Search the Site</button>
         <a href="index.html" class="btn btn-outline">Back to Home</a>
         <a href="collections.html" class="btn btn-outline">Shop the Collections</a>
       </div>
     </div>
+  </section>
+
+  <section class="container" style="padding-block:var(--sp-9)">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">While You're Here</span>
+        <h2 class="display-md">Popular Picks</h2>
+      </div>
+    </div>
+    <div class="product-grid" data-notfound-grid></div>
   </section>
 
 </main>
@@ -215,6 +227,8 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/404.js"></script>
 <script src="js/brand-loader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
 <script src="js/smooth-scroll.js"></script>
