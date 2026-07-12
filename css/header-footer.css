@@ -85,9 +85,12 @@
   align-items: center;
   justify-content: center;
   width: 34px; height: 34px;
+  background: none;
+  border: none;
   color: var(--c-ivory);
   border-radius: 50%;
   position: relative;
+  cursor: pointer;
   transition: background var(--dur-fast) var(--ease-signature), color var(--dur-fast) var(--ease-signature);
 }
 .header-icons button:hover,
