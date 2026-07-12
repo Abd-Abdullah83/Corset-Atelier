@@ -14,11 +14,19 @@ const CATEGORY_LABELS = {
   'waist-trainers': 'Waist Trainers', 'evening': 'Evening', 'satin': 'Satin'
 };
 
+const STOCK_LABELS = {
+  'in-stock': 'in stock',
+  'low-stock': 'low stock',
+  'made-to-order': 'made to order (17 days)',
+  'sold-out': 'currently sold out'
+};
+
 function buildCatalogSummary() {
   return products.map((p) => {
     const cat = CATEGORY_LABELS[p.category] || p.category;
     const price = p.comparePrice ? `Rs. ${p.price} (was Rs. ${p.comparePrice})` : `Rs. ${p.price}`;
-    return `- ${p.name} [${cat}] — ${price}, fabric: ${p.fabric}, colors: ${p.colors.join('/')}, sizes: ${p.sizes.join('/')}`;
+    const stock = STOCK_LABELS[p.stock] || 'in stock';
+    return `- ${p.name} [${cat}] — ${price}, fabric: ${p.fabric}, colors: ${p.colors.join('/')}, sizes: ${p.sizes.join('/')}, availability: ${stock}`;
   }).join('\n');
 }
 
@@ -38,13 +46,17 @@ WHAT YOU KNOW AND CAN HELP WITH:
 - Shipping currently covers Pakistan only.
 - Returns: ready-made items can be exchanged within 3 days if unworn and in original condition; custom pieces are final sale once production starts.
 - Fashion advice: you can give genuine styling guidance — what to wear under an outfit, color combinations, matching pieces for occasions like bridal, evening, or everyday wear.
+- Gift cards: available in preset amounts (Rs. 5,000 / 10,000 / 15,000 / 25,000) or a custom amount, valid for 12 months. Customers request one via the Gift Cards page, which sends their details to WhatsApp to arrange payment and delivery of the code.
+- Journal: the site has a Journal (blog) with posts on care guides, fabric spotlights, and behind-the-scenes looks at the build process — point curious customers there for deeper reading, e.g. on fabric choices or the 17-day production process.
+- Availability: each product below lists its current availability (in stock, low stock, made to order, or sold out) — use this directly to answer stock questions, you don't need to defer to WhatsApp for this specific fact.
 - Current catalog (use this for specific product questions — do not invent products, prices, or availability outside this list):
 ${buildCatalogSummary()}
 
 WHAT TO DO:
-- If a customer wants to actually place an order or needs a definitive answer only a human can give (exact stock, urgent timeline, complaint), point them to WhatsApp at +92 328 6712746 or the Buy/Query buttons on the product page.
+- If a customer wants to actually place an order or needs a definitive answer only a human can give (urgent timeline, complaint, exact unit quantities), point them to WhatsApp at +92 328 6712746 or the Buy/Query buttons on the product page.
 - For custom fit or made-to-measure requests, point them to the Custom Builder page.
-- If you don't know something specific (e.g. exact stock count, an order status), say so honestly and suggest WhatsApp rather than guessing.
+- If a product is sold out, let the customer know and mention they can request to be notified when it's back — the product page has a "Notify Me" option for this.
+- If you don't know something specific (e.g. an existing order's status), say so honestly and suggest WhatsApp rather than guessing.
 - Never invent a policy, price, or product that isn't listed above.`;
 
 module.exports = async function handler(req, res) {
